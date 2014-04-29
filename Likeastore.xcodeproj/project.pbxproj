@@ -12,6 +12,8 @@
 		2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7275190FDD3D002F7C0E /* LSConstants.m */; };
 		2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */; };
 		2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A727F190FF48A002F7C0E /* LSMenuBar.m */; };
+		2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */; };
+		2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */; };
 		2A8E210A190FD21C007508CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E2109190FD21C007508CB /* Foundation.framework */; };
 		2A8E210C190FD21C007508CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210B190FD21C007508CB /* CoreGraphics.framework */; };
 		2A8E210E190FD21C007508CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210D190FD21C007508CB /* UIKit.framework */; };
@@ -47,6 +49,10 @@
 		2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDropdownViewController.m; sourceTree = "<group>"; };
 		2A4A727E190FF48A002F7C0E /* LSMenuBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMenuBar.h; sourceTree = "<group>"; };
 		2A4A727F190FF48A002F7C0E /* LSMenuBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMenuBar.m; sourceTree = "<group>"; };
+		2A4A728119100788002F7C0E /* LSAllFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSAllFavoritesViewController.h; sourceTree = "<group>"; };
+		2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAllFavoritesViewController.m; sourceTree = "<group>"; };
+		2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		2A8E2106190FD21C007508CB /* Likeastore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Likeastore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8E2109190FD21C007508CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2A8E210B190FD21C007508CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,8 @@
 			children = (
 				2A4A7277190FE7AC002F7C0E /* LSDropdownViewController.h */,
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
+				2A4A728119100788002F7C0E /* LSAllFavoritesViewController.h */,
+				2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -124,6 +132,15 @@
 				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2A5452E3191045DB0039AA7C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */,
+				2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		2A8E20FD190FD21C007508CB = {
@@ -161,6 +178,7 @@
 		2A8E210F190FD21C007508CB /* Likeastore */ = {
 			isa = PBXGroup;
 			children = (
+				2A5452E3191045DB0039AA7C /* Utils */,
 				2A4A726E190FD477002F7C0E /* Services */,
 				2A4A726C190FD452002F7C0E /* Models */,
 				2A4A726D190FD45D002F7C0E /* ViewControllers */,
@@ -339,7 +357,9 @@
 			files = (
 				2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
+				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,
+				2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */,
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,
