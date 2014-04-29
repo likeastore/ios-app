@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_DropdownMenu 0
 #define COCOAPODS_VERSION_PATCH_DropdownMenu 0
 
+// HexColors
+#define COCOAPODS_POD_AVAILABLE_HexColors
+#define COCOAPODS_VERSION_MAJOR_HexColors 2
+#define COCOAPODS_VERSION_MINOR_HexColors 2
+#define COCOAPODS_VERSION_PATCH_HexColors 1
+
 // Loader
 #define COCOAPODS_POD_AVAILABLE_Loader
 #define COCOAPODS_VERSION_MAJOR_Loader 0

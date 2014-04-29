@@ -24,10 +24,9 @@
                                     <segue destination="cvV-QK-xbq" kind="embed" id="zZw-PE-d1T"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LiT-NY-hZY">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LiT-NY-hZY" customClass="LSMenuBar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.27058823529411763" green="0.78431372549019607" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
