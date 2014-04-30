@@ -7,6 +7,7 @@
 //
 
 #import "LSAllFavoritesViewController.h"
+#import "LSDropdownViewController.h"
 
 @interface LSAllFavoritesViewController ()
 
@@ -23,10 +24,16 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
+    [menu setMenubarTitle:@"Feed"];
 }
 
 - (void)didReceiveMemoryWarning

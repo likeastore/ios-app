@@ -33,14 +33,20 @@ CAShapeLayer *closedMenuShape;
 {
     [super viewDidLoad];
     
+    
+    FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
+    [self.menuButton setTitle:nil forState:UIControlStateNormal];
+    [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
+    [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     [self customizeMenu];
     // Do any additional setup after loading the view.
 }
 
 - (void)customizeMenu {
     UIColor *menuColor = [UIColor colorWithHexString:@"#e0dede"];
-    UIColor *menuColorHover = [UIColor colorWithHexString:@"#fff"];
-    float icon_size = 24;
+    UIColor *menuColorHover = [UIColor whiteColor];
+    float icon_size = 24.0f;
     
     for (UIButton *button in self.buttons) {
         if ([button.titleLabel.text isEqualToString:@"Home"]) {
@@ -64,6 +70,7 @@ CAShapeLayer *closedMenuShape;
         }
         
         // align image and text
+        [button sizeToFit];
         button.frame = CGRectMake(0.0f, 132.0f, 0.0f, 0.0f);
         button.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 132.0f - button.titleLabel.frame.size.width/2.4f, 0.0f, 0.0f);
         button.imageEdgeInsets = UIEdgeInsetsMake(0.0f, 8.0f, 0.0f, 0.0f);
@@ -74,7 +81,7 @@ CAShapeLayer *closedMenuShape;
         [button setTitleColor:menuColorHover forState:UIControlStateHighlighted];
         [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#303040"]] forState:UIControlStateHighlighted];
         
-        // toggle bottom border on tap
+        // toggle bottom border on taps
         [button addTarget:self action:@selector(hideBottomBorder:) forControlEvents:UIControlEventTouchDown];
         [button addTarget:self action:@selector(showBottomBorder:) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(showBottomBorder:) forControlEvents:UIControlEventTouchDragOutside];

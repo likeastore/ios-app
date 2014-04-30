@@ -24,8 +24,8 @@
                                     <segue destination="SzC-Wr-2Zg" kind="embed" id="Wpv-1J-bh0"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
-                                <rect key="frame" x="0.0" y="150" width="320" height="92"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
+                                <rect key="frame" x="0.0" y="-150" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pL-az-eua">
@@ -63,8 +63,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUd-WO-ko9">
-                                        <rect key="frame" x="9" y="30" width="39" height="30"/>
+                                        <rect key="frame" x="0.0" y="30" width="39" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Menu">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,13 +74,17 @@
                                             <action selector="menuButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="aYn-DY-mF4"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-NQ-o3Y">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-NQ-o3Y">
                                         <rect key="frame" x="88" y="34" width="145" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-likeastore" translatesAutoresizingMaskIntoConstraints="NO" id="G2Q-Ug-p5v">
+                                        <rect key="frame" x="105" y="37" width="110" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.7843137255" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -131,10 +136,10 @@
             </objects>
             <point key="canvasLocation" x="669" y="314"/>
         </scene>
-        <!--View Controller-->
+        <!--All Favorites View Controller-->
         <scene sceneID="jsF-zN-jWQ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SzC-Wr-2Zg" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SzC-Wr-2Zg" customClass="LSAllFavoritesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dac-cJ-4Ay"/>
                         <viewControllerLayoutGuide type="bottom" id="Nk1-fI-uMN"/>
@@ -159,6 +164,9 @@
             <point key="canvasLocation" x="669" y="-395"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo-likeastore" width="627" height="90"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
