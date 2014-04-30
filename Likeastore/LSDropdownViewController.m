@@ -38,42 +38,74 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void)customizeMenu {
-    UIColor *iconColor = [UIColor colorWithHexString:@"#eee"];
+    UIColor *menuColor = [UIColor colorWithHexString:@"#e0dede"];
+    UIColor *menuColorHover = [UIColor colorWithHexString:@"#fff"];
     float icon_size = 24;
     
     for (UIButton *button in self.buttons) {
         if ([button.titleLabel.text isEqualToString:@"Home"]) {
             FAKFoundationIcons *homeIcon = [FAKFoundationIcons homeIconWithSize:icon_size];
-            [homeIcon addAttribute:NSForegroundColorAttributeName value:iconColor];
             
-            UIImage *iconImage = [homeIcon imageWithSize:CGSizeMake(icon_size, icon_size)];
-            [button setImage:iconImage forState:UIControlStateNormal];
+            [homeIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
+            [button setImage:[homeIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            
+            [homeIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
+            [button setImage:[homeIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
         if ([button.titleLabel.text isEqualToString:@"Favorites"]) {
-            FAKFoundationIcons *starIcon = [FAKFoundationIcons starIconWithSize:icon_size];
-            [starIcon addAttribute:NSForegroundColorAttributeName value:iconColor];
+            FAKFoundationIcons *heartIcon = [FAKFoundationIcons heartIconWithSize:icon_size];
             
-            UIImage *iconImage = [starIcon imageWithSize:CGSizeMake(icon_size, icon_size)];
-            [button setImage:iconImage forState:UIControlStateNormal];
+            [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            
+            [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
         // align image and text
-        button.frame = CGRectMake(0, 125.0, 0, 0);
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, 125.0 - button.titleLabel.frame.size.width/2.4, 0, 0);
+        button.frame = CGRectMake(0.0f, 132.0f, 0.0f, 0.0f);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 132.0f - button.titleLabel.frame.size.width/2.4f, 0.0f, 0.0f);
+        button.imageEdgeInsets = UIEdgeInsetsMake(0.0f, 8.0f, 0.0f, 0.0f);
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        
+        // set button states
+        [button setTitleColor:menuColor forState:UIControlStateNormal];
+        [button setTitleColor:menuColorHover forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#303040"]] forState:UIControlStateHighlighted];
+        
+        // toggle bottom border on tap
+        [button addTarget:self action:@selector(hideBottomBorder:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(showBottomBorder:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(showBottomBorder:) forControlEvents:UIControlEventTouchDragOutside];
         
         // add bottom border
         if (button != self.buttons.lastObject) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 45.0f, button.frame.size.width, 1.6f)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 46.0f, button.frame.size.width-16.0f, 1.6f)];
+            lineView.tag = 1;
             lineView.backgroundColor = [UIColor colorWithHexString:@"#303040"];
             [button addSubview:lineView];
         }
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)hideBottomBorder:(UIButton *)button {
+    for (UIView *border in button.subviews) {
+        if (border.tag == 1) {
+            [border setHidden:YES];
+        }
+    }
+}
+
+- (void)showBottomBorder:(UIButton *)button {
+    for (UIView *border in button.subviews) {
+        if (border.tag == 1 && [border isHidden]) {
+            [border setHidden:NO];
+        }
+    }
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -98,35 +130,35 @@ CAShapeLayer *closedMenuShape;
     
     [openMenuShape setPath:triangleShape.CGPath];
     [openMenuShape setFillColor:[self.menu.backgroundColor CGColor]];
-    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
-    [borderPath moveToPoint:CGPointMake(0, height)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition, height)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition+triangleSize, height+triangleDirection*triangleSize)];
-    [borderPath addLineToPoint:CGPointMake(trianglePosition+2*triangleSize, height)];
-    [borderPath addLineToPoint:CGPointMake(width, height)];
-    
-    [openMenuShape setPath:borderPath.CGPath];
     [openMenuShape setBounds:CGRectMake(0.0f, 0.0f, height+triangleSize, width)];
     [openMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
     [openMenuShape setPosition:CGPointMake(0.0f, 0.0f)];
 }
 
-- (void) drawClosedLayer {
+- (void)drawClosedLayer {
     closedMenuShape = [CAShapeLayer layer];
     
     // Constants to ease drawing the border and the stroke.
     int height = self.menubar.frame.size.height;
     int width = self.menubar.frame.size.width;
     
-    // The path for the border (just a straight line)
-    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
-    [borderPath moveToPoint:CGPointMake(0, height)];
-    [borderPath addLineToPoint:CGPointMake(width, height)];
-    
-    [closedMenuShape setPath:borderPath.CGPath];
     [closedMenuShape setBounds:CGRectMake(0.0f, 0.0f, height, width)];
     [closedMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
     [closedMenuShape setPosition:CGPointMake(0.0f, 0.0f)];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 /*
