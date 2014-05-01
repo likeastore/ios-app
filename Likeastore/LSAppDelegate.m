@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    [NUISettings initWithStylesheet:@"LSNUITheme"];
     return YES;
 }
 

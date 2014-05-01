@@ -27,6 +27,12 @@ PODS:
   - HexColors (2.2.1)
   - Loader (0.0.1)
   - NSURL+ParseQuery (0.1)
+  - NUI (0.5.4):
+    - NUIParse
+  - NUIParse (1.2)
+  - SDWebImage (3.6):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -36,6 +42,8 @@ DEPENDENCIES:
   - HexColors
   - Loader
   - NSURL+ParseQuery
+  - NUI
+  - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
@@ -44,5 +52,8 @@ SPEC CHECKSUMS:
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   Loader: b44e29ed15140b41cc50a20ca3e6a4248c2b3711
   NSURL+ParseQuery: 33deb7114739a20b11689a77a31f6f7ae1a808f7
+  NUI: 4859620744f2645e596d0a3b949dd66868d1fc52
+  NUIParse: 14e226aa09f10f109dbd6863759e07f80276f397
+  SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
 
 COCOAPODS: 0.32.1

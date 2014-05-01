@@ -30,4 +30,6 @@
 
 - (AFHTTPRequestOperation *) getUser:(void (^)(AFHTTPRequestOperation *operation, id user))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (AFHTTPRequestOperation *) getFeed:(void (^)(AFHTTPRequestOperation *operation, id data))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end

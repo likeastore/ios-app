@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */; };
+		2A00D01B191132F7000E3DBC /* LSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01A191132F7000E3DBC /* LSItem.m */; };
+		2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01D191138FA000E3DBC /* LSCollection.m */; };
+		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
+		2A0DD87719119CC8000C1290 /* LSSimpleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSSimpleTableViewCell.m */; };
+		2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */; };
 		2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */; };
 		2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */; };
 		2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7275190FDD3D002F7C0E /* LSConstants.m */; };
@@ -40,6 +46,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFeedTableViewController.h; sourceTree = "<group>"; };
+		2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewController.m; sourceTree = "<group>"; };
+		2A00D019191132F7000E3DBC /* LSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSItem.h; sourceTree = "<group>"; };
+		2A00D01A191132F7000E3DBC /* LSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSItem.m; sourceTree = "<group>"; };
+		2A00D01C191138FA000E3DBC /* LSCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollection.h; sourceTree = "<group>"; };
+		2A00D01D191138FA000E3DBC /* LSCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollection.m; sourceTree = "<group>"; };
+		2A0557E3191282940078EBB9 /* LSNUITheme.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LSNUITheme.nss; sourceTree = "<group>"; };
+		2A0DD87519119CC8000C1290 /* LSSimpleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSimpleTableViewCell.h; sourceTree = "<group>"; };
+		2A0DD87619119CC8000C1290 /* LSSimpleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSimpleTableViewCell.m; sourceTree = "<group>"; };
+		2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LSItem.h"; sourceTree = "<group>"; };
+		2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LSItem.m"; sourceTree = "<group>"; };
 		2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2A4A7271190FDC6E002F7C0E /* LSLikeastoreHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLikeastoreHTTPClient.h; sourceTree = "<group>"; };
 		2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSLikeastoreHTTPClient.m; sourceTree = "<group>"; };
@@ -101,6 +118,10 @@
 		2A4A726C190FD452002F7C0E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2A00D01C191138FA000E3DBC /* LSCollection.h */,
+				2A00D01D191138FA000E3DBC /* LSCollection.m */,
+				2A00D019191132F7000E3DBC /* LSItem.h */,
+				2A00D01A191132F7000E3DBC /* LSItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -108,10 +129,12 @@
 		2A4A726D190FD45D002F7C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2A4A7277190FE7AC002F7C0E /* LSDropdownViewController.h */,
-				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
 				2A4A728119100788002F7C0E /* LSAllFavoritesViewController.h */,
 				2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */,
+				2A4A7277190FE7AC002F7C0E /* LSDropdownViewController.h */,
+				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
+				2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */,
+				2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -130,17 +153,21 @@
 			children = (
 				2A4A727E190FF48A002F7C0E /* LSMenuBar.h */,
 				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
+				2A0DD87519119CC8000C1290 /* LSSimpleTableViewCell.h */,
+				2A0DD87619119CC8000C1290 /* LSSimpleTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		2A5452E3191045DB0039AA7C /* Utils */ = {
+		2A5452E3191045DB0039AA7C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */,
 				2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */,
+				2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */,
+				2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */,
 			);
-			name = Utils;
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		2A8E20FD190FD21C007508CB = {
@@ -178,7 +205,7 @@
 		2A8E210F190FD21C007508CB /* Likeastore */ = {
 			isa = PBXGroup;
 			children = (
-				2A5452E3191045DB0039AA7C /* Utils */,
+				2A5452E3191045DB0039AA7C /* Categories */,
 				2A4A726E190FD477002F7C0E /* Services */,
 				2A4A726C190FD452002F7C0E /* Models */,
 				2A4A726D190FD45D002F7C0E /* ViewControllers */,
@@ -201,6 +228,7 @@
 				2A8E2117190FD21C007508CB /* Likeastore-Prefix.pch */,
 				2A4A7274190FDD3D002F7C0E /* LSConstants.h */,
 				2A4A7275190FDD3D002F7C0E /* LSConstants.m */,
+				2A0557E3191282940078EBB9 /* LSNUITheme.nss */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -303,6 +331,7 @@
 			files = (
 				2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */,
 				2A8E2114190FD21C007508CB /* InfoPlist.strings in Resources */,
+				2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */,
 				2A8E211C190FD21C007508CB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,13 +385,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */,
+				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
+				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,
 				2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */,
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
+				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,
+				2A0DD87719119CC8000C1290 /* LSSimpleTableViewCell.m in Sources */,
+				2A00D01B191132F7000E3DBC /* LSItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
