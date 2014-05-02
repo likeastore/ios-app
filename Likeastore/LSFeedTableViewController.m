@@ -91,7 +91,7 @@
         CGFloat x = itemThumbView.frame.origin.x;
         CGFloat y = itemThumbView.frame.origin.y;
         
-        [itemThumbView setImageWithURL:[NSURL URLWithString:itemFeed.thumbnail] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [itemThumbView setImageWithURL:[NSURL URLWithString:itemFeed.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             CGSize thumbSize = image.size;
             CGFloat thumbWidth = 310.0f;
             CGFloat thumbHeight = (thumbWidth/thumbSize.width)*thumbSize.height;
