@@ -15,4 +15,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *itemThumb;
 @property (strong, nonatomic) IBOutlet UIImageView *typeIconView;
 
+@property (strong, nonatomic) IBOutlet UIImageView *collectionOwnerAvatarView;
+@property (strong, nonatomic) IBOutlet UILabel *collectionTitle;
+@property (strong, nonatomic) IBOutlet UILabel *collectionOwner;
+
 @end

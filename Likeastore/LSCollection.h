@@ -10,10 +10,16 @@
 
 @interface LSCollection : NSObject
 
+@property (strong, nonatomic) NSString *_id;
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *ID;
 @property (strong, nonatomic) NSString *description;
+
+@property (strong, nonatomic) NSString *ownerID;
 @property (strong, nonatomic) NSString *ownerName;
 @property (strong, nonatomic) NSString *ownerAvatar;
+
+@property (strong, nonatomic) NSString *color;
+
+- (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
 @end

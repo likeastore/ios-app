@@ -10,6 +10,7 @@
 #import "LSLikeastoreHTTPClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LSItem.h"
+#import "LSCollection.h"
 #import "LSSimpleTableViewCell.h"
 
 @interface LSFeedTableViewController ()
@@ -78,6 +79,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:itemFeed.collection];
     
     LSSimpleTableViewCell *cell;
     
@@ -105,7 +107,16 @@
         cell.itemDescription.text = [itemFeed description];
     }
     
-    NSString *imageName = [itemFeed.type stringByAppendingString:@".png"];
+    cell.collectionTitle.text = [itemCollection title];
+    cell.collectionOwner.text = [NSString stringWithFormat:@"by %@", itemCollection.ownerName];
+    [cell.collectionOwnerAvatarView setImageWithURL:[NSURL URLWithString:itemCollection.ownerAvatar] placeholderImage:[UIImage imageNamed:@"gravatar.png"]];
+    
+    // make circle avatars
+    CALayer *layer = [cell.collectionOwnerAvatarView layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:cell.collectionOwnerAvatarView.frame.size.height / 2];
+    
+    NSString *imageName = [itemFeed.type stringByAppendingFormat:@".png"];
     UIImage *typeImage = [UIImage imageNamed:imageName];
     [cell.typeIconView setImage:typeImage];
     
