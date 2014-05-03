@@ -7,7 +7,6 @@
 //
 
 #import "LSMenuBar.h"
-#import <HexColors/HexColor.h>
 
 @implementation LSMenuBar
 

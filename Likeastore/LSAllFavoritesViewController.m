@@ -8,8 +8,12 @@
 
 #import "LSAllFavoritesViewController.h"
 #import "LSDropdownViewController.h"
+#import "LSLikeastoreHTTPClient.h"
+#import "LSItem.h"
 
 @interface LSAllFavoritesViewController ()
+
+@property (strong, nonatomic) NSMutableArray *items;
 
 @end
 
@@ -24,6 +28,10 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -34,6 +42,10 @@
     
     LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
     [menu setMenubarTitle:@"Feed"];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.items count];
 }
 
 - (void)didReceiveMemoryWarning

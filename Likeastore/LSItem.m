@@ -20,7 +20,7 @@
         _repo = [dictionary objectForKeyNotNull:@"repo"];
         _name = [dictionary objectForKeyNotNull:@"name"];
         _description = [dictionary objectForKeyNotNull:@"description"];
-        _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];//[NSURL URLWithString:dictionary[@"thumbnail"]];
+        _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];
         _source = [dictionary objectForKeyNotNull:@"source"];//[NSURL URLWithString:dictionary[@"source"]];
         _type = [dictionary objectForKeyNotNull:@"type"];
         _author = [dictionary objectForKeyNotNull:@"author"];
@@ -53,7 +53,11 @@
 }
 
 - (BOOL) isThumbnail {
-    return _thumbnail ? YES : NO;
+    return self.thumbnail ? YES : NO;
+}
+
+- (BOOL) isTitle {
+    return self.title ? YES : NO;
 }
 
 @end

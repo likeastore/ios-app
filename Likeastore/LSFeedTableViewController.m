@@ -9,23 +9,35 @@
 #import "LSFeedTableViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "LSItem.h"
 #import "LSCollection.h"
 #import "LSSimpleTableViewCell.h"
 
 @interface LSFeedTableViewController ()
 
+@property (strong, nonatomic) NSMutableArray *items;
+@property (strong, nonatomic) NSMutableDictionary *offscreenCells;
+@property (strong, nonatomic) LSSimpleTableViewCell *prototypeTextCell;
+
 @end
 
 @implementation LSFeedTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        self.offscreenCells = [NSMutableDictionary dictionary];
         // Custom initialization
     }
     return self;
+}
+
+- (LSSimpleTableViewCell *)prototypeTextCell {
+    if (!_prototypeTextCell) {
+        _prototypeTextCell = [self.tableView dequeueReusableCellWithIdentifier:@"textCell"];
+    }
+    return _prototypeTextCell;
 }
 
 - (void)viewDidLoad {
@@ -38,27 +50,19 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-//- (LSSimpleTableViewCell *) protoThumbCell {
-//    if (!_protoThumbCell) {
-//        _protoThumbCell = [self.tableView dequeueReusableCellWithIdentifier:@"thumbCell"];
-//    }
-//    return  _protoThumbCell;
-//}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api getFeed:^(AFHTTPRequestOperation *operation, id data) {
-        self.items = [data objectForKey:@"data"];
+        self.items = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"data"]];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -70,22 +74,54 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [self.items count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
-    LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:itemFeed.collection];
+    NSString *reuseIdentfier = itemFeed.isThumbnail ? @"thumbCell" : @"textCell";
+    LSSimpleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
+    [self configureCell:cell forRowAtIndexPath:indexPath withData:itemFeed];
     
-    LSSimpleTableViewCell *cell;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    NSString *reuseIdentifier = itemFeed.isThumbnail ? @"thumbCell" : @"textCell";
+    LSSimpleTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
+    if (!cell) {
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        [self.offscreenCells setObject:cell forKey:reuseIdentifier];
+    }
+    [self configureCell:cell forRowAtIndexPath:indexPath withData:itemFeed];
+    
+    
+    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    NSLog(@"%@", [cell.itemDescription text]);
+    NSLog(@"%f", [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
+    NSLog(@"%f", [cell.itemDescription sizeThatFits:CGSizeZero].height);
     
     if (itemFeed.isThumbnail) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"thumbCell" forIndexPath:indexPath];
-        
+        return 500;
+    }
+    return [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+134;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewAutomaticDimension;
+//}
+
+- (void)configureCell:(LSSimpleTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)itemFeed {
+    
+    LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:itemFeed.collection];
+    
+    if (itemFeed.isThumbnail) {
         // Lazy load thumbnail image to view, set dynamic heights
         UIImageView __weak *itemThumbView = cell.itemThumb;
         CGFloat x = itemThumbView.frame.origin.x;
@@ -97,45 +133,32 @@
             CGFloat thumbHeight = (thumbWidth/thumbSize.width)*thumbSize.height;
             itemThumbView.frame = CGRectMake(x, y, thumbWidth, thumbHeight);
         }];
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
-        
-        // Configure the cell...
-        cell.itemTitle.text = [itemFeed title];
-        cell.itemDescription.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.itemDescription.numberOfLines = 0;
-        cell.itemDescription.text = [itemFeed description];
     }
     
-    cell.collectionTitle.text = [itemCollection title];
-    cell.collectionOwner.text = [NSString stringWithFormat:@"by %@", itemCollection.ownerName];
+    // collection info
+    [cell.collectionTitle setText:itemCollection.title];
+    [cell.collectionOwner setText:[NSString stringWithFormat:@"by %@", itemCollection.ownerName]];
     [cell.collectionOwnerAvatarView setImageWithURL:[NSURL URLWithString:itemCollection.ownerAvatar] placeholderImage:[UIImage imageNamed:@"gravatar.png"]];
     
     // make circle avatars
     CALayer *layer = [cell.collectionOwnerAvatarView layer];
     [layer setMasksToBounds:YES];
-    [layer setCornerRadius:cell.collectionOwnerAvatarView.frame.size.height / 2];
+    [layer setCornerRadius:cell.collectionOwnerAvatarView.frame.size.height/2];
     
+    // network type
     NSString *imageName = [itemFeed.type stringByAppendingFormat:@".png"];
     UIImage *typeImage = [UIImage imageNamed:imageName];
     [cell.typeIconView setImage:typeImage];
     
-    return cell;
+    // title and description
+    [cell.itemTitle setText:itemFeed.title];
     
+    [cell detectLinksInLabel:cell.itemDescription withColor:[UIColor colorWithHexString:@"#f03e56"]];
+    [cell.itemDescription setText:itemFeed.description];
+    [cell.itemDescription setTextAlignment:NSTextAlignmentLeft];
+    [cell.itemDescription setLineBreakMode:NSLineBreakByWordWrapping];
+    [cell.itemDescription setNumberOfLines:0];
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //[self.protoThumbCell layoutIfNeeded];
-    //CGSize size = [self.protoThumbCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    //return size.height+1;
-    //LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
-    
-    return 500.0f;
-}
-
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return UITableViewAutomaticDimension;
-//}
 
 
 /*

@@ -30,5 +30,6 @@
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 - (BOOL) isThumbnail;
+- (BOOL) isTitle;
 
 @end

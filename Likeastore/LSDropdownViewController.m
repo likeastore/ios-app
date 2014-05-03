@@ -7,7 +7,6 @@
 //
 
 #import "LSDropdownViewController.h"
-#import <HexColors/HexColor.h>
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKFoundationIcons.h>
 

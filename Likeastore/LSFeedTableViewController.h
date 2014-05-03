@@ -11,7 +11,4 @@
 
 @interface LSFeedTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *items;
-@property (strong, nonatomic) LSSimpleTableViewCell *protoThumbCell;
-
 @end
