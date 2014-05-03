@@ -32,7 +32,6 @@ CAShapeLayer *closedMenuShape;
 {
     [super viewDidLoad];
     
-    
     FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
     [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];

@@ -9,7 +9,6 @@
 #import "LSFeedTableViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "LSItem.h"
 #import "LSCollection.h"
 #import "LSSimpleTableViewCell.h"
@@ -18,26 +17,20 @@
 
 @property (strong, nonatomic) NSMutableArray *items;
 @property (strong, nonatomic) NSMutableDictionary *offscreenCells;
-@property (strong, nonatomic) LSSimpleTableViewCell *prototypeTextCell;
+@property (strong, nonatomic) NSMutableDictionary *dynamicImageHeightRows;
 
 @end
 
 @implementation LSFeedTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        self.offscreenCells = [NSMutableDictionary dictionary];
-        // Custom initialization
+        _offscreenCells = [NSMutableDictionary dictionary];
+        _dynamicImageHeightRows = [NSMutableDictionary dictionary];
     }
+    
     return self;
-}
-
-- (LSSimpleTableViewCell *)prototypeTextCell {
-    if (!_prototypeTextCell) {
-        _prototypeTextCell = [self.tableView dequeueReusableCellWithIdentifier:@"textCell"];
-    }
-    return _prototypeTextCell;
 }
 
 - (void)viewDidLoad {
@@ -56,6 +49,8 @@
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api getFeed:^(AFHTTPRequestOperation *operation, id data) {
         self.items = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"data"]];
+        
+        NSLog(@"ITEMS LOADED");
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
@@ -80,16 +75,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
-    NSString *reuseIdentfier = itemFeed.isThumbnail ? @"thumbCell" : @"textCell";
+    LSItem *item = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    NSString *reuseIdentfier = item.isThumbnail ? @"thumbCell" : @"textCell";
     LSSimpleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
-    [self configureCell:cell forRowAtIndexPath:indexPath withData:itemFeed];
+    
+    if (item.isThumbnail) {
+        cell.itemThumb.contentMode = UIViewContentModeScaleAspectFill;
+        cell.itemThumb.layer.borderWidth = 1.0f;
+        cell.itemThumb.layer.borderColor = [UIColor colorWithHexString:@"#ddd"].CGColor;
+        [cell.itemThumb setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
+    }
+    [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    
     NSString *reuseIdentifier = itemFeed.isThumbnail ? @"thumbCell" : @"textCell";
     LSSimpleTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
     if (!cell) {
@@ -98,44 +101,27 @@
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:itemFeed];
     
-    
     cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
     
-    NSLog(@"%@", [cell.itemDescription text]);
-    NSLog(@"%f", [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
-    NSLog(@"%f", [cell.itemDescription sizeThatFits:CGSizeZero].height);
+    CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
     if (itemFeed.isThumbnail) {
-        return 500;
+        return dynamicDescriptionHeight + 386.0f;
+    } else {
+        return dynamicDescriptionHeight + 136.0f;
     }
-    return [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+134;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return UITableViewAutomaticDimension;
 //}
 
-- (void)configureCell:(LSSimpleTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)itemFeed {
-    
-    LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:itemFeed.collection];
-    
-    if (itemFeed.isThumbnail) {
-        // Lazy load thumbnail image to view, set dynamic heights
-        UIImageView __weak *itemThumbView = cell.itemThumb;
-        CGFloat x = itemThumbView.frame.origin.x;
-        CGFloat y = itemThumbView.frame.origin.y;
-        
-        [itemThumbView setImageWithURL:[NSURL URLWithString:itemFeed.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            CGSize thumbSize = image.size;
-            CGFloat thumbWidth = 310.0f;
-            CGFloat thumbHeight = (thumbWidth/thumbSize.width)*thumbSize.height;
-            itemThumbView.frame = CGRectMake(x, y, thumbWidth, thumbHeight);
-        }];
-    }
+- (void)configureCell:(LSSimpleTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)item {
     
     // collection info
+    LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:item.collection];
     [cell.collectionTitle setText:itemCollection.title];
     [cell.collectionOwner setText:[NSString stringWithFormat:@"by %@", itemCollection.ownerName]];
     [cell.collectionOwnerAvatarView setImageWithURL:[NSURL URLWithString:itemCollection.ownerAvatar] placeholderImage:[UIImage imageNamed:@"gravatar.png"]];
@@ -146,15 +132,16 @@
     [layer setCornerRadius:cell.collectionOwnerAvatarView.frame.size.height/2];
     
     // network type
-    NSString *imageName = [itemFeed.type stringByAppendingFormat:@".png"];
+    NSString *imageName = [item.type stringByAppendingFormat:@".png"];
     UIImage *typeImage = [UIImage imageNamed:imageName];
     [cell.typeIconView setImage:typeImage];
     
-    // title and description
-    [cell.itemTitle setText:itemFeed.title];
+    // title
+    [cell.itemTitle setText:item.title];
     
+    // description
     [cell detectLinksInLabel:cell.itemDescription withColor:[UIColor colorWithHexString:@"#f03e56"]];
-    [cell.itemDescription setText:itemFeed.description];
+    [cell.itemDescription setText:item.description];
     [cell.itemDescription setTextAlignment:NSTextAlignmentLeft];
     [cell.itemDescription setLineBreakMode:NSLineBreakByWordWrapping];
     [cell.itemDescription setNumberOfLines:0];
