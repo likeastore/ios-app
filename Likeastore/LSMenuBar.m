@@ -10,15 +10,13 @@
 
 @implementation LSMenuBar
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
     return self;
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     // Drawing vertical likeastore navy gradient
     UIColor *navyOne = [UIColor colorWithHexString:@"#43c2c2"];
     UIColor *navyTwo = [UIColor colorWithHexString:@"#49d1b3"];

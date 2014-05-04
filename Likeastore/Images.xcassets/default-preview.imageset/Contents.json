@@ -4,6 +4,11 @@
       "idiom" : "universal",
       "scale" : "1x",
       "filename" : "default-preview.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "default-preview@2x.png"
     }
   ],
   "info" : {

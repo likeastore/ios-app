@@ -44,12 +44,16 @@
     return  result;
 }
 
-- (UIImage *) thumbnailImage {
-    NSURL * thumbnailURL = [NSURL URLWithString:_thumbnail];
-    NSData *imageData = [NSData dataWithContentsOfURL:thumbnailURL];
-    UIImage *image = [UIImage imageWithData:imageData];
+- (NSString *) author {
+    NSString *result;
     
-    return image;
+    if (_author) {
+        result = [NSString stringWithFormat:@"@%@", _author];
+    } else {
+        result = [NSString stringWithFormat:@"from %@", _type];
+    }
+    
+    return result;
 }
 
 - (BOOL) isThumbnail {

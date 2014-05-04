@@ -9,6 +9,7 @@
 #import "LSFeedTableViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SVPullToRefresh/SVPullToRefresh.h>
 #import "LSItem.h"
 #import "LSCollection.h"
 #import "LSSimpleTableViewCell.h"
@@ -17,7 +18,6 @@
 
 @property (strong, nonatomic) NSMutableArray *items;
 @property (strong, nonatomic) NSMutableDictionary *offscreenCells;
-@property (strong, nonatomic) NSMutableDictionary *dynamicImageHeightRows;
 
 @end
 
@@ -26,8 +26,8 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        _items = [[NSMutableArray alloc] init];
         _offscreenCells = [NSMutableDictionary dictionary];
-        _dynamicImageHeightRows = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -36,6 +36,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __block int page = 1;
+    __weak LSFeedTableViewController *weakSelf = self;
+    
+    // initial load
+    [self setupItemsFor:page actionType:@"initial" success:^{ page += 1; }];
+    
+    // pull to refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+        }];
+    }];
+    
+    // infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
+            page += 1;
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        }];
+    }];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -43,15 +64,33 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)setupItemsFor:(int)page actionType:(NSString *)type success:(void (^)())callback {
+    __weak LSFeedTableViewController *weakSelf = self;
+    
+    [weakSelf clearImageCache];
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-    [api getFeed:^(AFHTTPRequestOperation *operation, id data) {
-        self.items = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"data"]];
+    
+    [api getFeed:page success:^(AFHTTPRequestOperation *operation, id data) {
+        NSArray *items = [data objectForKey:@"data"];
         
-        NSLog(@"ITEMS LOADED");
-        [self.tableView reloadData];
+        if ([items count] > 0) {
+            if ([type isEqualToString:@"pullToRefresh"]) {
+                [weakSelf.items removeAllObjects];
+            }
+            
+            // populate data
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            for (NSDictionary *itemData in items) {
+                LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
+                [result addObject:item];
+            }
+            
+            [weakSelf.items addObjectsFromArray:result];
+            [weakSelf.tableView reloadData];
+        }
+        
+        callback();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
@@ -59,7 +98,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    [self clearImageCache];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)clearImageCache {
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
 }
 
 #pragma mark - Table view data source
@@ -75,7 +121,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LSItem *item = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
     NSString *reuseIdentfier = item.isThumbnail ? @"thumbCell" : @"textCell";
     LSSimpleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
     
@@ -91,15 +137,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LSItem *itemFeed = [[LSItem alloc] initWithDictionary:[self.items objectAtIndex:indexPath.row]];
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
     
-    NSString *reuseIdentifier = itemFeed.isThumbnail ? @"thumbCell" : @"textCell";
+    NSString *reuseIdentifier = item.isThumbnail ? @"thumbCell" : @"textCell";
     LSSimpleTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
     if (!cell) {
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         [self.offscreenCells setObject:cell forKey:reuseIdentifier];
     }
-    [self configureCell:cell forRowAtIndexPath:indexPath withData:itemFeed];
+    [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
     cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
     [cell setNeedsLayout];
@@ -107,16 +153,12 @@
     
     CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
-    if (itemFeed.isThumbnail) {
+    if (item.isThumbnail) {
         return dynamicDescriptionHeight + 386.0f;
     } else {
         return dynamicDescriptionHeight + 136.0f;
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return UITableViewAutomaticDimension;
-//}
 
 - (void)configureCell:(LSSimpleTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)item {
     

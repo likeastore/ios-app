@@ -2,7 +2,7 @@ ItemView {
     background-color: #FFFFFF;
     corner-radius: 3px;
     shadow-color: #cccccc;
-    shadow-offset: 0, 1;
+    shadow-offset: 0, 0.2;
     shadow-opacity: 0.5;
     shadow-radius: 1px;
 }

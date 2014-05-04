@@ -15,12 +15,8 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *repo;
 @property (strong, nonatomic) NSString *name;
-
 @property (strong, nonatomic) NSString *description;
-
 @property (strong, nonatomic) NSString *thumbnail;
-@property (strong, nonatomic) UIImage *thumbnailImage;
-
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *date;
@@ -29,6 +25,7 @@
 @property NSDictionary *collection;
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
+
 - (BOOL) isThumbnail;
 - (BOOL) isTitle;
 
