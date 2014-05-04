@@ -27,6 +27,7 @@
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
 - (BOOL) isThumbnail;
+- (BOOL) thumbnailIsGIF;
 - (BOOL) isTitle;
 
 @end

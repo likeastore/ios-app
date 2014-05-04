@@ -1,14 +1,14 @@
 //
-//  LSSimpleTableViewCell.m
+//  LSFeedTableViewCell.m
 //  Likeastore
 //
 //  Created by Dmitri Voronianski on 01.05.14.
 //  Copyright (c) 2014 Dmitri Voronianski. All rights reserved.
 //
 
-#import "LSSimpleTableViewCell.h"
+#import "LSFeedTableViewCell.h"
 
-@implementation LSSimpleTableViewCell
+@implementation LSFeedTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

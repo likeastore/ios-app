@@ -57,11 +57,15 @@
 }
 
 - (BOOL) isThumbnail {
-    return self.thumbnail ? YES : NO;
+    return _thumbnail ? YES : NO;
+}
+
+- (BOOL) thumbnailIsGIF {
+    return [[_thumbnail pathExtension] isEqualToString:@"gif"] ? YES : NO;
 }
 
 - (BOOL) isTitle {
-    return self.title ? YES : NO;
+    return (_title || _repo || _name) ? YES : NO;
 }
 
 @end

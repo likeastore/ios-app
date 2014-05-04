@@ -72,6 +72,12 @@
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_FoundationIcons 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_FoundationIcons 5
 
+// FontAwesomeKit/IonIcons
+#define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_IonIcons
+#define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_IonIcons 2
+#define COCOAPODS_VERSION_MINOR_FontAwesomeKit_IonIcons 1
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_IonIcons 5
+
 // HexColors
 #define COCOAPODS_POD_AVAILABLE_HexColors
 #define COCOAPODS_VERSION_MAJOR_HexColors 2
@@ -125,10 +131,4 @@
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 9
 #define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 5
-
-// UIView+AutoLayout
-#define COCOAPODS_POD_AVAILABLE_UIView_AutoLayout
-#define COCOAPODS_VERSION_MAJOR_UIView_AutoLayout 1
-#define COCOAPODS_VERSION_MINOR_UIView_AutoLayout 3
-#define COCOAPODS_VERSION_PATCH_UIView_AutoLayout 0
 

@@ -43,6 +43,7 @@ install_resource()
 }
 install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
 install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"
+install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"
 install_resource "NUI/NUI/Resources/NUIViewBackground.png"
 install_resource "NUI/NUI/NUIStyle.nss"
 install_resource "NUI/NUI/Themes/Blue.NUI.nss"

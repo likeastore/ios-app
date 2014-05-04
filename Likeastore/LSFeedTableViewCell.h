@@ -1,5 +1,5 @@
 //
-//  LSSimpleTableViewCell.h
+//  LSFeedTableViewCell.h
 //  Likeastore
 //
 //  Created by Dmitri Voronianski on 01.05.14.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-@interface LSSimpleTableViewCell : UITableViewCell
+@interface LSFeedTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *itemTitle;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *itemDescription;

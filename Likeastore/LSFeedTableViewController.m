@@ -12,7 +12,8 @@
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "LSItem.h"
 #import "LSCollection.h"
-#import "LSSimpleTableViewCell.h"
+#import "LSFeedTableViewCell.h"
+#import "LSWebViewController.h"
 
 @interface LSFeedTableViewController ()
 
@@ -72,22 +73,27 @@
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
     [api getFeed:page success:^(AFHTTPRequestOperation *operation, id data) {
-        NSArray *items = [data objectForKey:@"data"];
-        
-        if ([items count] > 0) {
-            if ([type isEqualToString:@"pullToRefresh"]) {
-                [weakSelf.items removeAllObjects];
-            }
+        @autoreleasepool {
+            NSArray *items = [data objectForKey:@"data"];
             
-            // populate data
-            NSMutableArray *result = [[NSMutableArray alloc] init];
-            for (NSDictionary *itemData in items) {
-                LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
-                [result addObject:item];
+            if ([items count] > 0) {
+                if ([type isEqualToString:@"pullToRefresh"]) {
+                    [weakSelf.items removeAllObjects];
+                }
+                
+                // populate data
+                NSMutableArray *result = [[NSMutableArray alloc] init];
+                for (NSDictionary *itemData in items) {
+                    LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
+                    [result addObject:item];
+                }
+                
+                [weakSelf.items addObjectsFromArray:result];
+                [weakSelf.tableView reloadData];
+                
+                [result removeAllObjects];
+                result = nil;
             }
-            
-            [weakSelf.items addObjectsFromArray:result];
-            [weakSelf.tableView reloadData];
         }
         
         callback();
@@ -123,7 +129,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LSItem *item = [self.items objectAtIndex:indexPath.row];
     NSString *reuseIdentfier = item.isThumbnail ? @"thumbCell" : @"textCell";
-    LSSimpleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
+    LSFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
     
     if (item.isThumbnail) {
         cell.itemThumb.contentMode = UIViewContentModeScaleAspectFill;
@@ -133,6 +139,10 @@
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
+    if (!item.isTitle) {
+        cell.itemTitle.frame = CGRectMake(cell.itemTitle.frame.origin.x,cell.itemTitle.frame.origin.y, 280.0f, 0.0f);
+    }
+    
     return cell;
 }
 
@@ -140,7 +150,7 @@
     LSItem *item = [self.items objectAtIndex:indexPath.row];
     
     NSString *reuseIdentifier = item.isThumbnail ? @"thumbCell" : @"textCell";
-    LSSimpleTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
+    LSFeedTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
     if (!cell) {
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         [self.offscreenCells setObject:cell forKey:reuseIdentifier];
@@ -154,13 +164,13 @@
     CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
     if (item.isThumbnail) {
-        return dynamicDescriptionHeight + 386.0f;
+        return dynamicDescriptionHeight + (item.isTitle ? 386.0f : 368.0f);
     } else {
-        return dynamicDescriptionHeight + 136.0f;
+        return dynamicDescriptionHeight + (item.isTitle ? 136.0f : 118.0f);
     }
 }
 
-- (void)configureCell:(LSSimpleTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)item {
+- (void)configureCell:(LSFeedTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)item {
     
     // collection info
     LSCollection *itemCollection = [[LSCollection alloc] initWithDictionary:item.collection];
@@ -184,11 +194,19 @@
     // description
     [cell detectLinksInLabel:cell.itemDescription withColor:[UIColor colorWithHexString:@"#f03e56"]];
     [cell.itemDescription setText:item.description];
+    [cell.itemDescription setDelegate:self];
     [cell.itemDescription setTextAlignment:NSTextAlignmentLeft];
     [cell.itemDescription setLineBreakMode:NSLineBreakByWordWrapping];
     [cell.itemDescription setNumberOfLines:0];
 }
 
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    LSWebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    
+    [webView setUrlTitle:label.text];
+    [webView setUrlToLoad:url];
+    [self presentViewController:webView animated:YES completion:nil];
+}
 
 /*
 // Override to support conditional editing of the table view.

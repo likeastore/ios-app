@@ -32,6 +32,8 @@ CAShapeLayer *closedMenuShape;
 {
     [super viewDidLoad];
     
+    [self setNeedsStatusBarAppearanceUpdate];
+    
     FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
     [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
@@ -108,6 +110,10 @@ CAShapeLayer *closedMenuShape;
             [border setHidden:NO];
         }
     }
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {

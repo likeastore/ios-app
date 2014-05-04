@@ -15,5 +15,4 @@
     #import <Foundation/Foundation.h>
     #import "LSConstants.h"
     #import <HexColors/HexColor.h>
-    #import <UIView+AutoLayout/UIView+AutoLayout.h>
 #endif

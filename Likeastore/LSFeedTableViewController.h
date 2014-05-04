@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LSSimpleTableViewCell.h"
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-@interface LSFeedTableViewController : UITableViewController
+@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate>
 
 @end
