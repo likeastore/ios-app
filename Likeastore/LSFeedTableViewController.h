@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate>
+@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate>
 
 @end

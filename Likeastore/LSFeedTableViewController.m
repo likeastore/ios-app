@@ -8,12 +8,14 @@
 
 #import "LSFeedTableViewController.h"
 #import "LSLikeastoreHTTPClient.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SVPullToRefresh/SVPullToRefresh.h>
 #import "LSItem.h"
 #import "LSCollection.h"
 #import "LSFeedTableViewCell.h"
-#import "LSWebViewController.h"
+#import "LSDropdownViewController.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SVPullToRefresh/SVPullToRefresh.h>
+#import <TOWebViewController/TOWebViewController.h>
 
 @interface LSFeedTableViewController ()
 
@@ -37,11 +39,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    __block int page = 1;
+    [self clearImageCache];
+    
+    // show activity indicator on first load
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 35.0f)];
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
+    __block CGFloat page = 1;
     __weak LSFeedTableViewController *weakSelf = self;
     
     // initial load
-    [self setupItemsFor:page actionType:@"initial" success:^{ page += 1; }];
+    [self setupItemsFor:page actionType:@"initial" success:^{
+        page += 1;
+        [loader stopAnimating];
+        [loader removeFromSuperview];
+    }];
     
     // pull to refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -65,7 +79,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)setupItemsFor:(int)page actionType:(NSString *)type success:(void (^)())callback {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
+    [menu.logoView setHidden:NO];
+    [menu.titleLabel setHidden:YES];
+}
+
+- (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
     __weak LSFeedTableViewController *weakSelf = self;
     
     [weakSelf clearImageCache];
@@ -201,11 +223,9 @@
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    LSWebViewController *webView = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+     TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
     
-    [webView setUrlTitle:label.text];
-    [webView setUrlToLoad:url];
-    [self presentViewController:webView animated:YES completion:nil];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:webViewCtrl] animated:YES completion:nil];
 }
 
 /*

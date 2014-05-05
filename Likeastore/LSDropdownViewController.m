@@ -8,7 +8,6 @@
 
 #import "LSDropdownViewController.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
-#import <FontAwesomeKit/FAKFoundationIcons.h>
 
 @interface LSDropdownViewController ()
 
@@ -34,7 +33,7 @@ CAShapeLayer *closedMenuShape;
     
     [self setNeedsStatusBarAppearanceUpdate];
     
-    FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
+    __weak FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
     [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
     [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -44,29 +43,29 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void)customizeMenu {
-    UIColor *menuColor = [UIColor colorWithHexString:@"#e0dede"];
-    UIColor *menuColorHover = [UIColor whiteColor];
-    float icon_size = 24.0f;
+    __weak UIColor *menuColor = [UIColor colorWithHexString:@"#7a7a7a"];
+    __weak UIColor *menuColorHover = [UIColor colorWithHexString:@"#818181"];
+    CGFloat icon_size = 24.0f;
     
     for (UIButton *button in self.buttons) {
-        if ([button.titleLabel.text isEqualToString:@"Home"]) {
-            FAKFoundationIcons *homeIcon = [FAKFoundationIcons homeIconWithSize:icon_size];
+        if ([button.titleLabel.text isEqualToString:@"Feed"]) {
+            FAKFontAwesome *feedIcon = [FAKFontAwesome trelloIconWithSize:icon_size];
             
-            [homeIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
-            [button setImage:[homeIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            [feedIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
+            [button setImage:[feedIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
             
-            [homeIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
-            [button setImage:[homeIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
+            [feedIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
+            [button setImage:[feedIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
-        if ([button.titleLabel.text isEqualToString:@"Favorites"]) {
-            FAKFoundationIcons *heartIcon = [FAKFoundationIcons heartIconWithSize:icon_size];
+        if ([button.titleLabel.text isEqualToString:@"All Favorites"]) {
+            FAKFontAwesome *heartIcon = [FAKFontAwesome heartIconWithSize:22.0f];
             
             [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
-            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
             
             [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
-            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateHighlighted];
         }
         
         // align image and text
@@ -77,9 +76,8 @@ CAShapeLayer *closedMenuShape;
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         
         // set button states
-        [button setTitleColor:menuColor forState:UIControlStateNormal];
-        [button setTitleColor:menuColorHover forState:UIControlStateHighlighted];
-        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#303040"]] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#3d3d3d"]] forState:UIControlStateHighlighted];
         
         // toggle bottom border on taps
         [button addTarget:self action:@selector(hideBottomBorder:) forControlEvents:UIControlEventTouchDown];
@@ -90,7 +88,7 @@ CAShapeLayer *closedMenuShape;
         if (button != self.buttons.lastObject) {
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 46.0f, button.frame.size.width-16.0f, 1.6f)];
             lineView.tag = 1;
-            lineView.backgroundColor = [UIColor colorWithHexString:@"#303040"];
+            lineView.backgroundColor = [UIColor colorWithHexString:@"#3d3d3d"];
             [button addSubview:lineView];
         }
     }
@@ -156,6 +154,34 @@ CAShapeLayer *closedMenuShape;
     [closedMenuShape setBounds:CGRectMake(0.0f, 0.0f, height, width)];
     [closedMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
     [closedMenuShape setPosition:CGPointMake(0.0f, 0.0f)];
+}
+
+- (void) showMenu {
+    self.menu.hidden = NO;
+    
+    [closedMenuShape removeFromSuperlayer];
+    [[[self view] layer] addSublayer:openMenuShape];
+    
+    // Set new origin of menu
+    CGRect menuFrame = self.menu.frame;
+    menuFrame.origin.y = self.menubar.frame.size.height;
+    
+    // Set new alpha of Container View (to get fade effect)
+    float containerAlpha = 0.98f;
+    
+    [UIView animateWithDuration:0.4
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:4.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.menu.frame = menuFrame;
+                         [self.container setAlpha: containerAlpha];
+                     }
+                     completion:^(BOOL finished){
+                     }];
+    [UIView commitAnimations];
+    
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color {

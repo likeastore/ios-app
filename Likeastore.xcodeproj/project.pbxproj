@@ -12,7 +12,7 @@
 		2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01D191138FA000E3DBC /* LSCollection.m */; };
 		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
 		2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */; };
-		2A0FD9691916B75B00B8AB82 /* LSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0FD9681916B75B00B8AB82 /* LSWebViewController.m */; };
+		2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */; };
 		2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */; };
 		2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */; };
 		2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */; };
@@ -56,8 +56,8 @@
 		2A0557E3191282940078EBB9 /* LSNUITheme.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LSNUITheme.nss; sourceTree = "<group>"; };
 		2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFeedTableViewCell.h; sourceTree = "<group>"; };
 		2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewCell.m; sourceTree = "<group>"; };
-		2A0FD9671916B75B00B8AB82 /* LSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWebViewController.h; sourceTree = "<group>"; };
-		2A0FD9681916B75B00B8AB82 /* LSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWebViewController.m; sourceTree = "<group>"; };
+		2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFavoritesTableViewCell.h; sourceTree = "<group>"; };
+		2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LSItem.h"; sourceTree = "<group>"; };
 		2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LSItem.m"; sourceTree = "<group>"; };
 		2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -138,8 +138,6 @@
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
 				2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */,
 				2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */,
-				2A0FD9671916B75B00B8AB82 /* LSWebViewController.h */,
-				2A0FD9681916B75B00B8AB82 /* LSWebViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -156,10 +154,12 @@
 		2A4A727A190FEF23002F7C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2A4A727E190FF48A002F7C0E /* LSMenuBar.h */,
-				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
+				2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */,
+				2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */,
 				2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */,
 				2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */,
+				2A4A727E190FF48A002F7C0E /* LSMenuBar.h */,
+				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -391,6 +391,7 @@
 			files = (
 				2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */,
 				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
+				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
@@ -399,7 +400,6 @@
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
 				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
-				2A0FD9691916B75B00B8AB82 /* LSWebViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,
 				2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */,
 				2A00D01B191132F7000E3DBC /* LSItem.m in Sources */,

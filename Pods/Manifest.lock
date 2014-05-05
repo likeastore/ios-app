@@ -36,6 +36,7 @@ PODS:
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
   - SVPullToRefresh (0.4.1)
+  - TOWebViewController (2.0.6)
   - TTTAttributedLabel (1.9.5)
 
 DEPENDENCIES:
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - NUI
   - SDWebImage
   - SVPullToRefresh
+  - TOWebViewController
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
@@ -63,6 +65,7 @@ SPEC CHECKSUMS:
   NUIParse: 14e226aa09f10f109dbd6863759e07f80276f397
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
   SVPullToRefresh: 61a0e4bd12bd6f8e3465909810b0fbeb1a28d5f2
+  TOWebViewController: 891ae553f83943e0e2f64c2dc9dab6b100d17151
   TTTAttributedLabel: 6154fd2407a03fb8d71abfa36f4710fff26a168e
 
 COCOAPODS: 0.32.1

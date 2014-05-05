@@ -13,7 +13,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[application setStatusBarStyle:UIStatusBarStyleLightContent];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [NUISettings initWithStylesheet:@"LSNUITheme"];
     return YES;

@@ -23,7 +23,8 @@
         _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];
         _source = [dictionary objectForKeyNotNull:@"source"];//[NSURL URLWithString:dictionary[@"source"]];
         _type = [dictionary objectForKeyNotNull:@"type"];
-        _author = [dictionary objectForKeyNotNull:@"author"];
+        _author = [dictionary objectForKeyNotNull:@"authorName"];
+        _avatar = [dictionary objectForKeyNotNull:@"avatarUrl"];
         _collection = [NSDictionary dictionaryWithDictionary:dictionary[@"collection"]];
     }
     
@@ -45,15 +46,14 @@
 }
 
 - (NSString *) author {
-    NSString *result;
-    
-    if (_author) {
-        result = [NSString stringWithFormat:@"@%@", _author];
-    } else {
-        result = [NSString stringWithFormat:@"from %@", _type];
+    if ([_type isEqualToString:@"facebook"]) {
+        return nil;
+    }
+    if (!_author) {
+        return [NSString stringWithFormat:@"from %@", _type];
     }
     
-    return result;
+    return _author;
 }
 
 - (BOOL) isThumbnail {
@@ -66,6 +66,22 @@
 
 - (BOOL) isTitle {
     return (_title || _repo || _name) ? YES : NO;
+}
+
+- (BOOL) isAvatar {
+    if ([_type isEqualToString:@"facebook"]) {
+        return NO;
+    }
+    if ([_type isEqualToString:@"pocket"]) {
+        return NO;
+    }
+    if ([_type isEqualToString:@"youtube"]) {
+        return NO;
+    }
+    if (!_avatar) {
+        return NO;
+    }
+    return YES;
 }
 
 @end
