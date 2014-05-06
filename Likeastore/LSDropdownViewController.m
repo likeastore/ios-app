@@ -8,6 +8,7 @@
 
 #import "LSDropdownViewController.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
+#import <FontAwesomeKit/FAKFoundationIcons.h>
 
 @interface LSDropdownViewController ()
 
@@ -49,7 +50,7 @@ CAShapeLayer *closedMenuShape;
     
     for (UIButton *button in self.buttons) {
         if ([button.titleLabel.text isEqualToString:@"Feed"]) {
-            FAKFontAwesome *feedIcon = [FAKFontAwesome trelloIconWithSize:icon_size];
+            FAKFoundationIcons *feedIcon = [FAKFoundationIcons homeIconWithSize:icon_size];
             
             [feedIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
             [button setImage:[feedIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
@@ -59,13 +60,13 @@ CAShapeLayer *closedMenuShape;
         }
         
         if ([button.titleLabel.text isEqualToString:@"All Favorites"]) {
-            FAKFontAwesome *heartIcon = [FAKFontAwesome heartIconWithSize:22.0f];
+            FAKFoundationIcons *heartIcon = [FAKFoundationIcons heartIconWithSize:icon_size];
             
             [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
-            [button setImage:[heartIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
             
             [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
-            [button setImage:[heartIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateHighlighted];
+            [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
         // align image and text

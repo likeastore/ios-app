@@ -223,20 +223,40 @@
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [self openWebView:url];
+}
+
+- (void)openWebView:(NSURL *)url {
     TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
+    [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:webViewCtrl] animated:YES completion:nil];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+# pragma mark - Gestures
+
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint point = [recognizer locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    
+        if (indexPath) {
+            LSItem *item = [self.items objectAtIndex:indexPath.row];
+            [self openWebView:[NSURL URLWithString:item.source]];
+        }
+    }
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

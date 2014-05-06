@@ -47,21 +47,14 @@
 }
 
 - (NSString *) description {
-    if (_description == _name) {
-        return nil;
+    if (_description == _name && [_type isEqualToString:@"facebook"]) {
+        return _source;
     }
     if (!_description && self.isGist) {
         return _source;
     }
     return _description;
 }
-
-//- (NSString *) author {
-//    if ([_type isEqualToString:@"facebook"]) {
-//        return nil;
-//    }
-//    return _author;
-//}
 
 - (BOOL) isThumbnail {
     return _thumbnail ? YES : NO;

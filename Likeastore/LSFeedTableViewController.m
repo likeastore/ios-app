@@ -156,8 +156,9 @@
     
     if (item.isThumbnail) {
         cell.itemThumb.contentMode = UIViewContentModeScaleAspectFill;
+        cell.itemThumb.layer.masksToBounds = YES;
         cell.itemThumb.layer.borderWidth = 1.0f;
-        cell.itemThumb.layer.borderColor = [UIColor colorWithHexString:@"#ddd"].CGColor;
+        cell.itemThumb.layer.borderColor = [UIColor colorWithHexString:@"#eee"].CGColor;
         [cell.itemThumb setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
@@ -214,9 +215,11 @@
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-     TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
+    [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:webViewCtrl] animated:YES completion:nil];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /*

@@ -90,6 +90,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3Z4-zW-lYX" appends="YES" id="7Fe-dW-mUC"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="container" destination="olZ-BV-j4k" id="NO1-a0-Xpn"/>
@@ -103,7 +106,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGD-Tk-WQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3Z4-zW-lYX">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="3Z4-zW-lYX">
                     <connections>
                         <action selector="displayGestureForTapRecognizer:" destination="m39-Xk-X0f" id="hn3-6V-joM"/>
                     </connections>
@@ -250,7 +253,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-jG-qGj">
+                                        <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-jG-qGj">
                                             <rect key="frame" x="10" y="10" width="300" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -309,6 +312,16 @@
                                                         <constraint firstAttribute="width" constant="24" id="Uyt-Wg-U6V"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 5, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIO-DW-bla">
+                                                    <rect key="frame" x="10" y="217" width="62" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="kMC-CK-OoE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <constraints>
@@ -323,9 +336,11 @@
                                                 <constraint firstItem="unf-0j-TqT" firstAttribute="leading" secondItem="TUf-jG-qGj" secondAttribute="leading" constant="10" id="UHu-80-rDE"/>
                                                 <constraint firstItem="pwY-2k-zXF" firstAttribute="top" secondItem="unf-0j-TqT" secondAttribute="bottom" priority="1" constant="8" id="UeY-7k-l10"/>
                                                 <constraint firstItem="gSr-he-x6j" firstAttribute="leading" secondItem="TUf-jG-qGj" secondAttribute="leading" constant="10" id="W6Z-Uf-Hu8"/>
+                                                <constraint firstItem="KIO-DW-bla" firstAttribute="leading" secondItem="TUf-jG-qGj" secondAttribute="leading" constant="10" id="Zhp-Tp-bxY"/>
                                                 <constraint firstItem="pwY-2k-zXF" firstAttribute="leading" secondItem="TUf-jG-qGj" secondAttribute="leading" constant="10" id="eGJ-nO-K5e"/>
                                                 <constraint firstAttribute="trailing" secondItem="gSr-he-x6j" secondAttribute="trailing" constant="10" id="ozJ-zw-Rbe"/>
                                                 <constraint firstAttribute="trailing" secondItem="pwY-2k-zXF" secondAttribute="trailing" constant="10" id="qkS-Fi-yw1"/>
+                                                <constraint firstAttribute="bottom" secondItem="KIO-DW-bla" secondAttribute="bottom" constant="10" id="uYA-ji-peE"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemView"/>
@@ -416,6 +431,16 @@
                                                         <constraint firstAttribute="width" constant="24" id="T0m-jh-6dK"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 5, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7E4-gY-Zap">
+                                                    <rect key="frame" x="10" y="97" width="62" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="bDu-1Y-of7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <constraints>
@@ -428,7 +453,9 @@
                                                 <constraint firstItem="x5I-x2-lyp" firstAttribute="top" secondItem="EkC-VZ-Elm" secondAttribute="top" constant="10" id="UUH-RV-36U"/>
                                                 <constraint firstItem="Hb8-UI-MpZ" firstAttribute="leading" secondItem="EkC-VZ-Elm" secondAttribute="leading" constant="52" id="VgI-VJ-Fke"/>
                                                 <constraint firstItem="Hb8-UI-MpZ" firstAttribute="top" secondItem="sry-Em-wfM" secondAttribute="bottom" priority="1" constant="5" id="Y4t-0H-eN3"/>
+                                                <constraint firstItem="7E4-gY-Zap" firstAttribute="leading" secondItem="EkC-VZ-Elm" secondAttribute="leading" constant="10" id="ZGp-Jb-fVe"/>
                                                 <constraint firstItem="sry-Em-wfM" firstAttribute="leading" secondItem="x5I-x2-lyp" secondAttribute="trailing" constant="8" id="hlH-97-lL2"/>
+                                                <constraint firstAttribute="bottom" secondItem="7E4-gY-Zap" secondAttribute="bottom" constant="10" id="jrk-1s-a5Z"/>
                                                 <constraint firstAttribute="width" constant="300" id="m5s-r8-Moh"/>
                                                 <constraint firstItem="0zJ-zN-xhc" firstAttribute="leading" secondItem="EkC-VZ-Elm" secondAttribute="leading" constant="52" id="pfw-S5-oUD"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zjn-eP-Gzk" secondAttribute="trailing" constant="10" id="vI2-0L-cP2"/>
@@ -555,9 +582,17 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yyO-e0-Gob" appends="YES" id="B6e-ft-2WD"/>
+                        </connections>
                     </tableView>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAI-CN-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="1" id="yyO-e0-Gob">
+                    <connections>
+                        <action selector="longPressGestureHandle:" destination="1hN-Wi-PXA" id="iQP-il-k7c"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="669" y="714"/>
         </scene>
@@ -801,7 +836,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemView"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O77-GW-nFX">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O77-GW-nFX">
                                             <rect key="frame" x="5" y="60" width="310" height="250"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>

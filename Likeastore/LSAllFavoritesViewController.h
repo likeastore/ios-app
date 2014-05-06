@@ -11,4 +11,6 @@
 
 @interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate>
 
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
+
 @end

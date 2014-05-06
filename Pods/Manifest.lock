@@ -52,7 +52,7 @@ DEPENDENCIES:
   - SDWebImage
   - SVPullToRefresh
   - TOWebViewController
-  - TTTAttributedLabel
+  - TTTAttributedLabel (~> 1.9.5)
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
