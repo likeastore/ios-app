@@ -47,6 +47,7 @@
     [loader startAnimating];
     
     __block CGFloat page = 1;
+    __weak LSAllFavoritesViewController *weakSelf = self;
     
     // initial load
     [self setupItemsFor:page actionType:@"initial" success:^{
@@ -55,7 +56,20 @@
         [loader removeFromSuperview];
     }];
     
-    // Do any additional setup after loading the view.
+    // pull to refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+        }];
+    }];
+    
+    // infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
+            page += 1;
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        }];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -112,6 +126,7 @@
 - (void)clearImageCache {
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
 #pragma mark - Table view data source
@@ -128,43 +143,89 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LSItem *item = [self.items objectAtIndex:indexPath.row];
-    NSString *reuseIdentfier = @"favoritesTextCell";
-    LSFavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentfier forIndexPath:indexPath];
     
-    [cell.itemAvatarView setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"gravatar.png"]];
+    NSString *reuseIdentifier;
+    if (item.isThumbnail) {
+        reuseIdentifier = item.isAvatar ? @"favoritesAvatarThumbCell" : @"favoritesNoAvatarThumbCell";
+    } else {
+        reuseIdentifier = item.isAvatar ? @"favoritesAvatarTextCell" : @"favoritesNoAvatarTextCell";
+    }
     
-    // make circle avatars
-    CALayer *layer = [cell.itemAvatarView layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:cell.itemAvatarView.frame.size.height/2];
+    LSFavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    
+    NSString *reuseIdentifier;
+    if (item.isThumbnail) {
+        reuseIdentifier = item.isAvatar ? @"favoritesAvatarThumbCell" : @"favoritesNoAvatarThumbCell";
+    } else {
+        reuseIdentifier = item.isAvatar ? @"favoritesAvatarTextCell" : @"favoritesNoAvatarTextCell";
+    }
+    
+    LSFavoritesTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
+    if (!cell) {
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        [self.offscreenCells setObject:cell forKey:reuseIdentifier];
+    }
+    
+    [cell.itemDescription setMinimumLineHeight:18.0f];
+    [cell.itemDescription setText:item.description];
+    
+    // calculate cell height based on dynamic fields
+    CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGFloat maxStaticHeight = 234.0f;
+    if (!item.isAuthor) {
+        maxStaticHeight -= 12.0f;
+    }
+    if (!item.isTitle) {
+        maxStaticHeight -= 20.0f;
+    }
+    if (!item.isThumbnail) {
+        maxStaticHeight -= 120.0f;
+    }
+    
+    return dynamicDescriptionHeight + maxStaticHeight;
+}
+
+- (void)configureCell:(LSFavoritesTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withData:(LSItem *)item {
+    
+    if (item.isThumbnail) {
+        [cell.itemThumbView setContentMode:UIViewContentModeScaleAspectFill];
+        [cell.itemThumbView.layer setMasksToBounds:YES];
+        [cell.itemThumbView.layer setCornerRadius:3.0f];
+        [cell.itemThumbView setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
+    }
+    
+    if (item.isAvatar) {
+        // make circle avatars
+        [cell.itemAvatarView.layer setMasksToBounds:YES];
+        [cell.itemAvatarView.layer setCornerRadius:cell.itemAvatarView.frame.size.height/2];
+        [cell.itemAvatarView setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"gravatar.png"]];
+    }
+    
+    // author, title and description
     [cell.itemAuthor setText:item.author];
     [cell.itemTitle setText:item.title];
+    [cell.itemDescription setDelegate:self];
+    [cell.itemDescription setMinimumLineHeight:18.0f];
+    [cell detectLinksInLabel:cell.itemDescription withColor:[UIColor colorWithHexString:@"#f03e56"]];
     [cell.itemDescription setText:item.description];
     
     // network type
     NSString *imageName = [item.type stringByAppendingFormat:@".png"];
     UIImage *typeImage = [UIImage imageNamed:imageName];
     [cell.itemTypeView setImage:typeImage];
-    
-    
-    /*if (item.isThumbnail) {
-        cell.itemThumb.contentMode = UIViewContentModeScaleAspectFill;
-        cell.itemThumb.layer.borderWidth = 1.0f;
-        cell.itemThumb.layer.borderColor = [UIColor colorWithHexString:@"#ddd"].CGColor;
-        [cell.itemThumb setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
-    }
-    [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
-    
-    if (!item.isTitle) {
-        cell.itemTitle.frame = CGRectMake(cell.itemTitle.frame.origin.x,cell.itemTitle.frame.origin.y, 280.0f, 0.0f);
-    }*/
-    
-    return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300.0f;
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:webViewCtrl] animated:YES completion:nil];
 }
 
 /*

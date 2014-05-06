@@ -11,14 +11,14 @@
 
 @interface LSFeedTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *itemTitle;
-@property (strong, nonatomic) IBOutlet TTTAttributedLabel *itemDescription;
-@property (strong, nonatomic) IBOutlet UIImageView *itemThumb;
-@property (strong, nonatomic) IBOutlet UIImageView *typeIconView;
+@property (weak, nonatomic) IBOutlet UILabel *itemTitle;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *itemDescription;
+@property (weak, nonatomic) IBOutlet UIImageView *itemThumb;
+@property (weak, nonatomic) IBOutlet UIImageView *typeIconView;
 
-@property (strong, nonatomic) IBOutlet UIImageView *collectionOwnerAvatarView;
-@property (strong, nonatomic) IBOutlet UILabel *collectionTitle;
-@property (strong, nonatomic) IBOutlet UILabel *collectionOwner;
+@property (weak, nonatomic) IBOutlet UIImageView *collectionOwnerAvatarView;
+@property (weak, nonatomic) IBOutlet UILabel *collectionTitle;
+@property (weak, nonatomic) IBOutlet UILabel *collectionOwner;
 
 - (void) detectLinksInLabel:(id)label withColor:(UIColor *)color;
 

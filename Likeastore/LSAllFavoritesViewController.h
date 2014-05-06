@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-@interface LSAllFavoritesViewController : UITableViewController
+@interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate>
 
 @end

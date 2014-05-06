@@ -14,7 +14,7 @@ int main(int argc, char * argv[])
 {
     @autoreleasepool {
         // Uncomment these line on DEBUG for development purposes
-       //[NUISettings setAutoUpdatePath:@"/Users/dmitri/ios/Likeastore/Beta/Likeastore/Likeastore/LSNUITheme.nss"];
+       [NUISettings setAutoUpdatePath:@"/Users/dmitri/ios/Likeastore/Beta/Likeastore/Likeastore/LSNUITheme.nss"];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([LSAppDelegate class]));
     }
 }

@@ -10,8 +10,7 @@
 
 @implementation LSFavoritesTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -19,13 +18,21 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
+- (void)detectLinksInLabel:(id)label withColor:(UIColor *)color {
+    if ([label isKindOfClass:[TTTAttributedLabel class]]) {
+        NSArray *attrKeys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName, (id)kCTUnderlineStyleAttributeName, nil];
+        NSArray *attrObjects = [[NSArray alloc] initWithObjects:color, [NSNumber numberWithInt:kCTUnderlineStyleThick], nil];
+        NSDictionary *linkAttributes = [[NSDictionary alloc] initWithObjects:attrObjects forKeys:attrKeys];
+        [label setLinkAttributes:linkAttributes];
+        [label setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    }
+}
+
+- (void)awakeFromNib {
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state

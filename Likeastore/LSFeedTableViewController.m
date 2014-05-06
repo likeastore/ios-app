@@ -134,6 +134,7 @@
 - (void)clearImageCache {
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
 #pragma mark - Table view data source
@@ -161,10 +162,6 @@
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
-    if (!item.isTitle) {
-        cell.itemTitle.frame = CGRectMake(cell.itemTitle.frame.origin.x,cell.itemTitle.frame.origin.y, 280.0f, 0.0f);
-    }
-    
     return cell;
 }
 
@@ -178,10 +175,6 @@
         [self.offscreenCells setObject:cell forKey:reuseIdentifier];
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
-    
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(cell.bounds));
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
     
     CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
@@ -214,12 +207,10 @@
     [cell.itemTitle setText:item.title];
     
     // description
+    [cell.itemDescription setDelegate:self];
+    [cell.itemDescription setMinimumLineHeight:18.0f];
     [cell detectLinksInLabel:cell.itemDescription withColor:[UIColor colorWithHexString:@"#f03e56"]];
     [cell.itemDescription setText:item.description];
-    [cell.itemDescription setDelegate:self];
-    [cell.itemDescription setTextAlignment:NSTextAlignmentLeft];
-    [cell.itemDescription setLineBreakMode:NSLineBreakByWordWrapping];
-    [cell.itemDescription setNumberOfLines:0];
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {

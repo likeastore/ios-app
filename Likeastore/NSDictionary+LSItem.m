@@ -11,7 +11,7 @@
 @implementation NSDictionary (NSObject)
 
 - (id)objectForKeyNotNull:(id)key {
-    id object = [self objectForKey:key];
+    __weak id object = [self objectForKey:key];
     
     if (object == [NSNull null]) {
         return nil;
