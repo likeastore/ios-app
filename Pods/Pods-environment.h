@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 3
 
+// AHKActionSheet
+#define COCOAPODS_POD_AVAILABLE_AHKActionSheet
+#define COCOAPODS_VERSION_MAJOR_AHKActionSheet 0
+#define COCOAPODS_VERSION_MINOR_AHKActionSheet 1
+#define COCOAPODS_VERSION_PATCH_AHKActionSheet 2
+
 // DropdownMenu
 #define COCOAPODS_POD_AVAILABLE_DropdownMenu
 #define COCOAPODS_VERSION_MAJOR_DropdownMenu 1

@@ -18,6 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AHKActionSheet (0.1.2)
   - DropdownMenu (1.0.0)
   - FontAwesomeKit/Core (2.1.5)
   - FontAwesomeKit/FontAwesome (2.1.5):
@@ -42,6 +43,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AHKActionSheet
   - DropdownMenu
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/FoundationIcons
@@ -58,6 +60,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  AHKActionSheet: e24368bd5f72ab9d592aefea8ad0b93f5a43f904
   DropdownMenu: 3c454205c2db1fd39dc1ebf099114c4fdb73f136
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e

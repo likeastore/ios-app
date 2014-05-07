@@ -74,4 +74,8 @@
     return [self GET:[API_URL stringByAppendingString:@"/items"] parameters:@{@"page": [@(page) stringValue], @"accessToken": @"ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU"} success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *) deleteFavoritesItemByID:(NSString *)_id success:(void (^)(AFHTTPRequestOperation *operation, id favorites))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    return [self DELETE:[API_URL stringByAppendingFormat:@"/items/%@", _id] parameters:@{@"accessToken": @"ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU"} success:success failure:failure];
+}
+
 @end

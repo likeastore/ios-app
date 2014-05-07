@@ -11,4 +11,6 @@
 
 @interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate>
 
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
+
 @end

@@ -15,6 +15,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <TOWebViewController/TOWebViewController.h>
+#import <AHKActionSheet/AHKActionSheet.h>
+#import <FontAwesomeKit/FAKIonIcons.h>
 
 @interface LSAllFavoritesViewController ()
 
@@ -120,6 +122,8 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    [self clearImageCache];
     // Dispose of any resources that can be recreated.
 }
 
@@ -199,6 +203,10 @@
         [cell.itemThumbView.layer setMasksToBounds:YES];
         [cell.itemThumbView.layer setCornerRadius:3.0f];
         [cell.itemThumbView setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
+        
+        if (item.thumbnailIsGIF) {
+            [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+        }
     }
     
     if (item.isAvatar) {
@@ -226,6 +234,16 @@
     [self openWebView:url];
 }
 
+- (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath withID:(NSString *)_id {
+    // remove from table
+    [self.items removeObjectAtIndex:indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    // send api call
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [api deleteFavoritesItemByID:_id success:nil failure:nil];
+}
+
 - (void)openWebView:(NSURL *)url {
     TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
@@ -240,12 +258,65 @@
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint point = [recognizer locationInView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    
+         
         if (indexPath) {
-            LSItem *item = [self.items objectAtIndex:indexPath.row];
-            [self openWebView:[NSURL URLWithString:item.source]];
+            [self showActionSheetForIndexPath:indexPath];
         }
     }
+}
+
+- (void) showActionSheetForIndexPath:(NSIndexPath *)indexPath {
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:item.source];
+    
+    // custom styles
+    [actionSheet setBlurTintColor:[UIColor colorWithHexString:@"#1f212f" alpha:0.9f]];
+    [actionSheet setBlurRadius:3.0f];
+    [actionSheet setButtonHeight:50.0f];
+    [actionSheet setCancelButtonHeight:50.0f];
+    [actionSheet setCancelButtonShadowColor:[UIColor colorWithHexString:@"#303140" alpha:0.98f]];
+    [actionSheet setSeparatorColor:[UIColor colorWithHexString:@"#a3a5c0" alpha:0.6f]];
+    [actionSheet setSelectedBackgroundColor:[UIColor colorWithHexString:@"#161625" alpha:0.6f]];
+    
+    // fonts and colors
+    __weak UIColor *mainColor = [UIColor colorWithHexString:@"#e9e9e9"];
+    __weak UIColor *pinkColor = [UIColor colorWithHexString:@"#f03e56"];
+    __weak UIFont *defaultFont = [UIFont fontWithName:@"Helvetica Neue" size:16.0f];
+    CGFloat icon_size = 24.0f;
+    
+    actionSheet.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14.0f], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#43c2c2"]};
+    
+    actionSheet.buttonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                         NSForegroundColorAttributeName:mainColor};
+    actionSheet.cancelButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                               NSForegroundColorAttributeName:mainColor};
+    actionSheet.destructiveButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                                    NSForegroundColorAttributeName:pinkColor};
+    
+    // create menu items and handlers
+    __weak LSAllFavoritesViewController *weakSelf = self;
+    
+    FAKIonIcons *sourceIcon = [FAKIonIcons ios7UploadOutlineIconWithSize:icon_size];
+    [sourceIcon addAttribute:NSForegroundColorAttributeName value:mainColor];
+    
+    [actionSheet addButtonWithTitle:@"Go to source"
+                              image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *as) {
+                                [weakSelf openWebView:[NSURL URLWithString:item.source]];
+                            }];
+    
+    FAKIonIcons *deleteIcon = [FAKIonIcons ios7TrashOutlineIconWithSize:icon_size];
+    [deleteIcon addAttribute:NSForegroundColorAttributeName value:pinkColor];
+    
+    [actionSheet addButtonWithTitle:@"Delete"
+                              image:[deleteIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
+                               type:AHKActionSheetButtonTypeDestructive
+                            handler:^(AHKActionSheet *as) {
+                                [weakSelf deleteItemAtIndexPath:indexPath withID:item._id];
+                            }];
+    
+    [actionSheet show];
 }
 
 /*

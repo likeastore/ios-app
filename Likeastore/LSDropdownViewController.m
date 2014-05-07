@@ -44,8 +44,8 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void)customizeMenu {
-    __weak UIColor *menuColor = [UIColor colorWithHexString:@"#7a7a7a"];
-    __weak UIColor *menuColorHover = [UIColor colorWithHexString:@"#818181"];
+    __weak UIColor *menuColor = [UIColor colorWithHexString:@"#636577"];
+    __weak UIColor *menuColorHover = [UIColor colorWithHexString:@"#3D3F52"];
     CGFloat icon_size = 24.0f;
     
     for (UIButton *button in self.buttons) {
@@ -59,7 +59,7 @@ CAShapeLayer *closedMenuShape;
             [button setImage:[feedIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
-        if ([button.titleLabel.text isEqualToString:@"All Favorites"]) {
+        if ([button.titleLabel.text isEqualToString:@"Favorites"]) {
             FAKFoundationIcons *heartIcon = [FAKFoundationIcons heartIconWithSize:icon_size];
             
             [heartIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
@@ -78,7 +78,7 @@ CAShapeLayer *closedMenuShape;
         
         // set button states
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#3d3d3d"]] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#161625" alpha:0.9f]] forState:UIControlStateHighlighted];
         
         // toggle bottom border on taps
         [button addTarget:self action:@selector(hideBottomBorder:) forControlEvents:UIControlEventTouchDown];
@@ -87,9 +87,9 @@ CAShapeLayer *closedMenuShape;
         
         // add bottom border
         if (button != self.buttons.lastObject) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 46.0f, button.frame.size.width-16.0f, 1.6f)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 46.0f, button.frame.size.width-16.0f, 1.4f)];
             lineView.tag = 1;
-            lineView.backgroundColor = [UIColor colorWithHexString:@"#3d3d3d"];
+            lineView.backgroundColor = [UIColor colorWithHexString:@"#3D3F52" alpha:0.9f];
             [button addSubview:lineView];
         }
     }

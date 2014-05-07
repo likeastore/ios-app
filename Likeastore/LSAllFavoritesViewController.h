@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 
-@interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate>
+@interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate>
 
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
 

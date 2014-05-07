@@ -16,6 +16,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <TOWebViewController/TOWebViewController.h>
+#import <AHKActionSheet/AHKActionSheet.h>
+#import <FontAwesomeKit/FAKIonIcons.h>
 
 @interface LSFeedTableViewController ()
 
@@ -160,6 +162,10 @@
         cell.itemThumb.layer.borderWidth = 1.0f;
         cell.itemThumb.layer.borderColor = [UIColor colorWithHexString:@"#eee"].CGColor;
         [cell.itemThumb setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:[UIImage imageNamed:@"default-preview.png"]];
+        
+        if (item.thumbnailIsGIF) {
+            [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+        }
     }
     [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
     
@@ -175,7 +181,9 @@
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         [self.offscreenCells setObject:cell forKey:reuseIdentifier];
     }
-    [self configureCell:cell forRowAtIndexPath:indexPath withData:item];
+    
+    [cell.itemDescription setMinimumLineHeight:18.0f];
+    [cell.itemDescription setText:item.description];
     
     CGFloat dynamicDescriptionHeight = [cell.itemDescription systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
@@ -215,6 +223,10 @@
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [self openWebView:url];
+}
+
+- (void)openWebView:(NSURL *)url {
     TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
     [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
@@ -222,53 +234,109 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+# pragma mark - Gestures
+
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint point = [recognizer locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+        
+        if (indexPath) {
+            [self showActionSheetForIndexPath:indexPath];
+        }
+    }
 }
-*/
+
+- (void) showActionSheetForIndexPath:(NSIndexPath *)indexPath {
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:item.source];
+    
+    // custom styles
+    [actionSheet setBlurTintColor:[UIColor colorWithHexString:@"#1f212f" alpha:0.9f]];
+    [actionSheet setBlurRadius:3.0f];
+    [actionSheet setButtonHeight:50.0f];
+    [actionSheet setCancelButtonHeight:50.0f];
+    [actionSheet setCancelButtonShadowColor:[UIColor colorWithHexString:@"#303140" alpha:0.98f]];
+    [actionSheet setSeparatorColor:[UIColor colorWithHexString:@"#a3a5c0" alpha:0.6f]];
+    [actionSheet setSelectedBackgroundColor:[UIColor colorWithHexString:@"#161625" alpha:0.6f]];
+    
+    // fonts and colors
+    __weak UIColor *mainColor = [UIColor colorWithHexString:@"#e9e9e9"];
+    __weak UIColor *pinkColor = [UIColor colorWithHexString:@"#f03e56"];
+    __weak UIFont *defaultFont = [UIFont fontWithName:@"Helvetica Neue" size:16.0f];
+    CGFloat icon_size = 24.0f;
+    
+    actionSheet.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14.0f], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#43c2c2"]};
+    
+    actionSheet.buttonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                         NSForegroundColorAttributeName:mainColor};
+    actionSheet.cancelButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                               NSForegroundColorAttributeName:mainColor};
+    actionSheet.destructiveButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                                    NSForegroundColorAttributeName:pinkColor};
+    
+    // create menu items
+    FAKIonIcons *sourceIcon = [FAKIonIcons ios7UploadOutlineIconWithSize:icon_size];
+    [sourceIcon addAttribute:NSForegroundColorAttributeName value:mainColor];
+    [actionSheet addButtonWithTitle:@"Go to source"
+                              image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *as) {
+                                [self openWebView:[NSURL URLWithString:item.source]];
+                            }];
+    
+    [actionSheet show];
+}
+
+
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-#pragma mark - Navigation
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

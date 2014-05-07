@@ -17,13 +17,6 @@
       "idiom" : "iphone",
       "filename" : "Icon-60@2x.png",
       "scale" : "2x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "Icon-Small.png",
-      "unassigned" : true,
-      "scale" : "1x"
     }
   ],
   "info" : {
