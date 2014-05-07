@@ -7,6 +7,7 @@
 //
 
 #import "LSLoginViewController.h"
+#import "LSWebAuthViewController.h"
 
 @interface LSLoginViewController ()
 
@@ -23,27 +24,49 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
-*/
+
+- (IBAction)connectWithFacebook:(id)sender {
+    LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
+    [webAuthCtrl setAuthServiceName:@"facebook"];
+    [self presentViewController:webAuthCtrl animated:YES completion:nil];
+}
+
+- (IBAction)connectWithGithub:(id)sender {
+    LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
+    [webAuthCtrl setAuthServiceName:@"github"];
+    [self presentViewController:webAuthCtrl animated:YES completion:nil];
+}
+
+- (IBAction)connectWithTwitter:(id)sender {
+    LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
+    [webAuthCtrl setAuthServiceName:@"twitter"];
+    [self presentViewController:webAuthCtrl animated:YES completion:nil];
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

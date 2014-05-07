@@ -92,6 +92,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="container" destination="olZ-BV-j4k" id="NO1-a0-Xpn"/>
                         <outlet property="logoView" destination="G2Q-Ug-p5v" id="kL6-1W-fID"/>
@@ -561,6 +562,7 @@
                             <outletCollection property="gestureRecognizers" destination="yyO-e0-Gob" appends="YES" id="B6e-ft-2WD"/>
                         </connections>
                     </tableView>
+                    <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAI-CN-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.80000000000000004" id="yyO-e0-Gob">
@@ -569,7 +571,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="669" y="714"/>
+            <point key="canvasLocation" x="257" y="738"/>
         </scene>
         <!--Feed Table View Controller-->
         <scene sceneID="jsF-zN-jWQ">
@@ -849,8 +851,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <size key="freeformSize" width="320" height="503"/>
                     <connections>
-                        <segue destination="v0q-c8-FY9" kind="modal" identifier="showLogin" modalTransitionStyle="crossDissolve" id="7X5-rT-E4A"/>
+                        <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLogin" modalTransitionStyle="crossDissolve" id="yWv-eD-hiB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yST-9F-JIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -860,35 +863,191 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="229" y="-823"/>
+            <point key="canvasLocation" x="181" y="-655"/>
         </scene>
         <!--Login View Controller-->
-        <scene sceneID="X6a-Pv-6y8">
+        <scene sceneID="VE8-xC-qAP">
             <objects>
-                <viewController id="v0q-c8-FY9" customClass="LSLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="ydI-1p-Vb2" customClass="LSLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vhR-Hh-a0O"/>
-                        <viewControllerLayoutGuide type="bottom" id="nRE-a5-eMz"/>
+                        <viewControllerLayoutGuide type="top" id="CBZ-0k-mZl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Szl-qC-0S6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SiA-GQ-Xe9">
+                    <view key="view" contentMode="scaleToFill" id="FzB-R4-U0h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmK-wX-p22">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="3pY-xX-1bE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-hR-UTN">
+                                <rect key="frame" x="20" y="406" width="280" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25098039220000001" green="0.75294117650000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Connect with">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" Twitter">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="LoginButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connectWithTwitter:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="YGX-pH-FZ0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzP-04-JPo">
+                                <rect key="frame" x="20" y="466" width="280" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Connect with ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.23921568627450981" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Github">
+                                            <attributes>
+                                                <color key="NSColor" red="0.23921568627450981" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="LoginButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connectWithGithub:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="guV-CV-zyb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.98000001907348633" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-ne-Mdn">
+                                <rect key="frame" x="20" y="346" width="280" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Connect with ">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Facebook">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="LoginButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connectWithFacebook:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="Qh7-Jv-x6k"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hJ-th-mZS">
+                                <rect key="frame" x="84" y="533" width="21" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyh-20-yI9">
+                                <rect key="frame" x="103" y="533" width="134" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Sign in with Email">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3pY-xX-1bE" secondAttribute="trailing" id="2ux-Kf-Xii"/>
+                            <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="3pY-xX-1bE" secondAttribute="bottom" id="9mq-Mi-e0B"/>
+                            <constraint firstItem="3pY-xX-1bE" firstAttribute="top" secondItem="FzB-R4-U0h" secondAttribute="top" id="WCA-2P-vnE"/>
+                            <constraint firstItem="3pY-xX-1bE" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" id="rcp-Z4-hmj"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dMM-eg-kZf"/>
+                    <navigationItem key="navigationItem" id="Iau-Na-29P"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hnE-PO-u2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uza-KI-9jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="-823"/>
+            <point key="canvasLocation" x="720" y="-1215"/>
+        </scene>
+        <!--Web Auth View Controller-->
+        <scene sceneID="qXe-Bg-g43">
+            <objects>
+                <viewController storyboardIdentifier="webAuth" id="69w-RL-5eO" customClass="LSWebAuthViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aid-B7-3rf"/>
+                        <viewControllerLayoutGuide type="bottom" id="tVL-Ls-OfL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WmU-7l-cX7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOd-sD-4hw">
+                                <rect key="frame" x="0.0" y="56" width="320" height="512"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAh-tT-SPO">
+                                <rect key="frame" x="0.0" y="12" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.1529411765" green="0.1647058824" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Authorization" id="9JH-kS-Us7">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eK3-UI-VBU">
+                                            <color key="tintColor" red="0.24313725490196078" green="0.71372549019607845" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cancelAuth:" destination="69w-RL-5eO" id="wLj-jk-lnb"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="webView" destination="bOd-sD-4hw" id="G13-2m-Vky"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8og-PG-Y3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1128" y="-551"/>
         </scene>
     </scenes>
     <resources>
+        <image name="loginBackground" width="320" height="480"/>
         <image name="logo-likeastore" width="627" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

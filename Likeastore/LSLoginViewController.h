@@ -10,4 +10,8 @@
 
 @interface LSLoginViewController : UIViewController
 
+- (IBAction)connectWithFacebook:(id)sender;
+- (IBAction)connectWithGithub:(id)sender;
+- (IBAction)connectWithTwitter:(id)sender;
+
 @end

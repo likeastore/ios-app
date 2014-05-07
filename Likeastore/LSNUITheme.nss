@@ -16,3 +16,7 @@ ItemViewDescription {
     font-size: 14px;
     font-color: #666666;
 }
+
+LoginButton {
+    corner-radius: 3px;
+}
