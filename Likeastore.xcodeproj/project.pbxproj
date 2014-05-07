@@ -33,6 +33,7 @@
 		2A8E2125190FD21C007508CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210D190FD21C007508CB /* UIKit.framework */; };
 		2A8E212D190FD21C007508CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E212B190FD21C007508CB /* InfoPlist.strings */; };
 		2A8E212F190FD21C007508CB /* LikeastoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E212E190FD21C007508CB /* LikeastoreTests.m */; };
+		2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E267191A564D00A1E135 /* LSLoginViewController.m */; };
 		B069897E3C574FE7B1D39211 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9405E0F1BA484B468754DAE5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		2A8E212A190FD21C007508CB /* LikeastoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LikeastoreTests-Info.plist"; sourceTree = "<group>"; };
 		2A8E212C190FD21C007508CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A8E212E190FD21C007508CB /* LikeastoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeastoreTests.m; sourceTree = "<group>"; };
+		2AF3E266191A564D00A1E135 /* LSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLoginViewController.h; sourceTree = "<group>"; };
+		2AF3E267191A564D00A1E135 /* LSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSLoginViewController.m; sourceTree = "<group>"; };
 		50114D2CAEA9494BBF506B54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9405E0F1BA484B468754DAE5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -138,6 +141,8 @@
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
 				2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */,
 				2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */,
+				2AF3E266191A564D00A1E135 /* LSLoginViewController.h */,
+				2AF3E267191A564D00A1E135 /* LSLoginViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,
 				2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */,
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
+				2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
 				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,

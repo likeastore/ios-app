@@ -122,7 +122,7 @@
         
         callback();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        [weakSelf performSegueWithIdentifier:@"showLogin" sender:self];
     }];
 }
 

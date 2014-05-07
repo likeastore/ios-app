@@ -110,7 +110,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="138" y="6"/>
+            <point key="canvasLocation" x="-362" y="-6"/>
         </scene>
         <!--All Favorites View Controller-->
         <scene sceneID="YbT-OM-7jg">
@@ -849,6 +849,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <connections>
+                        <segue destination="v0q-c8-FY9" kind="modal" identifier="showLogin" modalTransitionStyle="crossDissolve" id="7X5-rT-E4A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yST-9F-JIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.80000000000000004" id="qmg-cR-1GD">
@@ -857,7 +860,32 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="669" y="-1179"/>
+            <point key="canvasLocation" x="229" y="-823"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="X6a-Pv-6y8">
+            <objects>
+                <viewController id="v0q-c8-FY9" customClass="LSLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vhR-Hh-a0O"/>
+                        <viewControllerLayoutGuide type="bottom" id="nRE-a5-eMz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SiA-GQ-Xe9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmK-wX-p22">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dMM-eg-kZf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hnE-PO-u2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698" y="-823"/>
         </scene>
     </scenes>
     <resources>

@@ -67,7 +67,7 @@
     //ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU
     
     // bmV3MzAwQGxpa2Vhc3RvcmUuY29tOzEzOTg4NjM0NTE0MTE7NjA2YmQzYTlkMDZiY2U0ZWE5NmZjYmJhY2ZkMjMzN2ZjNmVmMzk3Yg
-    return [self GET:[API_URL stringByAppendingString:@"/feed"] parameters:@{@"page": [@(page) stringValue], @"accessToken": @"ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU"} success:success failure:failure];
+    return [self GET:[API_URL stringByAppendingString:@"/feed"] parameters:@{@"page": [@(page) stringValue]} success:success failure:failure];
 }
 
 - (AFHTTPRequestOperation *) getAllFavorites:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
