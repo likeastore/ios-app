@@ -67,15 +67,15 @@
     //ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU
     
     // bmV3MzAwQGxpa2Vhc3RvcmUuY29tOzEzOTg4NjM0NTE0MTE7NjA2YmQzYTlkMDZiY2U0ZWE5NmZjYmJhY2ZkMjMzN2ZjNmVmMzk3Yg
-    return [self GET:[API_URL stringByAppendingString:@"/feed"] parameters:@{@"page": [@(page) stringValue]} success:success failure:failure];
+    return [self GET:[API_URL stringByAppendingString:@"/feed"] parameters:@{@"page": [@(page) stringValue], @"pageSize": @"15"} success:success failure:failure];
 }
 
 - (AFHTTPRequestOperation *) getAllFavorites:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
-    return [self GET:[API_URL stringByAppendingString:@"/items"] parameters:@{@"page": [@(page) stringValue], @"accessToken": @"ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU"} success:success failure:failure];
+    return [self GET:[API_URL stringByAppendingString:@"/items"] parameters:@{@"page": [@(page) stringValue], @"pageSize": @"15"} success:success failure:failure];
 }
 
 - (AFHTTPRequestOperation *) deleteFavoritesItemByID:(NSString *)_id success:(void (^)(AFHTTPRequestOperation *operation, id favorites))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    return [self DELETE:[API_URL stringByAppendingFormat:@"/items/%@", _id] parameters:@{@"accessToken": @"ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU"} success:success failure:failure];
+    return [self DELETE:[API_URL stringByAppendingFormat:@"/items/%@", _id] parameters:nil success:success failure:failure];
 }
 
 @end

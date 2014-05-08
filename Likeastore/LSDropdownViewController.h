@@ -11,5 +11,6 @@
 @interface LSDropdownViewController : DropdownMenuController
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
+- (IBAction)logout:(id)sender;
 
 @end

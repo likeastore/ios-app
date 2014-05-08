@@ -44,11 +44,11 @@
     NSLog(@"BOOL web view %@", request);
     
     if ([responseURL hasPrefix:[BLANK_HTML stringByAppendingString:@"?id="]]) {
-        /*NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
+        NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
         
         LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
         
-        [api getCredentials:userId success:^(AFHTTPRequestOperation *operation, id user) {
+        [api getEmailAndAPIToken:userId success:^(AFHTTPRequestOperation *operation, id user) {
             NSLog(@"success: %@", user);
             
             if ([user objectForKey:@"firstTimeUser"]) {
@@ -57,8 +57,9 @@
             
             NSDictionary *credentials = @{@"email": [user objectForKey:@"email"], @"apiToken": [user objectForKey:@"apiToken"]};
             
-            [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [self performSegueWithIdentifier:@"fromAuthToWelcome" sender:self];
+            [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject)
+            {
+                [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"login with credentials ERROR %@", error);
             }];
@@ -66,7 +67,7 @@
             NSLog(@"error: %@", error);
         }];
         
-        return NO;*/
+        return NO;
     }
     return YES;
 }

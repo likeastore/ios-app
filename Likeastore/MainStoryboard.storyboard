@@ -86,6 +86,16 @@
                                         <rect key="frame" x="105" y="37" width="110" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIN-sE-Lr5">
+                                        <rect key="frame" x="269" y="34" width="44" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="logout">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logout:" destination="m39-Xk-X0f" eventType="touchUpInside" id="eA9-i4-hEd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.7843137255" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -853,7 +863,7 @@
                     <toolbarItems/>
                     <size key="freeformSize" width="320" height="503"/>
                     <connections>
-                        <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLogin" modalTransitionStyle="crossDissolve" id="yWv-eD-hiB"/>
+                        <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLogin" modalTransitionStyle="flipHorizontal" id="yWv-eD-hiB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yST-9F-JIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -882,7 +892,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-hR-UTN">
-                                <rect key="frame" x="20" y="406" width="280" height="52"/>
+                                <rect key="frame" x="20" y="400" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.75294117650000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -911,7 +921,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzP-04-JPo">
-                                <rect key="frame" x="20" y="466" width="280" height="52"/>
+                                <rect key="frame" x="20" y="460" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -940,7 +950,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.98000001907348633" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-ne-Mdn">
-                                <rect key="frame" x="20" y="346" width="280" height="52"/>
+                                <rect key="frame" x="20" y="340" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -967,14 +977,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hJ-th-mZS">
-                                <rect key="frame" x="84" y="533" width="21" height="21"/>
+                                <rect key="frame" x="84" y="527" width="21" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyh-20-yI9">
-                                <rect key="frame" x="103" y="533" width="134" height="21"/>
+                                <rect key="frame" x="103" y="527" width="134" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Sign in with Email">
@@ -992,6 +1002,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iau-Na-29P"/>
+                    <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uza-KI-9jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1024,7 +1035,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Authorization" id="9JH-kS-Us7">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eK3-UI-VBU">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="eK3-UI-VBU">
                                             <color key="tintColor" red="0.24313725490196078" green="0.71372549019607845" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cancelAuth:" destination="69w-RL-5eO" id="wLj-jk-lnb"/>
@@ -1039,11 +1050,12 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="webView" destination="bOd-sD-4hw" id="G13-2m-Vky"/>
+                        <segue destination="m39-Xk-X0f" kind="modal" identifier="fromAuthToFeed" modalTransitionStyle="flipHorizontal" id="yKi-Z4-5if"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8og-PG-Y3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="-551"/>
+            <point key="canvasLocation" x="-892" y="-707"/>
         </scene>
     </scenes>
     <resources>

@@ -7,6 +7,8 @@
 //
 
 #import "LSDropdownViewController.h"
+#import "LSLikeastoreHTTPClient.h"
+
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKFoundationIcons.h>
 
@@ -209,5 +211,10 @@ CAShapeLayer *closedMenuShape;
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)logout:(id)sender {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [api logout];
+}
 
 @end
