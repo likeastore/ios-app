@@ -96,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_Loader 0
 #define COCOAPODS_VERSION_PATCH_Loader 1
 
+// MFStoryboardPushSegue
+#define COCOAPODS_POD_AVAILABLE_MFStoryboardPushSegue
+#define COCOAPODS_VERSION_MAJOR_MFStoryboardPushSegue 1
+#define COCOAPODS_VERSION_MINOR_MFStoryboardPushSegue 0
+#define COCOAPODS_VERSION_PATCH_MFStoryboardPushSegue 1
+
 // Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2

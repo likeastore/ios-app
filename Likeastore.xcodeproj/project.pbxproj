@@ -35,6 +35,7 @@
 		2A8E212F190FD21C007508CB /* LikeastoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E212E190FD21C007508CB /* LikeastoreTests.m */; };
 		2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E267191A564D00A1E135 /* LSLoginViewController.m */; };
 		2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */; };
+		2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */; };
 		B069897E3C574FE7B1D39211 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9405E0F1BA484B468754DAE5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,8 @@
 		2AF3E267191A564D00A1E135 /* LSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSLoginViewController.m; sourceTree = "<group>"; };
 		2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWebAuthViewController.h; sourceTree = "<group>"; };
 		2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWebAuthViewController.m; sourceTree = "<group>"; };
+		2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSEmailLoginViewController.h; sourceTree = "<group>"; };
+		2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSEmailLoginViewController.m; sourceTree = "<group>"; };
 		50114D2CAEA9494BBF506B54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9405E0F1BA484B468754DAE5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -148,6 +151,8 @@
 				2AF3E267191A564D00A1E135 /* LSLoginViewController.m */,
 				2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */,
 				2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */,
+				2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */,
+				2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */,
 				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
+				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,

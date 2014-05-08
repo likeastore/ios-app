@@ -9,6 +9,8 @@
 #import "LSLoginViewController.h"
 #import "LSWebAuthViewController.h"
 
+#import <MFStoryboardPushSegue/MFStoryboardPopSegue.h>
+
 @interface LSLoginViewController ()
 
 @end
@@ -56,6 +58,16 @@
     LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
     [webAuthCtrl setAuthServiceName:@"twitter"];
     [self presentViewController:webAuthCtrl animated:YES completion:nil];
+}
+
+- (IBAction)goToEmailLogin:(id)sender {
+}
+
+- (IBAction)backFromEmailLoginUnwindSegueCallback:(UIStoryboardSegue *)segue {
+}
+
+- (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
+    return [[MFStoryboardPopSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
 }
 
 /*

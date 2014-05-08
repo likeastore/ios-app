@@ -29,6 +29,7 @@ PODS:
     - FontAwesomeKit/Core
   - HexColors (2.2.1)
   - Loader (0.0.1)
+  - MFStoryboardPushSegue (1.0.1)
   - Mixpanel (2.3.5)
   - NSURL+ParseQuery (0.1)
   - NUI (0.5.4):
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - FontAwesomeKit/IonIcons
   - HexColors
   - Loader
+  - MFStoryboardPushSegue
   - Mixpanel
   - NSURL+ParseQuery
   - NUI
@@ -65,6 +67,7 @@ SPEC CHECKSUMS:
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   Loader: b44e29ed15140b41cc50a20ca3e6a4248c2b3711
+  MFStoryboardPushSegue: ed74452e339a56fc31e416fec63483e97630f135
   Mixpanel: 79ff289920b67399475b93057ac11e48637585d7
   NSURL+ParseQuery: 33deb7114739a20b11689a77a31f6f7ae1a808f7
   NUI: 4859620744f2645e596d0a3b949dd66868d1fc52
