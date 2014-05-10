@@ -20,3 +20,8 @@ ItemViewDescription {
 LoginButton {
     corner-radius: 3px;
 }
+
+LoginField {
+    corner-radius: 3px;
+    padding: 0 12px;
+}

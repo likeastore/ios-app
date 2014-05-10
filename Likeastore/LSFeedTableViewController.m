@@ -261,12 +261,12 @@
     [actionSheet setSelectedBackgroundColor:[UIColor colorWithHexString:@"#161625" alpha:0.6f]];
     
     // fonts and colors
-    __weak UIColor *mainColor = [UIColor colorWithHexString:@"#e9e9e9"];
-    __weak UIColor *pinkColor = [UIColor colorWithHexString:@"#f03e56"];
-    __weak UIFont *defaultFont = [UIFont fontWithName:@"Helvetica Neue" size:16.0f];
+    UIColor *mainColor = [UIColor colorWithHexString:@"#e9e9e9"];
+    UIColor *pinkColor = [UIColor colorWithHexString:@"#f03e56"];
+    UIFont *defaultFont = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
     CGFloat icon_size = 24.0f;
     
-    actionSheet.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:14.0f], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#43c2c2"]};
+    actionSheet.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14.0f], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#43c2c2"]};
     
     actionSheet.buttonTextAttributes = @{NSFontAttributeName:defaultFont,
                                          NSForegroundColorAttributeName:mainColor};

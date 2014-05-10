@@ -1,0 +1,1 @@
+../../ALPValidator/ALPValidator/ALPValidatorMinimumLengthRule.h

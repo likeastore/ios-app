@@ -16,5 +16,6 @@
 - (IBAction)goToEmailLogin:(id)sender;
 
 - (IBAction)backFromEmailLoginUnwindSegueCallback:(UIStoryboardSegue *)segue;
+- (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)sender;
 
 @end

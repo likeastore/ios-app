@@ -63,11 +63,22 @@
 - (IBAction)goToEmailLogin:(id)sender {
 }
 
+#pragma mark - segues
+
 - (IBAction)backFromEmailLoginUnwindSegueCallback:(UIStoryboardSegue *)segue {
 }
 
 - (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
     return [[MFStoryboardPopSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
+}
+
+#pragma mark - gestures
+
+- (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded &&
+        recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self performSegueWithIdentifier:@"showEmailLogin" sender:self];
+    }
 }
 
 /*

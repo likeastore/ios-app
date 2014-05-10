@@ -8,11 +8,18 @@
 
 #import "LSAppDelegate.h"
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <FontAwesomeKit/FAKFontAwesome.h>
+#import <FontAwesomeKit/FAKIonIcons.h>
+#import <FontAwesomeKit/FAKFoundationIcons.h>
 
 @implementation LSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [FAKFontAwesome iconFontWithSize:1];
+    [FAKIonIcons iconFontWithSize:1];
+    [FAKFoundationIcons iconFontWithSize:1];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [NUISettings initWithStylesheet:@"LSNUITheme"];
     return YES;

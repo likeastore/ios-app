@@ -19,6 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.1.2)
+  - ALPValidator (0.0.3)
   - DropdownMenu (1.0.0)
   - FontAwesomeKit/Core (2.1.5)
   - FontAwesomeKit/FontAwesome (2.1.5):
@@ -28,7 +29,6 @@ PODS:
   - FontAwesomeKit/IonIcons (2.1.5):
     - FontAwesomeKit/Core
   - HexColors (2.2.1)
-  - Loader (0.0.1)
   - MFStoryboardPushSegue (1.0.1)
   - Mixpanel (2.3.5)
   - NSURL+ParseQuery (0.1)
@@ -40,17 +40,18 @@ PODS:
   - SDWebImage/Core (3.6)
   - SVPullToRefresh (0.4.1)
   - TOWebViewController (2.0.6)
+  - TPKeyboardAvoiding (1.2.3)
   - TTTAttributedLabel (1.9.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AHKActionSheet
+  - ALPValidator
   - DropdownMenu
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/FoundationIcons
   - FontAwesomeKit/IonIcons
   - HexColors
-  - Loader
   - MFStoryboardPushSegue
   - Mixpanel
   - NSURL+ParseQuery
@@ -58,15 +59,16 @@ DEPENDENCIES:
   - SDWebImage
   - SVPullToRefresh
   - TOWebViewController
+  - TPKeyboardAvoiding
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   AHKActionSheet: e24368bd5f72ab9d592aefea8ad0b93f5a43f904
+  ALPValidator: 0a4b43d4db38f421317142fa002e44834565407a
   DropdownMenu: 3c454205c2db1fd39dc1ebf099114c4fdb73f136
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
-  Loader: b44e29ed15140b41cc50a20ca3e6a4248c2b3711
   MFStoryboardPushSegue: ed74452e339a56fc31e416fec63483e97630f135
   Mixpanel: 79ff289920b67399475b93057ac11e48637585d7
   NSURL+ParseQuery: 33deb7114739a20b11689a77a31f6f7ae1a808f7
@@ -75,6 +77,7 @@ SPEC CHECKSUMS:
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
   SVPullToRefresh: 61a0e4bd12bd6f8e3465909810b0fbeb1a28d5f2
   TOWebViewController: 891ae553f83943e0e2f64c2dc9dab6b100d17151
+  TPKeyboardAvoiding: 17995aaa6db26ac2a9fa8714a86509c5888f0392
   TTTAttributedLabel: 6154fd2407a03fb8d71abfa36f4710fff26a168e
 
 COCOAPODS: 0.32.1

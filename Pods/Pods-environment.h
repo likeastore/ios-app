@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_AHKActionSheet 1
 #define COCOAPODS_VERSION_PATCH_AHKActionSheet 2
 
+// ALPValidator
+#define COCOAPODS_POD_AVAILABLE_ALPValidator
+#define COCOAPODS_VERSION_MAJOR_ALPValidator 0
+#define COCOAPODS_VERSION_MINOR_ALPValidator 0
+#define COCOAPODS_VERSION_PATCH_ALPValidator 3
+
 // DropdownMenu
 #define COCOAPODS_POD_AVAILABLE_DropdownMenu
 #define COCOAPODS_VERSION_MAJOR_DropdownMenu 1
@@ -89,12 +95,6 @@
 #define COCOAPODS_VERSION_MAJOR_HexColors 2
 #define COCOAPODS_VERSION_MINOR_HexColors 2
 #define COCOAPODS_VERSION_PATCH_HexColors 1
-
-// Loader
-#define COCOAPODS_POD_AVAILABLE_Loader
-#define COCOAPODS_VERSION_MAJOR_Loader 0
-#define COCOAPODS_VERSION_MINOR_Loader 0
-#define COCOAPODS_VERSION_PATCH_Loader 1
 
 // MFStoryboardPushSegue
 #define COCOAPODS_POD_AVAILABLE_MFStoryboardPushSegue
@@ -149,6 +149,12 @@
 #define COCOAPODS_VERSION_MAJOR_TOWebViewController 2
 #define COCOAPODS_VERSION_MINOR_TOWebViewController 0
 #define COCOAPODS_VERSION_PATCH_TOWebViewController 6
+
+// TPKeyboardAvoiding
+#define COCOAPODS_POD_AVAILABLE_TPKeyboardAvoiding
+#define COCOAPODS_VERSION_MAJOR_TPKeyboardAvoiding 1
+#define COCOAPODS_VERSION_MINOR_TPKeyboardAvoiding 2
+#define COCOAPODS_VERSION_PATCH_TPKeyboardAvoiding 3
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel

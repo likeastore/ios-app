@@ -36,7 +36,7 @@ CAShapeLayer *closedMenuShape;
     
     [self setNeedsStatusBarAppearanceUpdate];
     
-    __weak FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
+    FAKFontAwesome *listIcon = [FAKFontAwesome barsIconWithSize:22.0f];
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
     [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
     [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -46,9 +46,9 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void)customizeMenu {
-    __weak UIColor *menuColor = [UIColor colorWithHexString:@"#636577"];
-    __weak UIColor *menuColorHover = [UIColor colorWithHexString:@"#3D3F52"];
-    CGFloat icon_size = 24.0f;
+    UIColor *menuColor = [UIColor colorWithHexString:@"#636577"];
+    UIColor *menuColorHover = [UIColor colorWithHexString:@"#3D3F52"];
+    CGFloat icon_size = 25.5f;
     
     for (UIButton *button in self.buttons) {
         if ([button.titleLabel.text isEqualToString:@"Feed"]) {
@@ -89,7 +89,7 @@ CAShapeLayer *closedMenuShape;
         
         // add bottom border
         if (button != self.buttons.lastObject) {
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 46.0f, button.frame.size.width-16.0f, 1.4f)];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8.0f, 50.0f, button.frame.size.width-16.0f, 1.4f)];
             lineView.tag = 1;
             lineView.backgroundColor = [UIColor colorWithHexString:@"#3D3F52" alpha:0.9f];
             [button addSubview:lineView];

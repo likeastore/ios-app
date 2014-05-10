@@ -1,0 +1,24 @@
+{
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "filename" : "emailLoginBackground.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "emailLoginBackground@2x.png"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "emailLoginBackground-568h@2x.png",
+      "subtype" : "retina4",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
