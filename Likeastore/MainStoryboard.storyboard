@@ -1020,10 +1020,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-hR-UTN">
-                                <rect key="frame" x="20" y="395" width="280" height="52"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-hR-UTN">
+                                <rect key="frame" x="20" y="371" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.75294117650000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="N79-0W-1S6"/>
+                                    <constraint firstAttribute="width" constant="280" id="TCP-BP-6Pa"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Connect with">
@@ -1049,10 +1053,14 @@
                                     <action selector="connectWithTwitter:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="YGX-pH-FZ0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzP-04-JPo">
-                                <rect key="frame" x="20" y="455" width="280" height="52"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PzP-04-JPo">
+                                <rect key="frame" x="20" y="431" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="0Qh-mE-L85"/>
+                                    <constraint firstAttribute="height" constant="52" id="6sR-yZ-FTd"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Connect with ">
@@ -1078,10 +1086,14 @@
                                     <action selector="connectWithGithub:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="guV-CV-zyb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.98000001907348633" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-ne-Mdn">
-                                <rect key="frame" x="20" y="335" width="280" height="52"/>
+                            <button opaque="NO" alpha="0.98000001907348633" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-ne-Mdn">
+                                <rect key="frame" x="20" y="311" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="sIZ-Ms-Mge"/>
+                                    <constraint firstAttribute="height" constant="52" id="vwN-ji-9Bn"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Connect with ">
@@ -1105,16 +1117,24 @@
                                     <action selector="connectWithFacebook:" destination="ydI-1p-Vb2" eventType="touchUpInside" id="Qh7-Jv-x6k"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hJ-th-mZS">
-                                <rect key="frame" x="84" y="522" width="21" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hJ-th-mZS">
+                                <rect key="frame" x="84" y="503" width="25" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="5YI-lj-pvM"/>
+                                    <constraint firstAttribute="height" constant="45" id="pWX-wL-MlA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyh-20-yI9">
-                                <rect key="frame" x="103" y="516" width="134" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyh-20-yI9">
+                                <rect key="frame" x="103" y="504" width="134" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="LkM-Qu-pmK"/>
+                                    <constraint firstAttribute="width" constant="134" id="mHs-Eu-1Lm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Sign in with Email">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1125,17 +1145,38 @@
                                     <segue destination="qPZ-Kv-JOS" kind="custom" identifier="showEmailLogin" customClass="MFStoryboardPushSegue" id="cYT-bk-R5x"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="titledLogo" translatesAutoresizingMaskIntoConstraints="NO" id="IUZ-Iv-JxK">
-                                <rect key="frame" x="66" y="147" width="188" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titledLogo" translatesAutoresizingMaskIntoConstraints="NO" id="IUZ-Iv-JxK">
+                                <rect key="frame" x="66" y="144" width="188" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="BTh-BS-8iN"/>
+                                    <constraint firstAttribute="height" constant="50" id="DNu-cZ-lFq"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3pY-xX-1bE" secondAttribute="trailing" id="2ux-Kf-Xii"/>
+                            <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="6hJ-th-mZS" secondAttribute="bottom" constant="20" id="3kc-Kq-7kR"/>
                             <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="3pY-xX-1bE" secondAttribute="bottom" id="9mq-Mi-e0B"/>
+                            <constraint firstItem="PzP-04-JPo" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="20" id="AWb-26-hsG"/>
+                            <constraint firstItem="gsj-ne-Mdn" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="20" id="BIH-ox-BMk"/>
+                            <constraint firstAttribute="trailing" secondItem="gsj-ne-Mdn" secondAttribute="trailing" constant="20" id="K0C-f1-DXC"/>
+                            <constraint firstAttribute="trailing" secondItem="IUZ-Iv-JxK" secondAttribute="trailing" constant="66" id="OSF-8Q-1Bq"/>
+                            <constraint firstAttribute="trailing" secondItem="0BP-hR-UTN" secondAttribute="trailing" constant="20" id="POZ-H8-dXy"/>
+                            <constraint firstAttribute="centerY" secondItem="3pY-xX-1bE" secondAttribute="centerY" id="UWZ-jr-u9A"/>
+                            <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="lyh-20-yI9" secondAttribute="bottom" constant="19" id="V1K-BC-zX9"/>
                             <constraint firstItem="3pY-xX-1bE" firstAttribute="top" secondItem="FzB-R4-U0h" secondAttribute="top" id="WCA-2P-vnE"/>
+                            <constraint firstAttribute="trailing" secondItem="PzP-04-JPo" secondAttribute="trailing" constant="20" id="adI-cA-2L0"/>
+                            <constraint firstItem="IUZ-Iv-JxK" firstAttribute="centerY" secondItem="3pY-xX-1bE" secondAttribute="centerY" constant="-115" id="eCX-Uv-XTc"/>
+                            <constraint firstItem="0BP-hR-UTN" firstAttribute="top" secondItem="gsj-ne-Mdn" secondAttribute="bottom" constant="8" id="fj7-fE-XRt"/>
+                            <constraint firstItem="6hJ-th-mZS" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="84" id="gEV-63-BdM"/>
+                            <constraint firstItem="PzP-04-JPo" firstAttribute="top" secondItem="0BP-hR-UTN" secondAttribute="bottom" constant="8" id="hpb-n5-Yn1"/>
+                            <constraint firstItem="IUZ-Iv-JxK" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="66" id="nNW-7u-Jqa"/>
+                            <constraint firstItem="6hJ-th-mZS" firstAttribute="top" secondItem="PzP-04-JPo" secondAttribute="bottom" constant="20" id="rJz-iP-gA5"/>
                             <constraint firstItem="3pY-xX-1bE" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" id="rcp-Z4-hmj"/>
+                            <constraint firstItem="lyh-20-yI9" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="103" id="uIc-aC-NdS"/>
+                            <constraint firstItem="0BP-hR-UTN" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="20" id="yOu-Ot-RQn"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="1Ox-J2-pvH" appends="YES" id="sys-as-IlE"/>
@@ -1310,7 +1351,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1270" y="-1215"/>
+            <point key="canvasLocation" x="1224" y="-1215"/>
         </scene>
         <!--Web Auth View Controller-->
         <scene sceneID="qXe-Bg-g43">
