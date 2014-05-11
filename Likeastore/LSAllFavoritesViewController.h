@@ -11,6 +11,8 @@
 
 @interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate>
 
+@property (strong, nonatomic) NSString *favoritesType;
+
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
 
 @end

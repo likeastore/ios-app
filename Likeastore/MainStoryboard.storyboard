@@ -37,7 +37,7 @@
                                         </state>
                                         <connections>
                                             <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="Zc9-oQ-Pjc"/>
-                                            <segue destination="SzC-Wr-2Zg" kind="custom" customClass="DropdownMenuSegue" id="Rnu-Te-kmP"/>
+                                            <segue destination="SzC-Wr-2Zg" kind="custom" identifier="showFeedFromMenu" customClass="DropdownMenuSegue" id="Rnu-Te-kmP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwf-WR-0o1">
@@ -50,7 +50,7 @@
                                         </state>
                                         <connections>
                                             <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="es3-xE-h43"/>
-                                            <segue destination="1hN-Wi-PXA" kind="custom" customClass="DropdownMenuSegue" id="xqr-Ua-D3p"/>
+                                            <segue destination="1hN-Wi-PXA" kind="custom" identifier="showFavoritesFromMenu" customClass="DropdownMenuSegue" id="xqr-Ua-D3p"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOk-6V-3EO">
@@ -74,6 +74,7 @@
                                         </state>
                                         <connections>
                                             <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="Nfh-N7-Gmu"/>
+                                            <segue destination="NnJ-tQ-xI3" kind="custom" identifier="showProfileFromMenu" customClass="DropdownMenuSegue" id="wbQ-bx-0lP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -104,17 +105,31 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="G2Q-Ug-p5v">
-                                        <rect key="frame" x="105" y="38" width="120" height="17"/>
+                                        <rect key="frame" x="105" y="37" width="120" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIN-sE-Lr5">
-                                        <rect key="frame" x="269" y="34" width="44" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dg-hO-NgG">
+                                        <rect key="frame" x="281" y="31" width="39" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="logout">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Inbox">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="logout:" destination="m39-Xk-X0f" eventType="touchUpInside" id="eA9-i4-hEd"/>
+                                            <segue destination="1hN-Wi-PXA" kind="custom" identifier="showInbox" customClass="DropdownMenuSegue" id="J28-3k-vJV"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9s-Dz-Oyt">
+                                        <rect key="frame" x="272" y="31" width="57" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="pdx-Ak-vn7" kind="custom" identifier="showSettings" customClass="DropdownMenuSegue" id="Ded-4q-kEs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -126,10 +141,12 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="container" destination="olZ-BV-j4k" id="NO1-a0-Xpn"/>
+                        <outlet property="inboxButton" destination="2dg-hO-NgG" id="sgx-Lb-Eg8"/>
                         <outlet property="logoView" destination="G2Q-Ug-p5v" id="kL6-1W-fID"/>
                         <outlet property="menu" destination="qEF-06-QWM" id="Pn2-hm-vbY"/>
                         <outlet property="menuButton" destination="mUd-WO-ko9" id="Zwt-do-1Yy"/>
                         <outlet property="menubar" destination="07f-dM-cz8" id="9vS-sr-LZO"/>
+                        <outlet property="settingsButton" destination="i9s-Dz-Oyt" id="AXu-YR-aol"/>
                         <outlet property="titleLabel" destination="nWr-NQ-o3Y" id="urD-jt-F7u"/>
                         <outletCollection property="buttons" destination="8pL-az-eua" id="YwB-gg-OtM"/>
                         <outletCollection property="buttons" destination="hwf-WR-0o1" id="cnc-Dj-fzQ"/>
@@ -145,6 +162,95 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-362" y="-6"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="TU3-0r-8R1">
+            <objects>
+                <viewController id="NnJ-tQ-xI3" customClass="LSProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WWS-pa-G9N"/>
+                        <viewControllerLayoutGuide type="bottom" id="qVB-lG-Wqp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TH6-mw-3ZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzc-Ih-Yqt">
+                                <rect key="frame" x="139" y="237" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hES-pg-mPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189" y="1534"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="0p8-nX-7OD">
+            <objects>
+                <tableViewController id="pdx-Ak-vn7" customClass="LSSettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JKz-2p-kcs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="X47-lM-loi">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Siu-6l-V4X" style="IBUITableViewCellStyleDefault" id="oLp-Sj-rX5">
+                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oLp-Sj-rX5" id="EMr-Ce-Cta">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Clear cache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Siu-6l-V4X">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.94117647058823528" green="0.24313725490196078" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zn1-me-9oZ" style="IBUITableViewCellStyleDefault" id="Eam-Zu-wSm">
+                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eam-Zu-wSm" id="qzu-6x-cmu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sign out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zn1-me-9oZ">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.94117647058823528" green="0.24313725490196078" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="pdx-Ak-vn7" id="eGb-bL-yRU"/>
+                            <outlet property="delegate" destination="pdx-Ak-vn7" id="j7y-q2-94N"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="clearCacheCell" destination="oLp-Sj-rX5" id="U06-lT-USK"/>
+                        <outlet property="signOutCell" destination="Eam-Zu-wSm" id="KCY-LX-ym0"/>
+                        <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLoginAfterSignOut" customClass="MFStoryboardPushSegue" modalTransitionStyle="crossDissolve" id="5HF-o4-q3F"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="htz-V8-ZCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189" y="2294"/>
         </scene>
         <!--All Favorites View Controller-->
         <scene sceneID="YbT-OM-7jg">
@@ -604,7 +710,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="257" y="738"/>
+            <point key="canvasLocation" x="181" y="6"/>
         </scene>
         <!--Feed Table View Controller-->
         <scene sceneID="jsF-zN-jWQ">
@@ -1035,6 +1141,7 @@
                             <outletCollection property="gestureRecognizers" destination="1Ox-J2-pvH" appends="YES" id="sys-as-IlE"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="Hoq-ds-tTw"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </viewController>
@@ -1045,7 +1152,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="720" y="-1215"/>
+            <point key="canvasLocation" x="760" y="-1215"/>
         </scene>
         <!--Email Login View Controller-->
         <scene sceneID="RDK-Y6-t7M">
@@ -1072,7 +1179,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email (only you can see it)" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nzk-DY-mqn">
-                                        <rect key="frame" x="20" y="256" width="280" height="45"/>
+                                        <rect key="frame" x="20" y="261" width="280" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.24313725489999999" green="0.71372549019999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1084,7 +1191,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tLJ-eG-Sz3">
-                                        <rect key="frame" x="20" y="309" width="280" height="45"/>
+                                        <rect key="frame" x="20" y="314" width="280" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.24313725489999999" green="0.71372549019999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1095,7 +1202,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIU-Gr-wwf">
-                                        <rect key="frame" x="20" y="362" width="280" height="46"/>
+                                        <rect key="frame" x="20" y="395" width="280" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.87450980392156863" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
@@ -1220,7 +1327,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yKi-Z4-5if"/>
+        <segue reference="5HF-o4-q3F"/>
+        <segue reference="hRX-R9-YOW"/>
+        <segue reference="J28-3k-vJV"/>
         <segue reference="Wpv-1J-bh0"/>
     </inferredMetricsTieBreakers>
 </document>

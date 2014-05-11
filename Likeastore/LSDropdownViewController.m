@@ -8,6 +8,7 @@
 
 #import "LSDropdownViewController.h"
 #import "LSLikeastoreHTTPClient.h"
+#import "LSAllFavoritesViewController.h"
 
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKFoundationIcons.h>
@@ -40,6 +41,16 @@ CAShapeLayer *closedMenuShape;
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
     [self.menuButton setImage:[listIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
     [self.menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    FAKFontAwesome *inboxIcon = [FAKFontAwesome inboxIconWithSize:23.0f];
+    [self.inboxButton setTitle:nil forState:UIControlStateNormal];
+    [self.inboxButton setImage:[inboxIcon imageWithSize:CGSizeMake(23.0f, 23.0f)] forState:UIControlStateNormal];
+    [self.inboxButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    FAKFontAwesome *settingsIcon = [FAKFontAwesome cogIconWithSize:23.0f];
+    [self.settingsButton setTitle:nil forState:UIControlStateNormal];
+    [self.settingsButton setImage:[settingsIcon imageWithSize:CGSizeMake(23.0f, 23.0f)] forState:UIControlStateNormal];
+    [self.settingsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self customizeMenu];
     // Do any additional setup after loading the view.
@@ -221,20 +232,22 @@ CAShapeLayer *closedMenuShape;
     return image;
 }
 
-/*
-#pragma mark - Navigation
+# pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showFavoritesFromMenu"]) {
+        LSAllFavoritesViewController *ctrl = (LSAllFavoritesViewController *) [segue destinationViewController];
+        [ctrl setFavoritesType:@"all"];
+        return;
+    }
+    
+    if ([segue.identifier isEqualToString:@"showInbox"]) {
+        LSAllFavoritesViewController *ctrl = (LSAllFavoritesViewController *) [segue destinationViewController];;
+        [ctrl setFavoritesType:@"inbox"];
+        return;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)logout:(id)sender {
-    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-    [api logout];
 }
 
 @end

@@ -10,7 +10,8 @@
 
 @interface LSDropdownViewController : DropdownMenuController
 
+@property (weak, nonatomic) IBOutlet UIButton *inboxButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
-- (IBAction)logout:(id)sender;
 
 @end

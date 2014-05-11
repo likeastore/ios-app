@@ -87,6 +87,9 @@
     LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
     [menu.logoView setHidden:NO];
     [menu.titleLabel setHidden:YES];
+    
+    [menu.settingsButton setHidden:YES];
+    [menu.inboxButton setHidden:NO];
 }
 
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
@@ -134,9 +137,10 @@
 }
 
 - (void)clearImageCache {
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
-    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    SDImageCache *cache = [SDImageCache sharedImageCache];
+    [cache clearMemory];
+    [cache clearDisk];
+    [cache setValue:nil forKey:@"memCache"];
 }
 
 #pragma mark - Table view data source

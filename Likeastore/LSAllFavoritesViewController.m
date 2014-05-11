@@ -80,7 +80,16 @@
     LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
     [menu.logoView setHidden:YES];
     [menu.titleLabel setHidden:NO];
-    [menu setMenubarTitle:@"All Favorites"];
+    
+    [menu.settingsButton setHidden:YES];
+    [menu.inboxButton setHidden:NO];
+    
+    if ([self.favoritesType isEqualToString:@"inbox"]) {
+        [menu setMenubarTitle:@"Inbox"];
+    } else if ([self.favoritesType isEqualToString:@"all"]) {
+        [menu setMenubarTitle:@"All Favorites"];
+    }
+    
 }
 
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
@@ -90,7 +99,7 @@
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
-    [api getAllFavorites:page success:^(AFHTTPRequestOperation *operation, id data) {
+    [api getFavoritesWithType:self.favoritesType byPage:page success:^(AFHTTPRequestOperation *operation, id data) {
         @autoreleasepool {
             NSArray *items = [data objectForKey:@"data"];
             
@@ -128,9 +137,10 @@
 }
 
 - (void)clearImageCache {
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
-    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+    SDImageCache *cache = [SDImageCache sharedImageCache];
+    [cache clearMemory];
+    [cache clearDisk];
+    [cache setValue:nil forKey:@"memCache"];
 }
 
 #pragma mark - Table view data source

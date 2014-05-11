@@ -13,6 +13,8 @@
 		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
 		2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */; };
 		2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */; };
+		2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */; };
+		2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */; };
 		2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */; };
 		2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */; };
 		2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */; };
@@ -61,6 +63,10 @@
 		2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewCell.m; sourceTree = "<group>"; };
 		2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFavoritesTableViewCell.h; sourceTree = "<group>"; };
 		2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFavoritesTableViewCell.m; sourceTree = "<group>"; };
+		2A28D081191FDAB600CF3C15 /* LSProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSProfileViewController.h; sourceTree = "<group>"; };
+		2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSProfileViewController.m; sourceTree = "<group>"; };
+		2A28D087191FE66E00CF3C15 /* LSSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSettingsTableViewController.h; sourceTree = "<group>"; };
+		2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSettingsTableViewController.m; sourceTree = "<group>"; };
 		2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LSItem.h"; sourceTree = "<group>"; };
 		2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LSItem.m"; sourceTree = "<group>"; };
 		2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -145,14 +151,18 @@
 				2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */,
 				2A4A7277190FE7AC002F7C0E /* LSDropdownViewController.h */,
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
+				2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */,
+				2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */,
 				2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */,
 				2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */,
 				2AF3E266191A564D00A1E135 /* LSLoginViewController.h */,
 				2AF3E267191A564D00A1E135 /* LSLoginViewController.m */,
+				2A28D081191FDAB600CF3C15 /* LSProfileViewController.h */,
+				2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */,
+				2A28D087191FE66E00CF3C15 /* LSSettingsTableViewController.h */,
+				2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */,
 				2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */,
 				2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */,
-				2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */,
-				2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -412,6 +422,7 @@
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
+				2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
@@ -420,6 +431,7 @@
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
 				2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
+				2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */,
 				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,
 				2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */,
