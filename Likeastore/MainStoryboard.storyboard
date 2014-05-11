@@ -25,7 +25,7 @@
                                 </connections>
                             </containerView>
                             <view alpha="0.97999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
-                                <rect key="frame" x="0.0" y="150" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="150" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pL-az-eua">
@@ -34,7 +34,6 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="Feed">
                                             <color key="titleColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="Zc9-oQ-Pjc"/>
@@ -45,7 +44,6 @@
                                         <rect key="frame" x="0.0" y="50" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Favorites">
                                             <color key="titleColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,6 +51,29 @@
                                         <connections>
                                             <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="es3-xE-h43"/>
                                             <segue destination="1hN-Wi-PXA" kind="custom" customClass="DropdownMenuSegue" id="xqr-Ua-D3p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOk-6V-3EO">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        <state key="normal" title="Explore">
+                                            <color key="titleColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="gMa-2K-klJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUg-vn-IqW">
+                                        <rect key="frame" x="0.0" y="149" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        <state key="normal" title="Profile">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="listButtonAction:" destination="m39-Xk-X0f" eventType="touchUpInside" id="Nfh-N7-Gmu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -112,6 +133,8 @@
                         <outlet property="titleLabel" destination="nWr-NQ-o3Y" id="urD-jt-F7u"/>
                         <outletCollection property="buttons" destination="8pL-az-eua" id="YwB-gg-OtM"/>
                         <outletCollection property="buttons" destination="hwf-WR-0o1" id="cnc-Dj-fzQ"/>
+                        <outletCollection property="buttons" destination="iOk-6V-3EO" id="t0R-vE-7eJ"/>
+                        <outletCollection property="buttons" destination="MUg-vn-IqW" id="yfF-Yd-HH1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGD-Tk-WQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>

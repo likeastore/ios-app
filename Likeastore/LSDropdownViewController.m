@@ -71,6 +71,26 @@ CAShapeLayer *closedMenuShape;
             [button setImage:[heartIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
         }
         
+        if ([button.titleLabel.text isEqualToString:@"Explore"]) {
+            FAKFoundationIcons *exploreIcon = [FAKFoundationIcons compassIconWithSize:icon_size];
+            
+            [exploreIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
+            [button setImage:[exploreIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            
+            [exploreIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
+            [button setImage:[exploreIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
+        }
+        
+        if ([button.titleLabel.text isEqualToString:@"Profile"]) {
+            FAKFoundationIcons *profileIcon = [FAKFoundationIcons torsoIconWithSize:icon_size];
+            
+            [profileIcon addAttribute:NSForegroundColorAttributeName value:menuColor];
+            [button setImage:[profileIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateNormal];
+            
+            [profileIcon addAttribute:NSForegroundColorAttributeName value:menuColorHover];
+            [button setImage:[profileIcon imageWithSize:CGSizeMake(icon_size, icon_size)] forState:UIControlStateHighlighted];
+        }
+        
         // align image and text
         [button sizeToFit];
         button.frame = CGRectMake(0.0f, 132.0f, 0.0f, 0.0f);
