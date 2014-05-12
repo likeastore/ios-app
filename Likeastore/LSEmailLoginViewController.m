@@ -8,11 +8,14 @@
 
 #import "LSEmailLoginViewController.h"
 #import "LSLikeastoreHTTPClient.h"
+#import "LSSetupViewController.h"
 
 #import <ALPValidator/ALPValidator.h>
 #import <NSURL+ParseQuery/NSURL+QueryParser.h>
 
 @interface LSEmailLoginViewController ()
+
+@property (strong, nonatomic) NSString *firstTimeUserId;
 
 @end
 
@@ -68,11 +71,14 @@
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     NSDictionary *credentials = @{@"email": email, @"password": password};
     [api loginWithCredentials:credentials success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        /* if first time user go to setup
-         if (<#condition#>) {
-            <#statements#>
-        } */
+        // show setup
+        if ([responseObject objectForKey:@"firstTimeUser"]) {
+            [self setFirstTimeUserId:[responseObject objectForKey:@"_id"]];
+            [self performSegueWithIdentifier:@"showSetupFromEmailLogin" sender:self];
+            return;
+        }
         
+        // login
         NSURL *appUrl = [NSURL URLWithString:[responseObject objectForKey:@"applicationUrl"]];
         NSDictionary *query = [appUrl parseQuery];
         
@@ -80,7 +86,7 @@
             NSLog(@"success: %@", responseObject);
             [self performSegueWithIdentifier:@"fromEmailAuthToFeed" sender:self];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self showErrorAlert:@"Something bad happened on our side. Please try again later!"];
+            [self showErrorAlert:@"Something bad happened. Please check your connection or try again later!"];
         }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlert:@"Email and password do not match!"];
@@ -101,15 +107,13 @@
     }
 }
 
-/*
- #pragma mark - Navigation
+#pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([segue.identifier isEqualToString:@"showSetupFromEmailLogin"]) {
+         [(LSSetupViewController *)[segue destinationViewController] setUserId:self.firstTimeUserId];
+     }
+}
+
 
 @end

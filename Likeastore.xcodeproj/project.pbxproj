@@ -23,6 +23,8 @@
 		2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A727F190FF48A002F7C0E /* LSMenuBar.m */; };
 		2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */; };
 		2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */; };
+		2A6083901920D6AD0059D588 /* LSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A60838F1920D6AD0059D588 /* LSUser.m */; };
+		2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6083921920E55F0059D588 /* LSSetupViewController.m */; };
 		2A8E210A190FD21C007508CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E2109190FD21C007508CB /* Foundation.framework */; };
 		2A8E210C190FD21C007508CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210B190FD21C007508CB /* CoreGraphics.framework */; };
 		2A8E210E190FD21C007508CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210D190FD21C007508CB /* UIKit.framework */; };
@@ -82,6 +84,10 @@
 		2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAllFavoritesViewController.m; sourceTree = "<group>"; };
 		2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
+		2A60838E1920D6AD0059D588 /* LSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUser.h; sourceTree = "<group>"; };
+		2A60838F1920D6AD0059D588 /* LSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSUser.m; sourceTree = "<group>"; };
+		2A6083911920E55F0059D588 /* LSSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSetupViewController.h; sourceTree = "<group>"; };
+		2A6083921920E55F0059D588 /* LSSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSetupViewController.m; sourceTree = "<group>"; };
 		2A8E2106190FD21C007508CB /* Likeastore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Likeastore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8E2109190FD21C007508CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2A8E210B190FD21C007508CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +146,8 @@
 				2A00D01D191138FA000E3DBC /* LSCollection.m */,
 				2A00D019191132F7000E3DBC /* LSItem.h */,
 				2A00D01A191132F7000E3DBC /* LSItem.m */,
+				2A60838E1920D6AD0059D588 /* LSUser.h */,
+				2A60838F1920D6AD0059D588 /* LSUser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -161,6 +169,8 @@
 				2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */,
 				2A28D087191FE66E00CF3C15 /* LSSettingsTableViewController.h */,
 				2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */,
+				2A6083911920E55F0059D588 /* LSSetupViewController.h */,
+				2A6083921920E55F0059D588 /* LSSetupViewController.m */,
 				2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */,
 				2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */,
 			);
@@ -422,10 +432,12 @@
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
+				2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */,
 				2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
+				2A6083901920D6AD0059D588 /* LSUser.m in Sources */,
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,
 				2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */,
 				2A8E2116190FD21C007508CB /* main.m in Sources */,

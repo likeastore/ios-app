@@ -13,7 +13,6 @@
 - (IBAction)connectWithFacebook:(id)sender;
 - (IBAction)connectWithGithub:(id)sender;
 - (IBAction)connectWithTwitter:(id)sender;
-- (IBAction)goToEmailLogin:(id)sender;
 
 - (IBAction)backFromEmailLoginUnwindSegueCallback:(UIStoryboardSegue *)segue;
 - (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)sender;

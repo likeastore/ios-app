@@ -14,7 +14,7 @@
 
 - (instancetype) init;
 
-- (AFHTTPRequestOperation *) getEmailAndAPIToken:(id)userId success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *) getEmailAndAPIToken:(id)userId success:(void (^)(AFHTTPRequestOperation *operation, id user))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 - (AFHTTPRequestOperation *) loginWithCredentials:(id)credentials
             success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -27,6 +27,8 @@
 - (AFHTTPRequestOperation *) logout;
 
 - (AFHTTPRequestOperation *) logoutWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (AFHTTPRequestOperation *) setupUser:(id)userData success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 - (AFHTTPRequestOperation *) getUser:(void (^)(AFHTTPRequestOperation *operation, id user))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

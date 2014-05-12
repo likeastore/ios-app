@@ -8,9 +8,13 @@
 
 #import "LSWebAuthViewController.h"
 #import "LSLikeastoreHTTPClient.h"
+#import "LSSetupViewController.h"
+
 #import <NSURL+ParseQuery/NSURL+QueryParser.h>
 
 @interface LSWebAuthViewController ()
+
+@property (strong, nonatomic) NSString *firstTimeUserId;
 
 @end
 
@@ -41,7 +45,6 @@
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *responseURL = [request.URL absoluteString];
-    NSLog(@"BOOL web view %@", request);
     
     if ([responseURL hasPrefix:[BLANK_HTML stringByAppendingString:@"?id="]]) {
         NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
@@ -49,20 +52,23 @@
         LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
         
         [api getEmailAndAPIToken:userId success:^(AFHTTPRequestOperation *operation, id user) {
-            NSLog(@"success: %@", user);
-            
+            // show setup
             if ([user objectForKey:@"firstTimeUser"]) {
-                NSLog(@"Show first time setup view");
+                NSLog(@"perform unwind segue %@",user);
+                [self setFirstTimeUserId:[user objectForKey:@"_id"]];
+                [self performSegueWithIdentifier:@"fromAuthToSetup" sender:self];
+                
+            // or continue auth
+            } else {
+                NSDictionary *credentials = @{@"email": [user objectForKey:@"email"], @"apiToken": [user objectForKey:@"apiToken"]};
+
+                [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject)
+                {
+                    [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"login with credentials ERROR %@", error);
+                }];
             }
-            
-            NSDictionary *credentials = @{@"email": [user objectForKey:@"email"], @"apiToken": [user objectForKey:@"apiToken"]};
-            
-            [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject)
-            {
-                [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"login with credentials ERROR %@", error);
-            }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error: %@", error);
         }];
@@ -76,15 +82,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
- #pragma mark - Navigation
- 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"fromAuthToSetup"]) {
+        [(LSSetupViewController *)[segue destinationViewController] setUserId:self.firstTimeUserId];
+    }
+}
+
 
 @end

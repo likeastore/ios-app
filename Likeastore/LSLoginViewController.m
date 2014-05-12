@@ -17,8 +17,7 @@
 
 @implementation LSLoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -58,9 +57,6 @@
     LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
     [webAuthCtrl setAuthServiceName:@"twitter"];
     [self presentViewController:webAuthCtrl animated:YES completion:nil];
-}
-
-- (IBAction)goToEmailLogin:(id)sender {
 }
 
 #pragma mark - segues

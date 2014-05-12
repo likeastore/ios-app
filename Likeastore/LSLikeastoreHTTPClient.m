@@ -33,7 +33,7 @@
     return self;
 }
 
-- (AFHTTPRequestOperation *)getEmailAndAPIToken:(NSString *)userId success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)getEmailAndAPIToken:(NSString *)userId success:(void (^)(AFHTTPRequestOperation *operation, id user))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSDictionary *user = [[NSDictionary alloc] initWithObjectsAndKeys:userId,@"id", SHARED_SECRET,@"access_token", nil];
     
@@ -53,30 +53,32 @@
     return [self POST:[API_URL stringByAppendingString:@"/auth/login"] parameters:parameters success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)setupUser:(id)userData success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self POST:[AUTH_URL stringByAppendingString:@"/setup"] parameters:userData success:success failure:failure];
+}
+
 - (AFHTTPRequestOperation *)logout
 {
     return [self logoutWithSuccessBlock:nil failure:nil];
 }
 
-- (AFHTTPRequestOperation *)logoutWithSuccessBlock:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)logoutWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     return [self POST:[API_URL stringByAppendingString:@"/auth/logout"] parameters:nil success:success failure:failure];
 }
 
-- (AFHTTPRequestOperation *)getUser:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)getUser:(void (^)(AFHTTPRequestOperation *operation, id user))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     return [self GET:[API_URL stringByAppendingString:@"/users/me"] parameters:nil success:success failure:failure];
 }
 
-- (AFHTTPRequestOperation *)getFeed:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)getFeed:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *operation, id favorites))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    //ZG1pdHJpLnZvcm9uaWFuc2tpQGdtYWlsLmNvbTsxMzk4ODY5NDUxMTk3O2MzODViNTIzNzY2ZDM3YmMyNTg0MmQxODk0NzUyMzFkODNiZTE4MWU
-    
-    // bmV3MzAwQGxpa2Vhc3RvcmUuY29tOzEzOTg4NjM0NTE0MTE7NjA2YmQzYTlkMDZiY2U0ZWE5NmZjYmJhY2ZkMjMzN2ZjNmVmMzk3Yg
     return [self GET:[API_URL stringByAppendingString:@"/feed"] parameters:@{@"page": [@(page) stringValue], @"pageSize": @"15"} success:success failure:failure];
 }
 
-- (AFHTTPRequestOperation *)getFavoritesWithType:(NSString *)type byPage:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)getFavoritesWithType:(NSString *)type byPage:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *operation, id favorites))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSString *uri = [type isEqualToString:@"all"] ?
         [API_URL stringByAppendingString:@"/items"] :

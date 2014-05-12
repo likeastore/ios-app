@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LSEmailLoginViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 - (IBAction)login:(id)sender;
 - (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)sender;
 
