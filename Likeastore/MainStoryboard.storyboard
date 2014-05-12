@@ -21,6 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3Z4-zW-lYX" appends="YES" id="xhX-9c-Wr2"/>
                                     <segue destination="SzC-Wr-2Zg" kind="embed" id="Wpv-1J-bh0"/>
                                 </connections>
                             </containerView>
@@ -155,7 +156,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGD-Tk-WQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3Z4-zW-lYX">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="3Z4-zW-lYX">
                     <connections>
                         <action selector="displayGestureForTapRecognizer:" destination="m39-Xk-X0f" id="hn3-6V-joM"/>
                     </connections>
@@ -198,10 +199,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="X47-lM-loi">
+                            <tableViewSection headerTitle="General" id="X47-lM-loi">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Siu-6l-V4X" style="IBUITableViewCellStyleDefault" id="oLp-Sj-rX5">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oLp-Sj-rX5" id="EMr-Ce-Cta">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -211,14 +212,13 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" red="0.94117647058823528" green="0.24313725490196078" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zn1-me-9oZ" style="IBUITableViewCellStyleDefault" id="Eam-Zu-wSm">
-                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eam-Zu-wSm" id="qzu-6x-cmu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -704,7 +704,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAI-CN-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.80000000000000004" id="yyO-e0-Gob">
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.5" id="yyO-e0-Gob">
                     <connections>
                         <action selector="longPressGestureHandle:" destination="1hN-Wi-PXA" id="iQP-il-k7c"/>
                     </connections>
@@ -996,7 +996,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yST-9F-JIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.80000000000000004" id="qmg-cR-1GD">
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.5" id="qmg-cR-1GD">
                     <connections>
                         <action selector="longPressGestureHandle:" destination="SzC-Wr-2Zg" id="dAM-Lw-fIR"/>
                     </connections>
