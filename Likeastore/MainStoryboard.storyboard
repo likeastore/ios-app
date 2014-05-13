@@ -118,6 +118,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <outletCollection property="gestureRecognizers" destination="3Z4-zW-lYX" appends="YES" id="c47-1d-3px"/>
                                             <segue destination="1hN-Wi-PXA" kind="custom" identifier="showInbox" customClass="DropdownMenuSegue" id="J28-3k-vJV"/>
                                         </connections>
                                     </button>
@@ -130,6 +131,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <outletCollection property="gestureRecognizers" destination="3Z4-zW-lYX" appends="YES" id="eyh-YQ-Uds"/>
                                             <segue destination="pdx-Ak-vn7" kind="custom" identifier="showSettings" customClass="DropdownMenuSegue" id="Ded-4q-kEs"/>
                                         </connections>
                                     </button>
@@ -1157,7 +1159,6 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3pY-xX-1bE" secondAttribute="trailing" id="2ux-Kf-Xii"/>
                             <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="6hJ-th-mZS" secondAttribute="bottom" constant="20" id="3kc-Kq-7kR"/>
-                            <constraint firstItem="Szl-qC-0S6" firstAttribute="top" secondItem="3pY-xX-1bE" secondAttribute="bottom" id="9mq-Mi-e0B"/>
                             <constraint firstItem="PzP-04-JPo" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="20" id="AWb-26-hsG"/>
                             <constraint firstItem="gsj-ne-Mdn" firstAttribute="leading" secondItem="FzB-R4-U0h" secondAttribute="leading" constant="20" id="BIH-ox-BMk"/>
                             <constraint firstAttribute="trailing" secondItem="gsj-ne-Mdn" secondAttribute="trailing" constant="20" id="K0C-f1-DXC"/>
@@ -1191,7 +1192,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="760" y="-1215"/>
+            <point key="canvasLocation" x="752" y="-1183"/>
         </scene>
         <!--Email Login View Controller-->
         <scene sceneID="RDK-Y6-t7M">
@@ -1206,7 +1207,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="CLV-rv-u4v">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF5-Z0-7jm" customClass="TPKeyboardAvoidingScrollView">
@@ -1443,11 +1444,12 @@
                         <outlet property="setupScrollView" destination="2yp-Wy-wcM" id="61k-vG-nUF"/>
                         <outlet property="userAvatarView" destination="7dh-7e-atc" id="c0B-Sb-ISg"/>
                         <outlet property="usernameField" destination="cLk-74-DeI" id="80C-d7-q0l"/>
+                        <segue destination="m39-Xk-X0f" kind="custom" identifier="fromSetupAuthToFeed" customClass="MFStoryboardPushSegue" id="TOA-TB-KLj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAh-dM-uRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672" y="-1215"/>
+            <point key="canvasLocation" x="1696" y="-1215"/>
         </scene>
         <!--Web Auth View Controller-->
         <scene sceneID="qXe-Bg-g43">
@@ -1512,10 +1514,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="TOA-TB-KLj"/>
+        <segue reference="VnE-qC-Xw0"/>
         <segue reference="yWv-eD-hiB"/>
         <segue reference="Wpv-1J-bh0"/>
-        <segue reference="hRX-R9-YOW"/>
         <segue reference="J28-3k-vJV"/>
-        <segue reference="VnE-qC-Xw0"/>
     </inferredMetricsTieBreakers>
 </document>

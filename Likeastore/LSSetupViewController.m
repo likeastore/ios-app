@@ -12,7 +12,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <ALPValidator/ALPValidator.h>
-#import <MFStoryboardPushSegue/MFStoryboardPopSegue.h>
+#import <NSURL+ParseQuery/NSURL+QueryParser.h>
 
 @interface LSSetupViewController ()
 
@@ -88,6 +88,7 @@
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     [data setObject:username forKey:@"username"];
+    [data setObject:self.userId forKey:@"userId"];
     
     if (!self.user.isLocalProvider) {
         NSString *email = [self.emailField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -106,10 +107,15 @@
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api setupUser:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"!!!success user was setup %@", responseObject);
-        
+        NSURL *appUrl = [NSURL URLWithString:[responseObject objectForKey:@"applicationUrl"]];
+        NSDictionary *query = [appUrl parseQuery];
+    
+        [api getAccessToken:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self performSegueWithIdentifier:@"fromSetupAuthToFeed" sender:self];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"error while getting access token %@", error);
+        }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error, %@", error);
     }];
 }
 

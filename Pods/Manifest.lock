@@ -20,6 +20,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.1.2)
   - ALPValidator (0.0.3)
+  - Canvas (0.1.1)
   - DropdownMenu (1.0.0)
   - FontAwesomeKit/Core (2.1.5)
   - FontAwesomeKit/FontAwesome (2.1.5):
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AHKActionSheet
   - ALPValidator
+  - Canvas
   - DropdownMenu
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/FoundationIcons
@@ -66,6 +68,7 @@ SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   AHKActionSheet: e24368bd5f72ab9d592aefea8ad0b93f5a43f904
   ALPValidator: 0a4b43d4db38f421317142fa002e44834565407a
+  Canvas: f1911025fc9ec9c7339df6e4399c90c87ce6b631
   DropdownMenu: 3c454205c2db1fd39dc1ebf099114c4fdb73f136
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
