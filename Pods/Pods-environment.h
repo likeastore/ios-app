@@ -60,12 +60,6 @@
 #define COCOAPODS_VERSION_MINOR_ALPValidator 0
 #define COCOAPODS_VERSION_PATCH_ALPValidator 3
 
-// Canvas
-#define COCOAPODS_POD_AVAILABLE_Canvas
-#define COCOAPODS_VERSION_MAJOR_Canvas 0
-#define COCOAPODS_VERSION_MINOR_Canvas 1
-#define COCOAPODS_VERSION_PATCH_Canvas 1
-
 // DropdownMenu
 #define COCOAPODS_POD_AVAILABLE_DropdownMenu
 #define COCOAPODS_VERSION_MAJOR_DropdownMenu 1
