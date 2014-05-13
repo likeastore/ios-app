@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)finishRegistration:(id)sender;
+- (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)sender;
 
 @end

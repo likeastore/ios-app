@@ -49,7 +49,9 @@
         
         // show email field only if local provider
         if (self.user.isLocalProvider) {
-            [self.emailField removeFromSuperview];
+            [self.emailField setHidden:YES];
+            [self.emailField removeConstraints:self.emailField.constraints];
+            self.emailField.frame = CGRectMake(self.emailField.frame.origin.x, self.emailField.frame.origin.y, self.emailField.frame.size.width, 0.0f);
         } else {
             [self.emailField setText:self.user.email];
         }
@@ -58,6 +60,7 @@
         
         [self.activityIndicator stopAnimating];
         [self.activityIndicator removeFromSuperview];
+        
         [self.setupScrollView setHidden:NO];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -107,16 +110,30 @@
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api setupUser:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // user registered, get accessToken
         NSURL *appUrl = [NSURL URLWithString:[responseObject objectForKey:@"applicationUrl"]];
         NSDictionary *query = [appUrl parseQuery];
     
         [api getAccessToken:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self performSegueWithIdentifier:@"fromSetupAuthToFeed" sender:self];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error while getting access token %@", error);
+            [self showErrorAlert:@"Cannot login. Please check your connection or try again later"];
         }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString *errorMessage = [operation.responseObject objectForKey:@"message"];
+        if (errorMessage) {
+            [self showErrorAlert:errorMessage];
+        } else {
+            [self showErrorAlert:@"Cannot register. Please check your connection or try again later"];
+        }
     }];
+}
+
+- (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded &&
+        recognizer.direction == UISwipeGestureRecognizerDirectionDown) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)showErrorAlert:(NSString *)message {

@@ -50,11 +50,9 @@
         NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
         
         LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-        
         [api getEmailAndAPIToken:userId success:^(AFHTTPRequestOperation *operation, id user) {
             // show setup
             if ([user objectForKey:@"firstTimeUser"]) {
-                NSLog(@"perform unwind segue %@",user);
                 [self setFirstTimeUserId:[user objectForKey:@"_id"]];
                 [self performSegueWithIdentifier:@"fromAuthToSetup" sender:self];
                 
@@ -66,16 +64,29 @@
                 {
                     [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"login with credentials ERROR %@", error);
+                    [self showErrorAlert];
                 }];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error: %@", error);
+            [self showErrorAlert];
         }];
         
         return NO;
     }
     return YES;
+}
+
+#pragma mark - alert errors
+
+- (void)showErrorAlert {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Something went wrong. Please check your connection or try again later!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == [alertView cancelButtonIndex]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)cancelAuth:(id)sender {
@@ -88,6 +99,5 @@
         [(LSSetupViewController *)[segue destinationViewController] setUserId:self.firstTimeUserId];
     }
 }
-
 
 @end

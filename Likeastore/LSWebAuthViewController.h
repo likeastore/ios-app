@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LSWebAuthViewController : UIViewController <UIWebViewDelegate>
+@interface LSWebAuthViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *authServiceName;
 
