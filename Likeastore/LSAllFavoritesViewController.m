@@ -11,6 +11,7 @@
 #import "LSLikeastoreHTTPClient.h"
 #import "LSItem.h"
 #import "LSFavoritesTableViewCell.h"
+#import "UIImage+Color.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
@@ -21,7 +22,11 @@
 @interface LSAllFavoritesViewController ()
 
 @property (strong, nonatomic) NSMutableArray *items;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 @property (strong, nonatomic) NSMutableDictionary *offscreenCells;
+
+@property CGFloat searchPage;
+@property (strong, nonatomic) NSString *searchText;
 
 @end
 
@@ -31,6 +36,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _items = [[NSMutableArray alloc] init];
+        _searchResults = [[NSMutableArray alloc] init];
         _offscreenCells = [NSMutableDictionary dictionary];
     }
     
@@ -41,6 +47,7 @@
     [super viewDidLoad];
     
     [self clearImageCache];
+    [self setupSearchBar];
     
     // show activity indicator on first load
     UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -153,11 +160,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.items count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [self.searchResults count];
+    } else {
+        return [self.items count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    LSItem *item;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        item = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        item = [self.items objectAtIndex:indexPath.row];
+    }
     
     NSString *reuseIdentifier;
     if (item.isThumbnail) {
@@ -173,7 +189,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    LSItem *item;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        item = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        item = [self.items objectAtIndex:indexPath.row];
+    }
     
     NSString *reuseIdentifier;
     if (item.isThumbnail) {
@@ -184,7 +205,7 @@
     
     LSFavoritesTableViewCell *cell = [self.offscreenCells objectForKey:reuseIdentifier];
     if (!cell) {
-        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         [self.offscreenCells setObject:cell forKey:reuseIdentifier];
     }
     
@@ -267,9 +288,17 @@
 
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        CGPoint point = [recognizer locationInView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-         
+        NSIndexPath *indexPath;
+        if (self.searchDisplayController.isActive) {
+            NSLog(@"long in search");
+            CGPoint point = [recognizer locationInView:self.searchDisplayController.searchResultsTableView];
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForRowAtPoint:point];
+        } else {
+            NSLog(@"NOT long in search");
+            CGPoint point = [recognizer locationInView:self.tableView];
+            indexPath = [self.tableView indexPathForRowAtPoint:point];
+        }
+        
         if (indexPath) {
             [self showActionSheetForIndexPath:indexPath];
         }
@@ -277,7 +306,12 @@
 }
 
 - (void) showActionSheetForIndexPath:(NSIndexPath *)indexPath {
-    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    LSItem *item;
+    if (self.searchDisplayController.isActive) {
+        item = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        item = [self.items objectAtIndex:indexPath.row];
+    }
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:item.source];
     
     // custom styles
@@ -328,6 +362,122 @@
                             }];
     
     [actionSheet show];
+}
+
+#pragma mark - Search methods and delegates
+
+- (void)toggleSearchBar {
+    if (self.searchDisplayController.isActive) {
+        [self.searchDisplayController setActive:NO animated:YES];
+    } else {
+        self.tableView.tableHeaderView = self.searchDisplayController.searchBar;
+        [self.searchDisplayController setActive:YES animated:YES];
+        [self.searchDisplayController.searchBar becomeFirstResponder];
+    }
+}
+
+- (void)setupSearchBar {
+    self.tableView.tableHeaderView = nil;
+    
+    UIColor *searchBackground = [UIColor colorWithHexString:@"#1F212F"];
+    [self.searchDisplayController.searchBar setBackgroundColor:searchBackground];
+    [self.searchDisplayController.searchBar setBackgroundImage:[UIImage imageWithColor:searchBackground]];
+    [(ILRemoteSearchBar *)self.searchDisplayController.searchBar setTimeToWait:1.0];
+    
+    // set search cancel button color and size
+    UIBarButtonItem *cancelButton = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
+    [cancelButton setTintColor:[UIColor whiteColor]];
+    [cancelButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]} forState:UIControlStateNormal];
+    
+    [self.searchDisplayController.searchResultsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor colorWithHexString:@"#f3f3f6"]];
+    
+    // register custom cell nibs
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"FavoritesAvatarTextCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"favoritesAvatarTextCell"];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"FavoritesNoAvatarTextCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"favoritesNoAvatarTextCell"];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"FavoritesAvatarThumbCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"favoritesAvatarThumbCell"];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"FavoritesNoAvatarThumbCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"favoritesNoAvatarThumbCell"];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self cleanAndDisableSearch];
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    [self cleanAndDisableSearch];
+}
+
+- (void)cleanAndDisableSearch {
+    [self.searchResults removeAllObjects];
+    self.tableView.tableHeaderView = nil;
+}
+
+- (void)remoteSearchBar:(ILRemoteSearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self startSearchText:searchText];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self startSearchText:searchBar.text];
+}
+
+- (void)startSearchText:(NSString *)text {
+    self.searchPage = 1;
+    self.searchText = text;
+    
+    __weak LSAllFavoritesViewController *weakSelf = self;
+    
+    // initial search request
+    [self makeSearchWithText:self.searchText byPage:self.searchPage success:^(BOOL nextPage){
+        if (nextPage) weakSelf.searchPage += 1;
+    }];
+    
+    // infinite scrolling
+    [self.searchDisplayController.searchResultsTableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf makeSearchWithText:weakSelf.searchText byPage:weakSelf.searchPage success:^(BOOL nextPage) {
+             if (nextPage) weakSelf.searchPage += 1;
+             [weakSelf.searchDisplayController.searchResultsTableView.infiniteScrollingView stopAnimating];
+        }];
+     }];
+}
+
+- (void)makeSearchWithText:(NSString *)text byPage:(CGFloat)page success:(void (^)(BOOL nextPage))callback {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [api searchFavoritesByText:text byPage:page success:^(AFHTTPRequestOperation *operation, id favorites) {
+        @autoreleasepool {
+            if (page == 1) {
+                [self.searchResults removeAllObjects];
+            }
+            
+            if (page == 5) {
+                [self clearImageCache];
+            }
+            
+            NSArray *items = [favorites objectForKey:@"data"];
+            if ([items count] > 0) {
+                NSMutableArray *result = [[NSMutableArray alloc] init];
+                for (NSDictionary *itemData in items) {
+                    LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
+                    [result addObject:item];
+                }
+                
+                [self.searchResults addObjectsFromArray:result];
+                [self.searchDisplayController.searchResultsTableView reloadData];
+                
+                [result removeAllObjects];
+                result = nil;
+            }
+        }
+        callback([[favorites objectForKey:@"nextPage"] boolValue]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlert:@"Something went wrong while searching. Please try again later!"];
+    }];
+}
+
+#pragma mark - Alerts
+
+- (void)showErrorAlert:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 /*

@@ -39,6 +39,10 @@
 		2A8E212D190FD21C007508CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E212B190FD21C007508CB /* InfoPlist.strings */; };
 		2A8E212F190FD21C007508CB /* LikeastoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E212E190FD21C007508CB /* LikeastoreTests.m */; };
 		2AA58A191924BB27006C69EB /* LSCollectionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */; };
+		2AA58A1B19250C84006C69EB /* FavoritesAvatarThumbCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */; };
+		2AA58A201925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */; };
+		2AA58A2419251219006C69EB /* FavoritesAvatarTextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA58A2319251219006C69EB /* FavoritesAvatarTextCellView.xib */; };
+		2AA58A261925123C006C69EB /* FavoritesNoAvatarTextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */; };
 		2ADBF6B6192356CC00C10472 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBF6B5192356CC00C10472 /* UIImage+Color.m */; };
 		2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E267191A564D00A1E135 /* LSLoginViewController.m */; };
 		2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */; };
@@ -111,6 +115,10 @@
 		2A8E212E190FD21C007508CB /* LikeastoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeastoreTests.m; sourceTree = "<group>"; };
 		2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollectionsTableViewCell.h; sourceTree = "<group>"; };
 		2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollectionsTableViewCell.m; sourceTree = "<group>"; };
+		2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesAvatarThumbCellView.xib; sourceTree = "<group>"; };
+		2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesNoAvatarThumbCellView.xib; sourceTree = "<group>"; };
+		2AA58A2319251219006C69EB /* FavoritesAvatarTextCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesAvatarTextCellView.xib; sourceTree = "<group>"; };
+		2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesNoAvatarTextCellView.xib; sourceTree = "<group>"; };
 		2ADBF6B4192356CC00C10472 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		2ADBF6B5192356CC00C10472 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		2AF3E266191A564D00A1E135 /* LSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLoginViewController.h; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 		2A4A727A190FEF23002F7C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2AA58A1C192510B9006C69EB /* Nibs */,
 				2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */,
 				2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */,
 				2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */,
@@ -306,6 +315,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2AA58A1C192510B9006C69EB /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */,
+				2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */,
+				2AA58A2319251219006C69EB /* FavoritesAvatarTextCellView.xib */,
+				2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -389,8 +409,12 @@
 			files = (
 				2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */,
 				2A8E2114190FD21C007508CB /* InfoPlist.strings in Resources */,
+				2AA58A1B19250C84006C69EB /* FavoritesAvatarThumbCellView.xib in Resources */,
+				2AA58A261925123C006C69EB /* FavoritesNoAvatarTextCellView.xib in Resources */,
 				2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */,
 				2A8E211C190FD21C007508CB /* Images.xcassets in Resources */,
+				2AA58A201925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib in Resources */,
+				2AA58A2419251219006C69EB /* FavoritesAvatarTextCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

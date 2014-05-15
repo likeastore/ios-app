@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import <ILRemoteSearchBar/ILRemoteSearchBar.h>
 
-@interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate>
+@interface LSAllFavoritesViewController : UITableViewController <TTTAttributedLabelDelegate, UIActionSheetDelegate, UISearchDisplayDelegate, UISearchBarDelegate, ILRemoteSearchBarDelegate>
 
 @property (strong, nonatomic) NSString *favoritesType;
 
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
+
+- (void) toggleSearchBar;
 
 @end

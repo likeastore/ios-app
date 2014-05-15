@@ -397,9 +397,18 @@
                         <color key="tintColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search your favorites" id="Lmo-wO-dY3" customClass="ILRemoteSearchBar">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="1hN-Wi-PXA" id="f5K-3F-uV9"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesAvatarThumbCell" rowHeight="260" id="9PI-Gp-Pp5" customClass="LSFavoritesTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="260"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9PI-Gp-Pp5" id="KhT-Cg-ccm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
@@ -519,7 +528,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesNoAvatarThumbCell" rowHeight="260" id="EFC-cM-auX" customClass="LSFavoritesTableViewCell">
-                                <rect key="frame" x="0.0" y="282" width="320" height="260"/>
+                                <rect key="frame" x="0.0" y="326" width="320" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFC-cM-auX" id="Efr-FR-CIH">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
@@ -627,7 +636,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesAvatarTextCell" rowHeight="140" id="2lJ-YM-rYB" customClass="LSFavoritesTableViewCell">
-                                <rect key="frame" x="0.0" y="542" width="320" height="140"/>
+                                <rect key="frame" x="0.0" y="586" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2lJ-YM-rYB" id="Yed-0g-yQI">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
@@ -734,7 +743,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesNoAvatarTextCell" rowHeight="140" id="k9B-31-abd" customClass="LSFavoritesTableViewCell">
-                                <rect key="frame" x="0.0" y="682" width="320" height="140"/>
+                                <rect key="frame" x="0.0" y="726" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k9B-31-abd" id="fL4-R5-WKS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
@@ -835,7 +844,11 @@
                             <outletCollection property="gestureRecognizers" destination="yyO-e0-Gob" appends="YES" id="B6e-ft-2WD"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="pas-s2-6JG" id="s7T-da-P5g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAI-CN-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.5" id="yyO-e0-Gob">
@@ -843,6 +856,15 @@
                         <action selector="longPressGestureHandle:" destination="1hN-Wi-PXA" id="iQP-il-k7c"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <searchDisplayController id="pas-s2-6JG">
+                    <connections>
+                        <outlet property="delegate" destination="1hN-Wi-PXA" id="kLY-Lp-dl8"/>
+                        <outlet property="searchBar" destination="Lmo-wO-dY3" id="Gbt-4g-tvQ"/>
+                        <outlet property="searchContentsController" destination="1hN-Wi-PXA" id="lZK-7J-Azd"/>
+                        <outlet property="searchResultsDataSource" destination="1hN-Wi-PXA" id="4NE-Mu-VBa"/>
+                        <outlet property="searchResultsDelegate" destination="1hN-Wi-PXA" id="Vq1-wH-j9p"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-179" y="-950"/>
         </scene>

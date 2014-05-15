@@ -65,11 +65,13 @@
                 result = nil;
             }
         }
+        
         [loader stopAnimating];
         [loader removeFromSuperview];
         self.tableView.tableHeaderView = nil;
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlert:@"Something went wrong. Please check your connection or try again later!"];
     }];
 }
 
@@ -147,6 +149,10 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
+}
+
 #pragma mark - Search delegates
 
 - (void)toggleSearchBar {
@@ -157,14 +163,6 @@
         [self.searchDisplayController setActive:YES animated:YES];
         [self.searchDisplayController.searchBar becomeFirstResponder];
     }
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    NSLog(@"will begin search");
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
-    
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -187,10 +185,12 @@
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api searchPopularCollectionsByText:text success:^(AFHTTPRequestOperation *operation, id collections) {
         [self.searchResults removeAllObjects];
+        
         @autoreleasepool {
-            if ([[collections objectForKey:@"data"] count] > 0) {
+            NSArray *data = [collections objectForKey:@"data"];
+            if ([data count] > 0) {
                 NSMutableArray *result = [[NSMutableArray alloc] init];
-                for (NSDictionary *collectionData in [collections objectForKey:@"data"]) {
+                for (NSDictionary *collectionData in data) {
                     LSCollection *collection = [[LSCollection alloc] initWithDictionary:collectionData];
                     [result addObject:collection];
                 }
@@ -211,6 +211,8 @@
     [self.searchResults removeAllObjects];
     self.tableView.tableHeaderView = nil;
 }
+
+#pragma mark - Alerts
 
 - (void)showErrorAlert:(NSString *)message {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
