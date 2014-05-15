@@ -9,6 +9,8 @@
 #import "LSDropdownViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import "LSAllFavoritesViewController.h"
+#import "LSExploreTableViewController.h"
+#import "UIImage+Color.h"
 
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKFoundationIcons.h>
@@ -47,10 +49,15 @@ CAShapeLayer *closedMenuShape;
     [self.inboxButton setImage:[inboxIcon imageWithSize:CGSizeMake(23.0f, 23.0f)] forState:UIControlStateNormal];
     [self.inboxButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    FAKFontAwesome *settingsIcon = [FAKFontAwesome cogIconWithSize:23.0f];
+    FAKFontAwesome *settingsIcon = [FAKFontAwesome cogIconWithSize:22.0f];
     [self.settingsButton setTitle:nil forState:UIControlStateNormal];
-    [self.settingsButton setImage:[settingsIcon imageWithSize:CGSizeMake(23.0f, 23.0f)] forState:UIControlStateNormal];
+    [self.settingsButton setImage:[settingsIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
     [self.settingsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    FAKFontAwesome *searchIcon = [FAKFontAwesome searchIconWithSize:20.0f];
+    [self.searchButton setTitle:nil forState:UIControlStateNormal];
+    [self.searchButton setImage:[searchIcon imageWithSize:CGSizeMake(20.0f, 20.0f)] forState:UIControlStateNormal];
+    [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self customizeMenu];
     // Do any additional setup after loading the view.
@@ -111,7 +118,7 @@ CAShapeLayer *closedMenuShape;
         
         // set button states
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [button setBackgroundImage:[self imageWithColor:[UIColor colorWithHexString:@"#161625" alpha:0.9f]] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#161625" alpha:0.9f]] forState:UIControlStateHighlighted];
         
         // toggle bottom border on taps
         [button addTarget:self action:@selector(hideBottomBorder:) forControlEvents:UIControlEventTouchDown];
@@ -182,8 +189,8 @@ CAShapeLayer *closedMenuShape;
     closedMenuShape = [CAShapeLayer layer];
     
     // Constants to ease drawing the border and the stroke.
-    int height = self.menubar.frame.size.height;
-    int width = self.menubar.frame.size.width;
+    CGFloat height = self.menubar.frame.size.height;
+    CGFloat width = self.menubar.frame.size.width;
     
     [closedMenuShape setBounds:CGRectMake(0.0f, 0.0f, height, width)];
     [closedMenuShape setAnchorPoint:CGPointMake(0.0f, 0.0f)];
@@ -218,36 +225,24 @@ CAShapeLayer *closedMenuShape;
     
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
 # pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showFavoritesFromMenu"]) {
-        LSAllFavoritesViewController *ctrl = (LSAllFavoritesViewController *) [segue destinationViewController];
-        [ctrl setFavoritesType:@"all"];
+        [(LSAllFavoritesViewController *) [segue destinationViewController] setFavoritesType:@"all"];
         return;
     }
     
     if ([segue.identifier isEqualToString:@"showInbox"]) {
-        LSAllFavoritesViewController *ctrl = (LSAllFavoritesViewController *) [segue destinationViewController];;
-        [ctrl setFavoritesType:@"inbox"];
+        [(LSAllFavoritesViewController *) [segue destinationViewController] setFavoritesType:@"inbox"];
         return;
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+}
+
+#pragma mark - Search bar
+
+- (IBAction)searchButtonClickHandle:(id)sender {
+    [self.childViewControllers[0] toggleSearchBar];
 }
 
 @end

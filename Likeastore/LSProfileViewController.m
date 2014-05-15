@@ -38,6 +38,7 @@
     [menu.titleLabel setHidden:NO];
     
     [menu.inboxButton setHidden:YES];
+    [menu.searchButton setHidden:YES];
     [menu.settingsButton setHidden:NO];
     
     [menu setMenubarTitle:@"Profile"];

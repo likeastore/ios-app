@@ -89,6 +89,7 @@
     [menu.titleLabel setHidden:YES];
     
     [menu.settingsButton setHidden:YES];
+    [menu.searchButton setHidden:YES];
     [menu.inboxButton setHidden:NO];
 }
 

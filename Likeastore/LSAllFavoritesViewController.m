@@ -82,7 +82,8 @@
     [menu.titleLabel setHidden:NO];
     
     [menu.settingsButton setHidden:YES];
-    [menu.inboxButton setHidden:NO];
+    [menu.inboxButton setHidden:YES];
+    [menu.searchButton setHidden:NO];
     
     if ([self.favoritesType isEqualToString:@"inbox"]) {
         [menu setMenubarTitle:@"Inbox"];

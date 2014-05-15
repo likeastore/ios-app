@@ -12,6 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *inboxButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
+
+- (IBAction)searchButtonClickHandle:(id)sender;
 
 @end

@@ -96,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_HexColors 2
 #define COCOAPODS_VERSION_PATCH_HexColors 1
 
+// ILRemoteSearchBar
+#define COCOAPODS_POD_AVAILABLE_ILRemoteSearchBar
+#define COCOAPODS_VERSION_MAJOR_ILRemoteSearchBar 0
+#define COCOAPODS_VERSION_MINOR_ILRemoteSearchBar 0
+#define COCOAPODS_VERSION_PATCH_ILRemoteSearchBar 2
+
 // MFStoryboardPushSegue
 #define COCOAPODS_POD_AVAILABLE_MFStoryboardPushSegue
 #define COCOAPODS_VERSION_MAJOR_MFStoryboardPushSegue 1

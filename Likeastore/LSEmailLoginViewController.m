@@ -83,7 +83,6 @@
         NSDictionary *query = [appUrl parseQuery];
         
         [api getAccessToken:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"success: %@", responseObject);
             [self performSegueWithIdentifier:@"fromEmailAuthToFeed" sender:self];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self showErrorAlert:@"Something bad happened. Please check your connection or try again later!"];

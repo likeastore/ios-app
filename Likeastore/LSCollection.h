@@ -19,7 +19,11 @@
 @property (strong, nonatomic) NSString *ownerAvatar;
 
 @property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) NSString *thumbnail;
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
+
+- (BOOL) isDescription;
+- (BOOL) thumbnailIsGIF;
 
 @end

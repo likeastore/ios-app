@@ -12,6 +12,7 @@
 		2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01D191138FA000E3DBC /* LSCollection.m */; };
 		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
 		2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */; };
+		2A1AC45519227CEE0019954C /* LSExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1AC45419227CEE0019954C /* LSExploreTableViewController.m */; };
 		2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */; };
 		2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */; };
 		2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */; };
@@ -37,6 +38,8 @@
 		2A8E2125190FD21C007508CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E210D190FD21C007508CB /* UIKit.framework */; };
 		2A8E212D190FD21C007508CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E212B190FD21C007508CB /* InfoPlist.strings */; };
 		2A8E212F190FD21C007508CB /* LikeastoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E212E190FD21C007508CB /* LikeastoreTests.m */; };
+		2AA58A191924BB27006C69EB /* LSCollectionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */; };
+		2ADBF6B6192356CC00C10472 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBF6B5192356CC00C10472 /* UIImage+Color.m */; };
 		2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E267191A564D00A1E135 /* LSLoginViewController.m */; };
 		2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */; };
 		2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */; };
@@ -63,6 +66,8 @@
 		2A0557E3191282940078EBB9 /* LSNUITheme.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LSNUITheme.nss; sourceTree = "<group>"; };
 		2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFeedTableViewCell.h; sourceTree = "<group>"; };
 		2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewCell.m; sourceTree = "<group>"; };
+		2A1AC45319227CEE0019954C /* LSExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSExploreTableViewController.h; sourceTree = "<group>"; };
+		2A1AC45419227CEE0019954C /* LSExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSExploreTableViewController.m; sourceTree = "<group>"; };
 		2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFavoritesTableViewCell.h; sourceTree = "<group>"; };
 		2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		2A28D081191FDAB600CF3C15 /* LSProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSProfileViewController.h; sourceTree = "<group>"; };
@@ -104,6 +109,10 @@
 		2A8E212A190FD21C007508CB /* LikeastoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LikeastoreTests-Info.plist"; sourceTree = "<group>"; };
 		2A8E212C190FD21C007508CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A8E212E190FD21C007508CB /* LikeastoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeastoreTests.m; sourceTree = "<group>"; };
+		2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollectionsTableViewCell.h; sourceTree = "<group>"; };
+		2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollectionsTableViewCell.m; sourceTree = "<group>"; };
+		2ADBF6B4192356CC00C10472 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		2ADBF6B5192356CC00C10472 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		2AF3E266191A564D00A1E135 /* LSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLoginViewController.h; sourceTree = "<group>"; };
 		2AF3E267191A564D00A1E135 /* LSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSLoginViewController.m; sourceTree = "<group>"; };
 		2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWebAuthViewController.h; sourceTree = "<group>"; };
@@ -161,6 +170,8 @@
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
 				2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */,
 				2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */,
+				2A1AC45319227CEE0019954C /* LSExploreTableViewController.h */,
+				2A1AC45419227CEE0019954C /* LSExploreTableViewController.m */,
 				2A00D016191122DD000E3DBC /* LSFeedTableViewController.h */,
 				2A00D017191122DD000E3DBC /* LSFeedTableViewController.m */,
 				2AF3E266191A564D00A1E135 /* LSLoginViewController.h */,
@@ -189,6 +200,8 @@
 		2A4A727A190FEF23002F7C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */,
+				2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */,
 				2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */,
 				2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */,
 				2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */,
@@ -206,6 +219,8 @@
 				2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */,
 				2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */,
 				2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */,
+				2ADBF6B4192356CC00C10472 /* UIImage+Color.h */,
+				2ADBF6B5192356CC00C10472 /* UIImage+Color.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -431,9 +446,11 @@
 				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
+				2ADBF6B6192356CC00C10472 /* UIImage+Color.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
 				2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */,
 				2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */,
+				2AA58A191924BB27006C69EB /* LSCollectionsTableViewCell.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
@@ -443,6 +460,7 @@
 				2A8E2116190FD21C007508CB /* main.m in Sources */,
 				2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */,
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
+				2A1AC45519227CEE0019954C /* LSExploreTableViewController.m in Sources */,
 				2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */,
 				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,

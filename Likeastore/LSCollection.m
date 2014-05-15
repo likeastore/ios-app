@@ -26,9 +26,17 @@
         _description = [dictionary objectForKeyNotNull:@"description"];
         _owner = [dictionary objectForKeyNotNull:@"owner"];
         _color = [dictionary objectForKeyNotNull:@"color"];
+        _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];
     }
     
     return  self;
+}
+
+- (NSString *) description {
+    if ([_description isEqualToString:@""]) {
+        return nil;
+    }
+    return _description;
 }
 
 - (NSString *) ownerID {
@@ -41,6 +49,17 @@
 
 - (NSString *) ownerAvatar {
     return [_owner objectForKey:@"avatar"];
+}
+
+- (BOOL) isDescription {
+    if ([_description isEqualToString:@""]) {
+        return NO;
+    }
+    return _description ? YES : NO;
+}
+
+- (BOOL) thumbnailIsGIF {
+    return [[_thumbnail pathExtension] isEqualToString:@"gif"] ? YES : NO;
 }
 
 @end

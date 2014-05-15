@@ -45,6 +45,7 @@
     
     [menu.inboxButton setHidden:YES];
     [menu.settingsButton setHidden:YES];
+    [menu.searchButton setHidden:YES];
     
     [menu setMenubarTitle:@"Settings"];
 }

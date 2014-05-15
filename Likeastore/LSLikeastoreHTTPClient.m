@@ -92,4 +92,14 @@
     return [self DELETE:[API_URL stringByAppendingFormat:@"/items/%@", _id] parameters:nil success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getPopularCollections:(void (^)(AFHTTPRequestOperation *operation, id collections))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    return [self GET:[API_URL stringByAppendingString:@"/collections/explore"] parameters:nil success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)searchPopularCollectionsByText:(NSString *)text success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self GET:[API_URL stringByAppendingString:@"/collections/search"] parameters:@{@"text": text} success:success failure:failure];
+}
+
 @end
