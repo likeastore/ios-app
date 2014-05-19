@@ -53,6 +53,12 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
+    // show activity indicator on first load
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 165.0f)];
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api getCollections:^(AFHTTPRequestOperation *operation, id collectionsList) {
         @autoreleasepool {
@@ -72,13 +78,13 @@
             }
         }
         
-        //[loader stopAnimating];
-        //[loader removeFromSuperview];
+        [loader stopAnimating];
+        [loader removeFromSuperview];
         
         [self.curatingCountLabel setText:[NSString stringWithFormat:@"%tu", [self.collections count]]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //[loader stopAnimating];
-        //[loader removeFromSuperview];
+        [loader stopAnimating];
+        [loader removeFromSuperview];
     }];
 }
 
