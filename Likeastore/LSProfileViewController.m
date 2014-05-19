@@ -77,7 +77,8 @@
         
         [self.curatingCountLabel setText:[NSString stringWithFormat:@"%tu", [self.collections count]]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //[self showErrorAlert:@"Something went wrong. Please check your connection or try again later!"];
+        //[loader stopAnimating];
+        //[loader removeFromSuperview];
     }];
 }
 

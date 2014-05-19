@@ -59,8 +59,8 @@
     __weak LSAllFavoritesViewController *weakSelf = self;
     
     // initial load
-    [self setupItemsFor:page actionType:@"initial" success:^{
-        page += 1;
+    [self setupItemsFor:page actionType:@"initial" success:^(BOOL nextPage) {
+        if (nextPage) page += 1;
         [loader stopAnimating];
         [loader removeFromSuperview];
     }];
@@ -69,7 +69,7 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
+        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^(BOOL nextPage) {
             [weakSelf.tableView.pullToRefreshView stopAnimating];
         }];
     }];
@@ -78,8 +78,8 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
-            page += 1;
+        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^(BOOL nextPage) {
+            if (nextPage) page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }];
     }];
@@ -104,7 +104,7 @@
     
 }
 
-- (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
+- (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
     __weak LSAllFavoritesViewController *weakSelf = self;
     
     [weakSelf clearImageCache];
@@ -135,9 +135,9 @@
             }
         }
         
-        callback();
+        callback([[data objectForKey:@"nextPage"] boolValue]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        callback(NO);
     }];
 }
 
@@ -471,26 +471,8 @@
         }
         callback([[favorites objectForKey:@"nextPage"] boolValue]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlert:@"Something went wrong while searching. Please try again later!"];
+        callback(NO);
     }];
 }
-
-#pragma mark - Alerts
-
-- (void)showErrorAlert:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

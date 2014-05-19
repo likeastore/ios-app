@@ -64,8 +64,9 @@
     __block CGFloat page = 1;
     __weak LSCollectionDetailsViewController *weakSelf = self;
     
-    [self loadItemsFor:page success:^{
-        page += 1;
+    [self loadItemsFor:page success:^(BOOL nextPage){
+        if (nextPage) page += 1;
+        
         [loader stopAnimating];
         [loader removeFromSuperview];
     }];
@@ -74,8 +75,9 @@
     [self.itemsTableView addInfiniteScrollingWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf loadItemsFor:page success:^{
-            page += 1;
+        [weakSelf loadItemsFor:page success:^(BOOL nextPage){
+            if (nextPage) page += 1;
+            
             [weakSelf.itemsTableView.infiniteScrollingView stopAnimating];
         }];
     }];
@@ -101,7 +103,7 @@
     [self clearImageCache];
 }
 
-- (void)loadItemsFor:(CGFloat)page success:(void (^)())callback {
+- (void)loadItemsFor:(CGFloat)page success:(void (^)(BOOL nextPage))callback {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
     [api getFavoritesFromCollectionID:self.collection._id byPage:page success:^(AFHTTPRequestOperation *operation, id favorites) {
@@ -123,9 +125,9 @@
             }
         }
         
-        callback();
+        callback([[favorites objectForKey:@"nextPage"] boolValue]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlert:@"Something went wrong while getting collection favorites. Please try again later"];
+        callback(NO);
     }];
 }
 
@@ -334,17 +336,13 @@
         [api unfollowCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection removeFollower:user._id];
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self showErrorAlert:@"Something went wrong while unfollowing collection. Please try again later"];
-         }];
+         } failure:nil];
     } else {
         [self setupFollowingButtonStyles];
         [api followCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection addFollower:user._id];
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self showErrorAlert:@"Something went wrong while following collection. Please try again later"];
-         }];
+         } failure:nil];
     }
 }
 
@@ -378,13 +376,6 @@
     [self.toggleFollowButton setTintColor:greenColor];
     [self.toggleFollowButton.layer setBorderWidth:1.5f];
     [self.toggleFollowButton.layer setBorderColor:greenColor.CGColor];
-}
-
-#pragma mark - Alerts
-
-- (void)showErrorAlert:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
 }
 
 @end

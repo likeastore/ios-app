@@ -54,8 +54,8 @@
     __weak LSFeedTableViewController *weakSelf = self;
     
     // initial load
-    [self setupItemsFor:page actionType:@"initial" success:^{
-        page += 1;
+    [self setupItemsFor:page actionType:@"initial" success:^(BOOL nextPage){
+        if (nextPage) page += 1;
         [loader stopAnimating];
         [loader removeFromSuperview];
     }];
@@ -64,7 +64,7 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
+        [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^(BOOL nextPage){
             [weakSelf.tableView.pullToRefreshView stopAnimating];
         }];
     }];
@@ -73,8 +73,8 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
-            page += 1;
+        [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^(BOOL nextPage){
+            if (nextPage) page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }];
     }];
@@ -96,7 +96,7 @@
     [sharedUser checkUserAuthorized];
 }
 
-- (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
+- (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
     __weak LSFeedTableViewController *weakSelf = self;
     
     [weakSelf clearImageCache];
@@ -127,8 +127,9 @@
             }
         }
         
-        callback();
+        callback([[data objectForKey:@"nextPage"] boolValue]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        callback(NO);
     }];
 }
 

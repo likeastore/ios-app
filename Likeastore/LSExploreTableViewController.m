@@ -75,7 +75,9 @@
         self.tableView.tableHeaderView = nil;
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlert:@"Something went wrong. Please check your connection or try again later!"];
+        [loader stopAnimating];
+        [loader removeFromSuperview];
+        self.tableView.tableHeaderView = nil;
     }];
 }
 
@@ -206,21 +208,12 @@
                 result = nil;
             }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlert:@"Something went wrong while searching. Please try again later!"];
-    }];
+    } failure:nil];
 }
 
 - (void)cleanAndDisableSearch {
     [self.searchResults removeAllObjects];
     self.tableView.tableHeaderView = nil;
-}
-
-#pragma mark - Alerts
-
-- (void)showErrorAlert:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
 }
 
 #pragma mark - Navigation

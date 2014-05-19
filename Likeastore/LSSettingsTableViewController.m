@@ -78,7 +78,6 @@
 
 - (void)signOut {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-    [LSSharedUser deleteAuthCookie];
     [api logoutWithSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
         //segue to login
         [self performSegueWithIdentifier:@"showLoginAfterSignOut" sender:self];
