@@ -24,6 +24,7 @@
         _provider = [dictionary objectForKeyNotNull:@"provider"];
         _warning = [dictionary objectForKeyNotNull:@"warning"];
         _firstTimeUser = [dictionary objectForKeyNotNull:@"firstTimeUser"];
+        _followCollections = [dictionary objectForKeyNotNull:@"followCollections"];
     }
     
     return  self;
@@ -39,6 +40,10 @@
 
 - (BOOL)isLocalProvider {
     return [_provider isEqual:@"local"] ? YES : NO;
+}
+
+- (BOOL)isDisplayName {
+    return _displayName ? YES : NO;
 }
 
 @end

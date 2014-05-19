@@ -53,9 +53,7 @@ static LSUser *_sharedLikeastoreUser = nil;
         [api getUser:^(AFHTTPRequestOperation *operation, id user) {
             _sharedLikeastoreUser = [[LSUser alloc] initWithDictionary:user];
             [self callHaveSharedUserDelegate:_sharedLikeastoreUser];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self callHaveSharedUserDelegate:_sharedLikeastoreUser];
-        }];
+        } failure:nil];
     } else {
         [self callHaveSharedUserDelegate:_sharedLikeastoreUser];
     }

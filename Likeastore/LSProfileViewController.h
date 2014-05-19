@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSSharedUser.h"
 
-@interface LSProfileViewController : UIViewController
+@interface LSProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, LSSharedUserDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *curatingCountLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)backFromCollectionDetailsUnwindSegueCallback:(UIStoryboardSegue *)segue;
 
 @end

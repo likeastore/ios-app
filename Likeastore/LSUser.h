@@ -20,10 +20,13 @@
 @property (strong, nonatomic) NSString *provider;
 @property (strong, nonatomic) NSString *firstTimeUser;
 
+@property (strong, nonatomic) NSArray *followCollections;
+
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
 - (BOOL) isFirstTimeUser;
 - (BOOL) isWarning;
 - (BOOL) isLocalProvider;
+- (BOOL) isDisplayName;
 
 @end
