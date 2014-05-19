@@ -192,6 +192,7 @@ CAShapeLayer *closedMenuShape;
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"segue %@", segue.identifier);
     self.currentSegueIdentifier = segue.identifier;
     [super prepareForSegue:segue sender:sender];
     

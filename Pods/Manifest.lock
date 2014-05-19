@@ -30,6 +30,7 @@ PODS:
     - FontAwesomeKit/Core
   - HexColors (2.2.1)
   - ILRemoteSearchBar (0.0.2)
+  - JDStatusBarNotification (1.4.8)
   - MFStoryboardPushSegue (1.0.1)
   - Mixpanel (2.3.5)
   - NSURL+ParseQuery (0.1)
@@ -43,6 +44,7 @@ PODS:
   - TOWebViewController (2.0.6)
   - TPKeyboardAvoiding (1.2.3)
   - TTTAttributedLabel (1.9.5)
+  - Underscore.m (0.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -54,6 +56,7 @@ DEPENDENCIES:
   - FontAwesomeKit/IonIcons
   - HexColors
   - ILRemoteSearchBar
+  - JDStatusBarNotification
   - MFStoryboardPushSegue
   - Mixpanel
   - NSURL+ParseQuery
@@ -63,6 +66,7 @@ DEPENDENCIES:
   - TOWebViewController
   - TPKeyboardAvoiding
   - TTTAttributedLabel
+  - Underscore.m
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
@@ -72,6 +76,7 @@ SPEC CHECKSUMS:
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   ILRemoteSearchBar: c81419db889bebb77c2dc28ed0ccd092d5557956
+  JDStatusBarNotification: a77275c66f1dfb1d1e4c2a49ab5a6498cb5a9b62
   MFStoryboardPushSegue: ed74452e339a56fc31e416fec63483e97630f135
   Mixpanel: 79ff289920b67399475b93057ac11e48637585d7
   NSURL+ParseQuery: 33deb7114739a20b11689a77a31f6f7ae1a808f7
@@ -82,5 +87,6 @@ SPEC CHECKSUMS:
   TOWebViewController: 891ae553f83943e0e2f64c2dc9dab6b100d17151
   TPKeyboardAvoiding: 17995aaa6db26ac2a9fa8714a86509c5888f0392
   TTTAttributedLabel: 6154fd2407a03fb8d71abfa36f4710fff26a168e
+  Underscore.m: 593ea54a19d3cc4439387a83d36eb7ba6ffd1707
 
 COCOAPODS: 0.32.1

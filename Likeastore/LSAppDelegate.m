@@ -7,6 +7,7 @@
 //
 
 #import "LSAppDelegate.h"
+
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
@@ -16,7 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     [FAKFontAwesome iconFontWithSize:1];
     [FAKIonIcons iconFontWithSize:1];
     [FAKFoundationIcons iconFontWithSize:1];

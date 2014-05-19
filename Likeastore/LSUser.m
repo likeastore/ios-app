@@ -11,7 +11,7 @@
 
 @implementation LSUser
 
-- (instancetype) initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
     if (self) {
@@ -29,15 +29,15 @@
     return  self;
 }
 
-- (BOOL) isFirstTimeUser {
+- (BOOL)isFirstTimeUser {
     return _firstTimeUser ? YES : NO;
 }
 
-- (BOOL) isWarning {
+- (BOOL)isWarning {
     return _warning ? YES : NO;
 }
 
-- (BOOL) isLocalProvider {
+- (BOOL)isLocalProvider {
     return [_provider isEqual:@"local"] ? YES : NO;
 }
 

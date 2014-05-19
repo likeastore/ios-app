@@ -12,6 +12,7 @@
 #import "LSCollection.h"
 #import "LSFeedTableViewCell.h"
 #import "LSDropdownViewController.h"
+#import "LSSharedUser.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
@@ -42,7 +43,7 @@
     [super viewDidLoad];
     
     [self clearImageCache];
-    
+
     // show activity indicator on first load
     UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 35.0f)];
@@ -61,6 +62,8 @@
     
     // pull to refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
+        [loader stopAnimating];
+        [loader removeFromSuperview];
         [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
             [weakSelf.tableView.pullToRefreshView stopAnimating];
         }];
@@ -68,17 +71,13 @@
     
     // infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [loader stopAnimating];
+        [loader removeFromSuperview];
         [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
             page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }];
     }];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -91,6 +90,10 @@
     [menu.settingsButton setHidden:YES];
     [menu.searchButton setHidden:YES];
     [menu.inboxButton setHidden:NO];
+    
+    LSSharedUser *sharedUser = [LSSharedUser new];
+    [sharedUser setDelegate:self];
+    [sharedUser checkUserAuthorized];
 }
 
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)())callback {
@@ -126,7 +129,6 @@
         
         callback();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [weakSelf performSegueWithIdentifier:@"showLogin" sender:self];
     }];
 }
 
@@ -142,6 +144,17 @@
     [cache clearMemory];
     [cache clearDisk];
     [cache setValue:nil forKey:@"memCache"];
+}
+
+#pragma mark - auth delagates
+
+- (void)didAuthorizationCheck:(BOOL)isAuthorized {
+    if (!isAuthorized) {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    } else {
+        // init user
+        [LSSharedUser sharedUser];
+    }
 }
 
 #pragma mark - Table view data source

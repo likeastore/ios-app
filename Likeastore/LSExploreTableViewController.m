@@ -11,6 +11,7 @@
 #import "LSLikeastoreHTTPClient.h"
 #import "LSCollection.h"
 #import "LSCollectionsTableViewCell.h"
+#import "LSCollectionDetailsViewController.h"
 #import "UIImage+Color.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -39,12 +40,14 @@
 
     [self setupSearchBar];
     
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     // show activity indicator on first load
     UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 30.0f)];
     [headerView setBackgroundColor:[UIColor colorWithHexString:@"#F3F3F6"]];
     [headerView addSubview:loader];
-    [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 25.0f)];
+    [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 35.0f)];
     self.tableView.tableHeaderView = headerView;
     [loader startAnimating];
     
@@ -60,6 +63,7 @@
                 
                 [self.collections addObjectsFromArray:result];
                 [self.tableView reloadData];
+                [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
                 
                 [result removeAllObjects];
                 result = nil;
@@ -76,7 +80,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
+    LSDropdownViewController *menu = (LSDropdownViewController *) [[self parentViewController] parentViewController];
     [menu.logoView setHidden:YES];
     [menu.titleLabel setHidden:NO];
     
@@ -219,6 +223,26 @@
     [alertView show];
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    LSCollection *collection;
+    
+    if (self.searchDisplayController.isActive) {
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        collection = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        collection = [self.collections objectAtIndex:indexPath.row];
+    }
+    
+    [(LSCollectionDetailsViewController *)segue.destinationViewController setCollection:collection];
+}
+
+- (IBAction)backFromCollectionDetailsUnwindSegueCallback:(UIStoryboardSegue *)segue {
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -254,17 +278,6 @@
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 */
 

@@ -46,6 +46,12 @@
 }
 
 - (IBAction)login:(id)sender {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    if (![api.reachabilityManager isReachable]) {
+        [self showErrorAlert:@"Unfortunately network is not responding. Check your connection or Wi-Fi settings"];
+        return;
+    }
+    
     NSString *email = [self.emailField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     ALPValidator *emailValidator = [ALPValidator validatorWithType:ALPValidatorTypeString];
     [emailValidator addValidationToEnsurePresenceWithInvalidMessage:@"Make sure you enter an email!"];
@@ -68,7 +74,6 @@
         return;
     }
     
-    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     NSDictionary *credentials = @{@"email": email, @"password": password};
     [api loginWithCredentials:credentials success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // show setup

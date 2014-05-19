@@ -67,6 +67,8 @@
     
     // pull to refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
+        [loader stopAnimating];
+        [loader removeFromSuperview];
         [weakSelf setupItemsFor:1 actionType:@"pullToRefresh" success:^{
             [weakSelf.tableView.pullToRefreshView stopAnimating];
         }];
@@ -74,6 +76,8 @@
     
     // infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [loader stopAnimating];
+        [loader removeFromSuperview];
         [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^{
             page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
@@ -290,11 +294,9 @@
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         NSIndexPath *indexPath;
         if (self.searchDisplayController.isActive) {
-            NSLog(@"long in search");
             CGPoint point = [recognizer locationInView:self.searchDisplayController.searchResultsTableView];
             indexPath = [self.searchDisplayController.searchResultsTableView indexPathForRowAtPoint:point];
         } else {
-            NSLog(@"NOT long in search");
             CGPoint point = [recognizer locationInView:self.tableView];
             indexPath = [self.tableView indexPathForRowAtPoint:point];
         }

@@ -24,8 +24,7 @@
 CAShapeLayer *openMenuShape;
 CAShapeLayer *closedMenuShape;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -33,8 +32,7 @@ CAShapeLayer *closedMenuShape;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setNeedsStatusBarAppearanceUpdate];
@@ -54,9 +52,9 @@ CAShapeLayer *closedMenuShape;
     [self.settingsButton setImage:[settingsIcon imageWithSize:CGSizeMake(22.0f, 22.0f)] forState:UIControlStateNormal];
     [self.settingsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    FAKFontAwesome *searchIcon = [FAKFontAwesome searchIconWithSize:20.0f];
+    FAKFontAwesome *searchIcon = [FAKFontAwesome searchIconWithSize:21.0f];
     [self.searchButton setTitle:nil forState:UIControlStateNormal];
-    [self.searchButton setImage:[searchIcon imageWithSize:CGSizeMake(20.0f, 20.0f)] forState:UIControlStateNormal];
+    [self.searchButton setImage:[searchIcon imageWithSize:CGSizeMake(21.0f, 21.0f)] forState:UIControlStateNormal];
     [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self customizeMenu];
@@ -242,7 +240,13 @@ CAShapeLayer *closedMenuShape;
 #pragma mark - Search bar
 
 - (IBAction)searchButtonClickHandle:(id)sender {
-    [self.childViewControllers[0] toggleSearchBar];
+    // check if destination view contoller is embed in navigation
+    if ([self.childViewControllers.firstObject class] == [UINavigationController class]) {
+        UIViewController *nestedCtrl = self.childViewControllers.firstObject;
+        [nestedCtrl.childViewControllers.firstObject toggleSearchBar];
+    } else {
+        [self.childViewControllers.firstObject toggleSearchBar];
+    }
 }
 
 @end

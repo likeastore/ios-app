@@ -8,6 +8,8 @@
 
 #import "LSLikeastoreHTTPClient.h"
 
+#import <JDStatusBarNotification/JDStatusBarNotification.h>
+
 @implementation LSLikeastoreHTTPClient
 
 // creates singleton instance
@@ -30,9 +32,48 @@
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         self.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [self setupConnectionReachabilityMonitor];
     }
     
     return self;
+}
+
+#pragma mark - Reachability
+
+- (void)setupConnectionReachabilityMonitor
+{
+    // create custom notification styles
+    [JDStatusBarNotification addStyleNamed:@"BadConnectionNoty" prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+        style.barColor = [UIColor colorWithHexString:@"#f56557"];
+        style.textColor = [UIColor whiteColor];
+        
+        return style;
+    }];
+    
+    // setup block handler
+    __weak LSLikeastoreHTTPClient *weakSelf = self;
+    [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                [JDStatusBarNotification dismissAnimated:YES];
+                [weakSelf.operationQueue setSuspended:NO];
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                [JDStatusBarNotification showWithStatus:@"No internet connection" dismissAfter:5.0 styleName:@"BadConnectionNoty"];
+                [weakSelf.operationQueue setSuspended:YES];
+                break;
+                
+            default:
+                [weakSelf.operationQueue setSuspended:NO];
+                break;
+        }
+    }];
+    
+    // start monitoring
+    [self.reachabilityManager startMonitoring];
 }
 
 #pragma mark - Login and authorization
@@ -145,6 +186,14 @@
 {
     return [self GET:[API_URL stringByAppendingString:@"/collections/search"]
           parameters:@{@"text": text}
+             success:success
+             failure:failure];
+}
+
+- (AFHTTPRequestOperation *)getFavoritesFromCollectionID:(NSString *)_id byPage:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self GET:[API_URL stringByAppendingFormat:@"/collections/%@/items", _id]
+          parameters:@{@"page": [@(page) stringValue], @"pageSize": @"15"}
              success:success
              failure:failure];
 }

@@ -9,15 +9,18 @@
 #import "LSCollection.h"
 #import "NSDictionary+LSItem.h"
 
+#import <Underscore.m/Underscore.h>
+
 @interface LSCollection ()
 
 @property NSDictionary *owner;
+@property NSDictionary *userData;
 
 @end
 
 @implementation LSCollection
 
-- (instancetype) initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
     if (self) {
@@ -25,41 +28,75 @@
         _title = [dictionary objectForKeyNotNull:@"title"];
         _description = [dictionary objectForKeyNotNull:@"description"];
         _owner = [dictionary objectForKeyNotNull:@"owner"];
+        _userData = [dictionary objectForKeyNotNull:@"userData"];
         _color = [dictionary objectForKeyNotNull:@"color"];
         _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];
+        _followersCount = [dictionary objectForKeyNotNull:@"followersCount"];
+        _itemsCount = [dictionary objectForKeyNotNull:@"count"];
+        _followers = [dictionary objectForKeyNotNull:@"followers"];
     }
     
     return  self;
 }
 
-- (NSString *) description {
+- (NSString *)description {
     if ([_description isEqualToString:@""]) {
         return nil;
     }
     return _description;
 }
 
-- (NSString *) ownerID {
-    return [_owner objectForKey:@"_id"];
+- (NSString *)ownerID {
+    if (_owner) {
+        return [_owner objectForKey:@"_id"];
+    } else if (_userData) {
+        return [_userData objectForKey:@"_id"];
+    }
+    
+    return nil;
 }
 
-- (NSString *) ownerName {
-    return [_owner objectForKey:@"name"];
+- (NSString *)ownerName {
+    if (_owner) {
+        return [_owner objectForKey:@"name"];
+    } else if (_userData) {
+        return [_userData objectForKey:@"name"];
+    }
+    
+    return nil;
 }
 
-- (NSString *) ownerAvatar {
-    return [_owner objectForKey:@"avatar"];
+- (NSString *)ownerAvatar {
+    if (_owner) {
+        return [_owner objectForKey:@"avatar"];
+    } else if (_userData) {
+        return [_userData objectForKey:@"avatar"];
+    }
+    
+    return nil;
 }
 
-- (BOOL) isDescription {
+- (BOOL)isDescription {
     if ([_description isEqualToString:@""]) {
         return NO;
     }
     return _description ? YES : NO;
 }
 
-- (BOOL) thumbnailIsGIF {
+- (BOOL)thumbnailIsGIF {
     return [[_thumbnail pathExtension] isEqualToString:@"gif"] ? YES : NO;
+}
+
+- (BOOL)followedByUser:(NSString *)userId {
+    // check if user is following this collection
+    __block BOOL followed = NO;
+    Underscore.array(_followers).each(^(NSDictionary *follower) {
+        if ([[follower objectForKey:@"_id"] isEqualToString:userId]) {
+            followed = YES;
+        }
+    });
+    
+    return followed;
 }
 
 @end

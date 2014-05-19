@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import "LSSharedUser.h"
 
-@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate>
+@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate, LSSharedUserDelegate>
 
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
 

@@ -16,6 +16,8 @@
 		2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */; };
 		2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */; };
 		2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */; };
+		2A2BC04319264879008D8BF5 /* LSCollectionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BC04219264879008D8BF5 /* LSCollectionDetailsViewController.m */; };
+		2A2BC046192672D7008D8BF5 /* LSSharedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BC045192672D7008D8BF5 /* LSSharedUser.m */; };
 		2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */; };
 		2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */; };
 		2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */; };
@@ -78,6 +80,10 @@
 		2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSProfileViewController.m; sourceTree = "<group>"; };
 		2A28D087191FE66E00CF3C15 /* LSSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSettingsTableViewController.h; sourceTree = "<group>"; };
 		2A28D088191FE66E00CF3C15 /* LSSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSettingsTableViewController.m; sourceTree = "<group>"; };
+		2A2BC04119264879008D8BF5 /* LSCollectionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollectionDetailsViewController.h; sourceTree = "<group>"; };
+		2A2BC04219264879008D8BF5 /* LSCollectionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollectionDetailsViewController.m; sourceTree = "<group>"; };
+		2A2BC044192672D7008D8BF5 /* LSSharedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSharedUser.h; sourceTree = "<group>"; };
+		2A2BC045192672D7008D8BF5 /* LSSharedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSharedUser.m; sourceTree = "<group>"; };
 		2A47A95F1912487C00EBA965 /* NSDictionary+LSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LSItem.h"; sourceTree = "<group>"; };
 		2A47A9601912487C00EBA965 /* NSDictionary+LSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LSItem.m"; sourceTree = "<group>"; };
 		2A4A726F190FDBAD002F7C0E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 			children = (
 				2A4A728119100788002F7C0E /* LSAllFavoritesViewController.h */,
 				2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */,
+				2A2BC04119264879008D8BF5 /* LSCollectionDetailsViewController.h */,
+				2A2BC04219264879008D8BF5 /* LSCollectionDetailsViewController.m */,
 				2A4A7277190FE7AC002F7C0E /* LSDropdownViewController.h */,
 				2A4A7278190FE7AC002F7C0E /* LSDropdownViewController.m */,
 				2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */,
@@ -201,6 +209,8 @@
 			children = (
 				2A4A7271190FDC6E002F7C0E /* LSLikeastoreHTTPClient.h */,
 				2A4A7272190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m */,
+				2A2BC044192672D7008D8BF5 /* LSSharedUser.h */,
+				2A2BC045192672D7008D8BF5 /* LSSharedUser.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -470,6 +480,7 @@
 				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
+				2A2BC04319264879008D8BF5 /* LSCollectionDetailsViewController.m in Sources */,
 				2ADBF6B6192356CC00C10472 /* UIImage+Color.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
 				2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */,
@@ -477,6 +488,7 @@
 				2AA58A191924BB27006C69EB /* LSCollectionsTableViewCell.m in Sources */,
 				2A4A7276190FDD3D002F7C0E /* LSConstants.m in Sources */,
 				2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */,
+				2A2BC046192672D7008D8BF5 /* LSSharedUser.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
 				2A6083901920D6AD0059D588 /* LSUser.m in Sources */,
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,

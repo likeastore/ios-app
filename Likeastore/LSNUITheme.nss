@@ -25,3 +25,7 @@ LoginField {
     corner-radius: 3px;
     padding: 0 12px;
 }
+
+RoundedButton {
+    corner-radius: 3px;
+}

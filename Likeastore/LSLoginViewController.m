@@ -8,6 +8,7 @@
 
 #import "LSLoginViewController.h"
 #import "LSWebAuthViewController.h"
+#import "LSLikeastoreHTTPClient.h"
 
 #import <MFStoryboardPushSegue/MFStoryboardPopSegue.h>
 
@@ -41,22 +42,35 @@
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - Auth
+
 - (IBAction)connectWithFacebook:(id)sender {
-    LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
-    [webAuthCtrl setAuthServiceName:@"facebook"];
-    [self presentViewController:webAuthCtrl animated:YES completion:nil];
+    [self handleAuthorizationWith:@"facebook"];
 }
 
 - (IBAction)connectWithGithub:(id)sender {
-    LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
-    [webAuthCtrl setAuthServiceName:@"github"];
-    [self presentViewController:webAuthCtrl animated:YES completion:nil];
+    [self handleAuthorizationWith:@"github"];
 }
 
 - (IBAction)connectWithTwitter:(id)sender {
+    [self handleAuthorizationWith:@"twitter"];
+}
+
+- (void)handleAuthorizationWith:(NSString *)service {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    if (![api.reachabilityManager isReachable]) {
+        [self showConnectionAlert];
+        return;
+    }
+    
     LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
-    [webAuthCtrl setAuthServiceName:@"twitter"];
+    [webAuthCtrl setAuthServiceName:service];
     [self presentViewController:webAuthCtrl animated:YES completion:nil];
+}
+
+- (void)showConnectionAlert {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bad connection!" message:@"Unfortunately network is not responding. Check your connection or Wi-Fi settings" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 #pragma mark - segues

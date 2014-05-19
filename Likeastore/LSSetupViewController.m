@@ -78,6 +78,12 @@
 }
 
 - (IBAction)finishRegistration:(id)sender {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    if (![api.reachabilityManager isReachable]) {
+        [self showErrorAlert:@"Unfortunately network is not responding. Check your connection or Wi-Fi settings"];
+        return;
+    }
+    
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     ALPValidator *usernameValidator = [ALPValidator validatorWithType:ALPValidatorTypeString];
     [usernameValidator addValidationToEnsurePresenceWithInvalidMessage:@"Make sure you enter an username!"];
@@ -108,7 +114,6 @@
         [data setObject:email forKey:@"email"];
     }
     
-    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api setupUser:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // user registered, get accessToken
         NSURL *appUrl = [NSURL URLWithString:[responseObject objectForKey:@"applicationUrl"]];

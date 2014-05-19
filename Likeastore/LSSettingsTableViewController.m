@@ -9,6 +9,7 @@
 #import "LSSettingsTableViewController.h"
 #import "LSDropdownViewController.h"
 #import "LSLikeastoreHTTPClient.h"
+#import "LSSharedUser.h"
 
 #import <SDWebImage/SDImageCache.h>
 
@@ -77,6 +78,7 @@
 
 - (void)signOut {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [LSSharedUser deleteAuthCookie];
     [api logoutWithSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
         //segue to login
         [self performSegueWithIdentifier:@"showLoginAfterSignOut" sender:self];

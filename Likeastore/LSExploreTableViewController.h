@@ -13,4 +13,6 @@
 
 - (void) toggleSearchBar;
 
+- (IBAction)backFromCollectionDetailsUnwindSegueCallback:(UIStoryboardSegue *)segue;
+
 @end

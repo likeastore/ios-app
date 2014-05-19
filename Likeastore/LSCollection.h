@@ -21,9 +21,15 @@
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *thumbnail;
 
+@property (strong, nonatomic) NSNumber *followersCount;
+@property (strong, nonatomic) NSNumber *itemsCount;
+
+@property (strong, nonatomic) NSArray *followers;
+
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
 - (BOOL) isDescription;
 - (BOOL) thumbnailIsGIF;
+- (BOOL) followedByUser:(NSString *)userId;
 
 @end
