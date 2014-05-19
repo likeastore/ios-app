@@ -28,8 +28,11 @@
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
-- (BOOL) isDescription;
-- (BOOL) thumbnailIsGIF;
-- (BOOL) followedByUser:(NSString *)userId;
+- (BOOL)isDescription;
+- (BOOL)thumbnailIsGIF;
+- (BOOL)followedByUser:(NSString *)userId;
+
+- (void)addFollower:(NSString *)userId;
+- (void)removeFollower:(NSString *)userId;
 
 @end

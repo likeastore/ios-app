@@ -87,8 +87,8 @@
     return [[_thumbnail pathExtension] isEqualToString:@"gif"] ? YES : NO;
 }
 
+// check if user is following this collection
 - (BOOL)followedByUser:(NSString *)userId {
-    // check if user is following this collection
     __block BOOL followed = NO;
     Underscore.array(_followers).each(^(NSDictionary *follower) {
         if ([[follower objectForKey:@"_id"] isEqualToString:userId]) {
@@ -97,6 +97,31 @@
     });
     
     return followed;
+}
+
+- (void)addFollower:(NSString *)userId {
+    @autoreleasepool {
+        NSMutableArray *newFollowers = [NSMutableArray arrayWithArray:_followers];
+        [newFollowers addObject:@{@"_id": userId}];
+        [self setFollowers:[newFollowers mutableCopy]];
+        [newFollowers removeAllObjects];
+    }
+}
+
+- (void)removeFollower:(NSString *)userId {
+    @autoreleasepool {
+        NSMutableArray *newFollowers = [NSMutableArray arrayWithArray:_followers];
+        id followerToRemove = Underscore.array(newFollowers)
+            .find(^BOOL(NSDictionary *follower) {
+                return [[follower objectForKey:@"_id"] isEqualToString:userId];
+            });
+        
+        if (followerToRemove) {
+            [newFollowers removeObject:followerToRemove];
+            [self setFollowers:[newFollowers mutableCopy]];
+            [newFollowers removeAllObjects];
+        }
+    }
 }
 
 @end

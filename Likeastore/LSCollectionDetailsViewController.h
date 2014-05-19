@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *itemsTableView;
 
 - (IBAction)toggleFollowCollection:(id)sender;
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)recognizer;
 
 @end

@@ -14,7 +14,6 @@
 #import "LSCollection.h"
 #import "LSItem.h"
 #import "LSFavoritesTableViewCell.h"
-#import "UIImage+Color.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
@@ -45,6 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self clearImageCache];
+    
     LSSharedUser *sharedUser = [LSSharedUser create];
     [sharedUser setDelegate:self];
     [sharedUser needsAuthorizedUser];
@@ -54,28 +55,29 @@
     
     [self setupTableView];
     
-    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-    [api getFavoritesFromCollectionID:self.collection._id byPage:1 success:^(AFHTTPRequestOperation *operation, id favorites) {
-        @autoreleasepool {
-            NSArray *items = [favorites objectForKey:@"data"];
-            
-            if ([items count] > 0) {
-                // populate data
-                NSMutableArray *result = [[NSMutableArray alloc] init];
-                for (NSDictionary *itemData in items) {
-                    LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
-                    [result addObject:item];
-                }
-                
-                [self.items addObjectsFromArray:result];
-                [self.itemsTableView reloadData];
-                
-                [result removeAllObjects];
-                result = nil;
-            }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error %@", error);
+    // show activity indicator on first load
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loader setCenter:CGPointMake(self.view.frame.size.width / 2.0f, 165.0f)];
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
+    __block CGFloat page = 1;
+    __weak LSCollectionDetailsViewController *weakSelf = self;
+    
+    [self loadItemsFor:page success:^{
+        page += 1;
+        [loader stopAnimating];
+        [loader removeFromSuperview];
+    }];
+    
+    // infinite scrolling
+    [self.itemsTableView addInfiniteScrollingWithActionHandler:^{
+        [loader stopAnimating];
+        [loader removeFromSuperview];
+        [weakSelf loadItemsFor:page success:^{
+            page += 1;
+            [weakSelf.itemsTableView.infiniteScrollingView stopAnimating];
+        }];
     }];
 }
 
@@ -99,6 +101,34 @@
     [self clearImageCache];
 }
 
+- (void)loadItemsFor:(CGFloat)page success:(void (^)())callback {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    
+    [api getFavoritesFromCollectionID:self.collection._id byPage:page success:^(AFHTTPRequestOperation *operation, id favorites) {
+        @autoreleasepool {
+            NSArray *items = [favorites objectForKey:@"data"];
+            
+            if ([items count] > 0) {
+                // populate data
+                NSMutableArray *result = [[NSMutableArray alloc] init];
+                for (NSDictionary *itemData in items) {
+                    LSItem *item = [[LSItem alloc] initWithDictionary:itemData];
+                    [result addObject:item];
+                }
+                
+                [self.items addObjectsFromArray:result];
+                [self.itemsTableView reloadData];
+                
+                [result removeAllObjects];
+            }
+        }
+        
+        callback();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlert:@"Something went wrong while getting collection favorites. Please try again later"];
+    }];
+}
+
 - (void)setupTableView {
     [self.itemsTableView setDelegate:self];
     [self.itemsTableView setDataSource:self];
@@ -120,15 +150,7 @@
 - (void)haveSharedUser:(LSUser *)user {
     // check if user owns this collection
     if ([self.collection.ownerID isEqualToString:user._id]) {
-        UIColor *greenColor = [UIColor colorWithHexString:@"#3daeae"];
-        
-        [self.toggleFollowButton setEnabled:NO];
-        [self.toggleFollowButton setTitle:@"Owner" forState:UIControlStateNormal];
-        [self.toggleFollowButton setBackgroundColor:[UIColor clearColor]];
-        [self.toggleFollowButton setTitleColor:greenColor forState:UIControlStateNormal];
-        [self.toggleFollowButton setTintColor:greenColor];
-        [self.toggleFollowButton.layer setBorderWidth:1.5f];
-        [self.toggleFollowButton.layer setBorderColor:greenColor.CGColor];
+        [self setupOwnerButtonStyles];
         
     // check if user is following this collection
     } else if ([self.collection followedByUser:user._id]) {
@@ -235,22 +257,94 @@
     [cell.itemTypeView setImage:typeImage];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [self openWebView:url];
 }
-*/
+
+- (void)openWebView:(NSURL *)url {
+    TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
+    [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
+    
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - Gestures
+
+- (void) showActionSheetForIndexPath:(NSIndexPath *)indexPath {
+    LSItem *item = [self.items objectAtIndex:indexPath.row];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:item.source];
+    
+    // custom styles
+    [actionSheet setBlurTintColor:[UIColor colorWithHexString:@"#1f212f" alpha:0.9f]];
+    [actionSheet setBlurRadius:3.0f];
+    [actionSheet setButtonHeight:50.0f];
+    [actionSheet setCancelButtonHeight:50.0f];
+    [actionSheet setCancelButtonShadowColor:[UIColor colorWithHexString:@"#303140" alpha:0.98f]];
+    [actionSheet setSeparatorColor:[UIColor colorWithHexString:@"#a3a5c0" alpha:0.6f]];
+    [actionSheet setSelectedBackgroundColor:[UIColor colorWithHexString:@"#161625" alpha:0.6f]];
+    
+    // fonts and colors
+    UIColor *mainColor = [UIColor colorWithHexString:@"#e9e9e9"];
+    UIColor *pinkColor = [UIColor colorWithHexString:@"#f03e56"];
+    UIFont *defaultFont = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+    CGFloat icon_size = 24.0f;
+    
+    actionSheet.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14.0f], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#43c2c2"]};
+    
+    actionSheet.buttonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                         NSForegroundColorAttributeName:mainColor};
+    actionSheet.cancelButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                               NSForegroundColorAttributeName:mainColor};
+    actionSheet.destructiveButtonTextAttributes = @{NSFontAttributeName:defaultFont,
+                                                    NSForegroundColorAttributeName:pinkColor};
+    
+    // create menu items
+    FAKIonIcons *sourceIcon = [FAKIonIcons ios7UploadOutlineIconWithSize:icon_size];
+    [sourceIcon addAttribute:NSForegroundColorAttributeName value:mainColor];
+    [actionSheet addButtonWithTitle:@"Go to source"
+                              image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *as) {
+                                [self openWebView:[NSURL URLWithString:item.source]];
+                            }];
+    
+    [actionSheet show];
+}
+
+- (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint point = [recognizer locationInView:self.itemsTableView];
+        NSIndexPath *indexPath = [self.itemsTableView indexPathForRowAtPoint:point];
+        
+        if (indexPath) {
+            [self showActionSheetForIndexPath:indexPath];
+        }
+    }
+}
+
+#pragma mark - Follow and unfollow
 
 - (IBAction)toggleFollowCollection:(id)sender {
-    if ([self.collection followedByUser:[LSSharedUser sharedUser]._id]) {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    LSUser *user = [LSSharedUser sharedUser];
+    
+    if ([self.collection followedByUser:user._id]) {
         [self setupFollowButtonStyles];
+        [api unfollowCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [self.collection removeFollower:user._id];
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self showErrorAlert:@"Something went wrong while unfollowing collection. Please try again later"];
+         }];
     } else {
         [self setupFollowingButtonStyles];
+        [api followCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [self.collection addFollower:user._id];
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self showErrorAlert:@"Something went wrong while following collection. Please try again later"];
+         }];
     }
 }
 
@@ -272,6 +366,25 @@
     [self.toggleFollowButton setTintColor:[UIColor whiteColor]];
     [self.toggleFollowButton.layer setBorderWidth:0.0f];
     [self.toggleFollowButton.layer setBorderColor:[UIColor clearColor].CGColor];
+}
+
+- (void)setupOwnerButtonStyles {
+    UIColor *greenColor = [UIColor colorWithHexString:@"#3daeae"];
+    
+    [self.toggleFollowButton setEnabled:NO];
+    [self.toggleFollowButton setTitle:@"Owner" forState:UIControlStateNormal];
+    [self.toggleFollowButton setBackgroundColor:[UIColor clearColor]];
+    [self.toggleFollowButton setTitleColor:greenColor forState:UIControlStateNormal];
+    [self.toggleFollowButton setTintColor:greenColor];
+    [self.toggleFollowButton.layer setBorderWidth:1.5f];
+    [self.toggleFollowButton.layer setBorderColor:greenColor.CGColor];
+}
+
+#pragma mark - Alerts
+
+- (void)showErrorAlert:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

@@ -198,4 +198,20 @@
              failure:failure];
 }
 
+- (AFHTTPRequestOperation *)followCollectionByID:(NSString *)_id success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self PUT:[API_URL stringByAppendingFormat:@"/collections/%@/follow", _id]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
+- (AFHTTPRequestOperation *)unfollowCollectionByID:(NSString *)_id success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self DELETE:[API_URL stringByAppendingFormat:@"/collections/%@/follow", _id]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
 @end

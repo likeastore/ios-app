@@ -406,6 +406,7 @@
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="FFg-B5-AlQ" appends="YES" id="o33-11-aq1"/>
+                            <outletCollection property="gestureRecognizers" destination="Dov-cj-NdH" appends="YES" id="CCJ-w5-E2q"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="EV2-0O-p40"/>
@@ -422,6 +423,11 @@
                         <segue destination="iQ5-jV-r7A" kind="unwind" unwindAction="backFromCollectionDetailsUnwindSegueCallback:" id="Gck-Ur-izY"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.29999999999999999" id="Dov-cj-NdH">
+                    <connections>
+                        <action selector="longPressGestureHandle:" destination="tCY-uz-eSm" id="ETd-FF-mrE"/>
+                    </connections>
+                </pongPressGestureRecognizer>
                 <exit id="iQ5-jV-r7A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="798" y="-308"/>
@@ -953,7 +959,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAI-CN-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.5" id="yyO-e0-Gob">
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" allowableMovement="10" minimumPressDuration="0.29999999999999999" id="yyO-e0-Gob">
                     <connections>
                         <action selector="longPressGestureHandle:" destination="1hN-Wi-PXA" id="iQP-il-k7c"/>
                     </connections>
