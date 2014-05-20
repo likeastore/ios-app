@@ -82,6 +82,8 @@
 - (void)signOut {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api logoutWithSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [LSSharedUser unauthorizeSharedUser];
+        
         //segue to login
         [self performSegueWithIdentifier:@"showLoginAfterSignOut" sender:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

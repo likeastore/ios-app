@@ -9,6 +9,7 @@
 #import "LSWebAuthViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import "LSSetupViewController.h"
+#import "LSUser.h"
 
 #import <NSURL+ParseQuery/NSURL+QueryParser.h>
 
@@ -50,22 +51,26 @@
         NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
         
         LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-        [api getEmailAndAPIToken:userId success:^(AFHTTPRequestOperation *operation, id user) {
-            // show setup
-            if ([user objectForKey:@"firstTimeUser"]) {
-                [self setFirstTimeUserId:[user objectForKey:@"_id"]];
-                [self performSegueWithIdentifier:@"fromAuthToSetup" sender:self];
+        [api getEmailAndAPIToken:userId success:^(AFHTTPRequestOperation *operation, id userData) {
+            @autoreleasepool {
+                LSUser *user = [[LSUser alloc] initWithDictionary:userData];
                 
-            // or continue auth
-            } else {
-                NSDictionary *credentials = @{@"email": [user objectForKey:@"email"], @"apiToken": [user objectForKey:@"apiToken"]};
-
-                [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject)
-                {
-                    [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [self showErrorAlert];
-                }];
+                // show setup
+                if (user.isFirstTimeUser) {
+                    [self setFirstTimeUserId:user._id];
+                    [self performSegueWithIdentifier:@"fromAuthToSetup" sender:self];
+                    
+                    // or continue auth
+                } else {
+                    NSDictionary *credentials = @{@"email":user.email, @"apiToken":user.apiToken};
+                    
+                    [api getAccessToken:credentials success:^(AFHTTPRequestOperation *operation, id responseObject)
+                     {
+                         [self performSegueWithIdentifier:@"fromAuthToFeed" sender:self];
+                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         [self showErrorAlert];
+                     }];
+                }
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self showErrorAlert];
@@ -73,6 +78,7 @@
         
         return NO;
     }
+    
     return YES;
 }
 

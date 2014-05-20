@@ -32,15 +32,11 @@ static LSUser *_sharedLikeastoreUser = nil;
  * on other calls return initialized user
  */
 + (LSUser *)sharedUser {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
-        [api getUser:^(AFHTTPRequestOperation *operation, id user) {
-            _sharedLikeastoreUser = [[LSUser alloc] initWithDictionary:user];
-        } failure:nil];
-    });
-    
     return _sharedLikeastoreUser;
+}
+
++ (void)unauthorizeSharedUser {
+    _sharedLikeastoreUser = nil;
 }
 
 /** 

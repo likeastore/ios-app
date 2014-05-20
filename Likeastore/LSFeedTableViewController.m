@@ -58,7 +58,7 @@
     
     // initial load
     [self setupItemsFor:page actionType:@"initial" success:^(BOOL nextPage){
-        if (nextPage) page += 1;
+        page += 1;
         [loader stopAnimating];
         [loader removeFromSuperview];
     }];
@@ -77,7 +77,7 @@
         [loader stopAnimating];
         [loader removeFromSuperview];
         [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^(BOOL nextPage){
-            if (nextPage) page += 1;
+            page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }];
     }];
@@ -97,6 +97,7 @@
     LSSharedUser *sharedUser = [LSSharedUser new];
     [sharedUser setDelegate:self];
     [sharedUser checkUserAuthorized];
+    [sharedUser needsAuthorizedUser];
 }
 
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
@@ -159,6 +160,19 @@
         // init user
         [LSSharedUser sharedUser];
     }
+}
+
+- (void)haveSharedUser:(LSUser *)user {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel createAlias:user.email forDistinctID:mixpanel.distinctId];
+        [mixpanel.people set:@{
+                               @"$email": user.email,
+                               @"$created": user.registered,
+                               @"$last_login": [NSDate date]
+                               }];
+    });
 }
 
 #pragma mark - Table view data source

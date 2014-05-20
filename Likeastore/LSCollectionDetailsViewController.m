@@ -67,7 +67,7 @@
     __weak LSCollectionDetailsViewController *weakSelf = self;
     
     [self loadItemsFor:page success:^(BOOL nextPage){
-        if (nextPage) page += 1;
+        page += 1;
         
         [loader stopAnimating];
         [loader removeFromSuperview];
@@ -78,8 +78,7 @@
         [loader stopAnimating];
         [loader removeFromSuperview];
         [weakSelf loadItemsFor:page success:^(BOOL nextPage){
-            if (nextPage) page += 1;
-            
+            page += 1;
             [weakSelf.itemsTableView.infiniteScrollingView stopAnimating];
         }];
     }];

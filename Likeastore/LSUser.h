@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSString *warning;
 @property (strong, nonatomic) NSString *provider;
 @property (strong, nonatomic) NSString *firstTimeUser;
+@property (strong, nonatomic) NSString *apiToken;
+@property (strong, nonatomic) NSDate *registered;
 
 @property (strong, nonatomic) NSArray *followCollections;
 

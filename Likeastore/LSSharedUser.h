@@ -23,6 +23,7 @@
 
 + (instancetype)create;
 + (LSUser *)sharedUser;
++ (void)unauthorizeSharedUser;
 - (void)checkUserAuthorized;
 - (void)needsAuthorizedUser;
 + (void)deleteAuthCookie;

@@ -25,6 +25,8 @@
         _warning = [dictionary objectForKeyNotNull:@"warning"];
         _firstTimeUser = [dictionary objectForKeyNotNull:@"firstTimeUser"];
         _followCollections = [dictionary objectForKeyNotNull:@"followCollections"];
+        _apiToken = [dictionary objectForKeyNotNull:@"apiToken"];
+        _registered = [dictionary objectForKeyNotNull:@"registered"];
     }
     
     return  self;

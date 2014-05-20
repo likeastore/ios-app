@@ -60,7 +60,7 @@
     
     // initial load
     [self setupItemsFor:page actionType:@"initial" success:^(BOOL nextPage) {
-        if (nextPage) page += 1;
+        page += 1;
         [loader stopAnimating];
         [loader removeFromSuperview];
     }];
@@ -79,7 +79,7 @@
         [loader stopAnimating];
         [loader removeFromSuperview];
         [weakSelf setupItemsFor:page actionType:@"infiniteScroll" success:^(BOOL nextPage) {
-            if (nextPage) page += 1;
+            page += 1;
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }];
     }];
