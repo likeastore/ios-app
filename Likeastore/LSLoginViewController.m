@@ -30,12 +30,13 @@
     [super viewDidLoad];
     
     [self setNeedsStatusBarAppearanceUpdate];
-    // Do any additional setup after loading the view.
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"signup opened"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
@@ -73,7 +74,7 @@
     [alertView show];
 }
 
-#pragma mark - segues
+#pragma mark - Navigation
 
 - (IBAction)backFromEmailLoginUnwindSegueCallback:(UIStoryboardSegue *)segue {
 }
@@ -82,7 +83,7 @@
     return [[MFStoryboardPopSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
 }
 
-#pragma mark - gestures
+#pragma mark - Gestures
 
 - (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded &&
@@ -90,16 +91,5 @@
         [self performSegueWithIdentifier:@"showEmailLogin" sender:self];
     }
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

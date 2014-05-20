@@ -12,11 +12,13 @@
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <FontAwesomeKit/FAKFoundationIcons.h>
+#import <Mixpanel/Mixpanel.h>
 
 @implementation LSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Mixpanel sharedInstanceWithToken:@"c5c59411e311ab48cfe2846460be7d7e"];
     [FAKFontAwesome iconFontWithSize:1];
     [FAKIonIcons iconFontWithSize:1];
     [FAKFoundationIcons iconFontWithSize:1];

@@ -33,7 +33,9 @@
     [super viewDidLoad];
     
     [self setNeedsStatusBarAppearanceUpdate];
-    // Do any additional setup after loading the view.
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"signup opened"];
 }
 
 - (void)didReceiveMemoryWarning {

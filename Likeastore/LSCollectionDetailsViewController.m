@@ -20,7 +20,6 @@
 #import <TOWebViewController/TOWebViewController.h>
 #import <AHKActionSheet/AHKActionSheet.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
-#import <Underscore.m/Underscore.h>
 
 @interface LSCollectionDetailsViewController ()
 
@@ -43,6 +42,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"collection opened"];
     
     [self clearImageCache];
     
@@ -308,6 +310,9 @@
                               image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *as) {
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"source link opened"];
+                                
                                 [self openWebView:[NSURL URLWithString:item.source]];
                             }];
     
@@ -330,15 +335,18 @@
 - (IBAction)toggleFollowCollection:(id)sender {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     LSUser *user = [LSSharedUser sharedUser];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
     
     if ([self.collection followedByUser:user._id]) {
         [self setupFollowButtonStyles];
+        [mixpanel track:@"collection unfollowed"];
         [api unfollowCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection removeFollower:user._id];
          } failure:nil];
     } else {
         [self setupFollowingButtonStyles];
+        [mixpanel track:@"collection followed"];
         [api followCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection addFollower:user._id];

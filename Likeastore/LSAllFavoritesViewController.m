@@ -98,8 +98,14 @@
     
     if ([self.favoritesType isEqualToString:@"inbox"]) {
         [menu setMenubarTitle:@"Inbox"];
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"inbox opened"];
     } else if ([self.favoritesType isEqualToString:@"all"]) {
         [menu setMenubarTitle:@"All Favorites"];
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"dashboard opened"];
     }
     
 }
@@ -350,6 +356,9 @@
                               image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *as) {
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"source link opened"];
+                                
                                 [weakSelf openWebView:[NSURL URLWithString:item.source]];
                             }];
     
@@ -443,6 +452,9 @@
 }
 
 - (void)makeSearchWithText:(NSString *)text byPage:(CGFloat)page success:(void (^)(BOOL nextPage))callback {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"search opened"];
+    
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api searchFavoritesByText:text byPage:page success:^(AFHTTPRequestOperation *operation, id favorites) {
         @autoreleasepool {

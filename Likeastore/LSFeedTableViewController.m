@@ -42,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"feed opened"];
+    
     [self clearImageCache];
 
     // show activity indicator on first load
@@ -301,6 +304,9 @@
                               image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *as) {
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"source link opened"];
+                                
                                 [self openWebView:[NSURL URLWithString:item.source]];
                             }];
     

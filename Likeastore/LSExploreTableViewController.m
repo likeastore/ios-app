@@ -37,6 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"explore opened"];
 
     [self setupSearchBar];
     
@@ -188,6 +191,9 @@
 }
 
 - (void)makeSearchWithText:(NSString *)text {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"collections searched"];
+    
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api searchPopularCollectionsByText:text success:^(AFHTTPRequestOperation *operation, id collections) {
         [self.searchResults removeAllObjects];

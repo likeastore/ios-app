@@ -35,6 +35,9 @@
     
     [self setNeedsStatusBarAppearanceUpdate];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"setup opened"];
+    
     [self.activityIndicator startAnimating];
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];

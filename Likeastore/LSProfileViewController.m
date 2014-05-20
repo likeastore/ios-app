@@ -41,6 +41,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"profile opened"];
+    
     self.bgTopView = [[LSMenuBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 1.0f)];
     [self.view addSubview:self.bgTopView];
     
