@@ -240,6 +240,14 @@
              failure:failure];
 }
 
+- (AFHTTPRequestOperation *)connectDribbble:(NSString *)username success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self POST:[API_URL stringByAppendingString:@"/networks/dribbble"]
+           parameters:@{@"username": username}
+              success:success
+              failure:failure];
+}
+
 - (AFHTTPRequestOperation *)deleteNetwork:(NSString *)networkName success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
     return [self DELETE:[API_URL stringByAppendingFormat:@"/networks/%@", networkName]

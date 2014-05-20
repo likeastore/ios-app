@@ -106,7 +106,7 @@
     if (sender.isOn) {
         if ([sender.service isEqualToString:@"dribbble"]) {
             // show dribbble find user modal
-            
+            [self performSegueWithIdentifier:@"showDribbbleConnect" sender:self];
         } else {
             [api connectNetwork:sender.service success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];

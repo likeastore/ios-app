@@ -1055,11 +1055,137 @@
                         <outletCollection property="switches" destination="pn6-7J-xhs" id="58w-3V-xk5"/>
                         <outletCollection property="switches" destination="sB7-pK-Y9c" id="Dc6-Vr-3jm"/>
                         <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLoginAfterSignOut" customClass="MFStoryboardPushSegue" modalTransitionStyle="crossDissolve" id="5HF-o4-q3F"/>
+                        <segue destination="3g9-hG-gbO" kind="modal" identifier="showDribbbleConnect" id="n51-WH-jrP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htz-V8-ZCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-179" y="1178"/>
+        </scene>
+        <!--Dribbble Modal View Controller-->
+        <scene sceneID="DJJ-NZ-wC7">
+            <objects>
+                <viewController id="3g9-hG-gbO" customClass="LSDribbbleModalViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="spo-Mm-rqy"/>
+                        <viewControllerLayoutGuide type="bottom" id="HPZ-wZ-5nd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kde-Tx-QL6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KvX-XA-w9q" customClass="TPKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dribbbleLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8ZV-C8-Kd7">
+                                        <rect key="frame" x="40" y="122" width="240" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="7Gq-w8-lTi"/>
+                                            <constraint firstAttribute="width" constant="240" id="Hrd-48-vZa"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start to collect favourite shots" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVw-Wu-hKG">
+                                        <rect key="frame" x="20" y="190" width="280" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="4Iv-QR-fFr"/>
+                                            <constraint firstAttribute="height" constant="21" id="C4z-pz-EwE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dribbble username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pF9-c6-RLH">
+                                        <rect key="frame" x="20" y="261" width="280" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="02Q-zQ-Bw4"/>
+                                            <constraint firstAttribute="width" constant="280" id="paE-0T-mf5"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="LoginField"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRh-aF-QJh">
+                                        <rect key="frame" x="20" y="314" width="280" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.91764705882352937" green="0.29803921568627451" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="bkB-a5-Jtv"/>
+                                            <constraint firstAttribute="width" constant="280" id="dOj-tS-9cP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="Connect dribbble">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="LoginButton"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="connectDribbble:" destination="3g9-hG-gbO" eventType="touchUpInside" id="j0K-Nv-rSq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pF9-c6-RLH" firstAttribute="leading" secondItem="KvX-XA-w9q" secondAttribute="leading" constant="20" id="8ky-1s-N6U"/>
+                                    <constraint firstItem="JRh-aF-QJh" firstAttribute="top" secondItem="pF9-c6-RLH" secondAttribute="bottom" constant="8" id="DHy-KZ-SJe"/>
+                                    <constraint firstItem="HVw-Wu-hKG" firstAttribute="top" secondItem="8ZV-C8-Kd7" secondAttribute="bottom" constant="8" id="FhP-Fe-Xnr"/>
+                                    <constraint firstAttribute="centerY" secondItem="pF9-c6-RLH" secondAttribute="centerY" id="N64-FO-X8t"/>
+                                    <constraint firstAttribute="trailing" secondItem="8ZV-C8-Kd7" secondAttribute="trailing" constant="40" id="R8b-FX-g3v"/>
+                                    <constraint firstAttribute="trailing" secondItem="HVw-Wu-hKG" secondAttribute="trailing" constant="20" id="UfQ-iK-NC5"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JRh-aF-QJh" secondAttribute="bottom" constant="5" id="W8O-Tf-I67"/>
+                                    <constraint firstItem="8ZV-C8-Kd7" firstAttribute="leading" secondItem="KvX-XA-w9q" secondAttribute="leading" constant="40" id="Yh3-ad-GEt"/>
+                                    <constraint firstAttribute="trailing" secondItem="JRh-aF-QJh" secondAttribute="trailing" constant="20" id="ZMD-KB-c8x"/>
+                                    <constraint firstItem="JRh-aF-QJh" firstAttribute="leading" secondItem="KvX-XA-w9q" secondAttribute="leading" constant="20" id="Zj0-Uj-MsC"/>
+                                    <constraint firstItem="pF9-c6-RLH" firstAttribute="top" secondItem="HVw-Wu-hKG" secondAttribute="bottom" constant="50" id="aPu-Qi-OL5"/>
+                                    <constraint firstAttribute="bottom" secondItem="JRh-aF-QJh" secondAttribute="bottom" priority="1" constant="5" id="fRM-IU-i5n"/>
+                                    <constraint firstItem="HVw-Wu-hKG" firstAttribute="leading" secondItem="KvX-XA-w9q" secondAttribute="leading" constant="20" id="ndm-7l-Fym"/>
+                                    <constraint firstAttribute="trailing" secondItem="pF9-c6-RLH" secondAttribute="trailing" constant="20" id="rb1-z8-jl9"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blK-2v-qbA">
+                                <rect key="frame" x="90" y="511" width="140" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="F3S-yR-ryR"/>
+                                    <constraint firstAttribute="width" constant="140" id="cZT-19-tJF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="No, take me back!">
+                                    <color key="titleColor" red="0.33725490196078434" green="0.7803921568627451" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="3g9-hG-gbO" eventType="touchUpInside" id="dTA-Fz-leU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="KvX-XA-w9q" firstAttribute="top" secondItem="Kde-Tx-QL6" secondAttribute="top" id="5KJ-Om-X7b"/>
+                            <constraint firstItem="HPZ-wZ-5nd" firstAttribute="top" secondItem="blK-2v-qbA" secondAttribute="bottom" constant="20" id="DRg-tg-RlR"/>
+                            <constraint firstAttribute="trailing" secondItem="blK-2v-qbA" secondAttribute="trailing" constant="90" id="Fa6-Xe-QDP"/>
+                            <constraint firstItem="KvX-XA-w9q" firstAttribute="leading" secondItem="Kde-Tx-QL6" secondAttribute="leading" id="VkQ-gO-58b"/>
+                            <constraint firstItem="HPZ-wZ-5nd" firstAttribute="top" secondItem="KvX-XA-w9q" secondAttribute="bottom" id="itg-Pe-Rg6"/>
+                            <constraint firstItem="blK-2v-qbA" firstAttribute="leading" secondItem="Kde-Tx-QL6" secondAttribute="leading" constant="90" id="mFV-FU-Vsc"/>
+                            <constraint firstAttribute="trailing" secondItem="KvX-XA-w9q" secondAttribute="trailing" id="tLS-f0-N0r"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="blK-2v-qbA" id="er1-Tj-7oh"/>
+                        <outlet property="dribbbleUsername" destination="pF9-c6-RLH" id="5MJ-jG-oHC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdX-lq-6pi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="370" y="1178"/>
         </scene>
         <!--All Favorites View Controller-->
         <scene sceneID="YbT-OM-7jg">
@@ -2411,6 +2537,7 @@
     <resources>
         <image name="behance" width="128" height="128"/>
         <image name="dribbble" width="128" height="128"/>
+        <image name="dribbbleLogo" width="240" height="60"/>
         <image name="emailLoginBackground" width="320" height="480"/>
         <image name="facebook" width="128" height="128"/>
         <image name="flickr" width="128" height="128"/>
