@@ -56,4 +56,12 @@
 
 - (AFHTTPRequestOperation *) getFavoritesFromCollectionID:(NSString *)_id byPage:(CGFloat)page success:(void (^)(AFHTTPRequestOperation *operation, id favorites))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+#pragma mark - Networks
+
+- (AFHTTPRequestOperation *) getNetworks:(void (^)(AFHTTPRequestOperation *operation, id networks))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (AFHTTPRequestOperation *) connectNetwork:(NSString *)networkName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (AFHTTPRequestOperation *) deleteNetwork:(NSString *)networkName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end

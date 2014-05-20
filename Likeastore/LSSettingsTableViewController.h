@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSSwitch.h"
 
 @interface LSSettingsTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *signOutCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *clearCacheCell;
+
+# pragma mark - Switches
+
+@property (strong, nonatomic) IBOutletCollection(LSSwitch) NSArray *switches;
+
+- (IBAction)toggleSwitch:(UISwitch *)sender;
 
 @end

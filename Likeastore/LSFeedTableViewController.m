@@ -166,7 +166,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel createAlias:user.email forDistinctID:mixpanel.distinctId];
+        [mixpanel identify:user.email];
         [mixpanel.people set:@{
                                @"$email": user.email,
                                @"$created": user.registered,

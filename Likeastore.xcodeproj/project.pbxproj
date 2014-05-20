@@ -12,6 +12,8 @@
 		2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01D191138FA000E3DBC /* LSCollection.m */; };
 		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
 		2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */; };
+		2A142D75192B9CDF006045F8 /* LSNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A142D74192B9CDF006045F8 /* LSNetwork.m */; };
+		2A142D78192BA631006045F8 /* LSSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A142D77192BA631006045F8 /* LSSwitch.m */; };
 		2A1AC45519227CEE0019954C /* LSExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1AC45419227CEE0019954C /* LSExploreTableViewController.m */; };
 		2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */; };
 		2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28D082191FDAB600CF3C15 /* LSProfileViewController.m */; };
@@ -72,6 +74,10 @@
 		2A0557E3191282940078EBB9 /* LSNUITheme.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LSNUITheme.nss; sourceTree = "<group>"; };
 		2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFeedTableViewCell.h; sourceTree = "<group>"; };
 		2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewCell.m; sourceTree = "<group>"; };
+		2A142D73192B9CDF006045F8 /* LSNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetwork.h; sourceTree = "<group>"; };
+		2A142D74192B9CDF006045F8 /* LSNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNetwork.m; sourceTree = "<group>"; };
+		2A142D76192BA631006045F8 /* LSSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSwitch.h; sourceTree = "<group>"; };
+		2A142D77192BA631006045F8 /* LSSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSwitch.m; sourceTree = "<group>"; };
 		2A1AC45319227CEE0019954C /* LSExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSExploreTableViewController.h; sourceTree = "<group>"; };
 		2A1AC45419227CEE0019954C /* LSExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSExploreTableViewController.m; sourceTree = "<group>"; };
 		2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFavoritesTableViewCell.h; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 				2A00D01D191138FA000E3DBC /* LSCollection.m */,
 				2A00D019191132F7000E3DBC /* LSItem.h */,
 				2A00D01A191132F7000E3DBC /* LSItem.m */,
+				2A142D73192B9CDF006045F8 /* LSNetwork.h */,
+				2A142D74192B9CDF006045F8 /* LSNetwork.m */,
 				2A60838E1920D6AD0059D588 /* LSUser.h */,
 				2A60838F1920D6AD0059D588 /* LSUser.m */,
 			);
@@ -227,6 +235,8 @@
 				2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */,
 				2A4A727E190FF48A002F7C0E /* LSMenuBar.h */,
 				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
+				2A142D76192BA631006045F8 /* LSSwitch.h */,
+				2A142D77192BA631006045F8 /* LSSwitch.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -328,10 +338,10 @@
 		2AA58A1C192510B9006C69EB /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */,
-				2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */,
 				2AA58A2319251219006C69EB /* FavoritesAvatarTextCellView.xib */,
+				2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */,
 				2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */,
+				2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -478,6 +488,8 @@
 			files = (
 				2A4A7279190FE7AC002F7C0E /* LSDropdownViewController.m in Sources */,
 				2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */,
+				2A142D78192BA631006045F8 /* LSSwitch.m in Sources */,
+				2A142D75192B9CDF006045F8 /* LSNetwork.m in Sources */,
 				2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */,
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
 				2A2BC04319264879008D8BF5 /* LSCollectionDetailsViewController.m in Sources */,

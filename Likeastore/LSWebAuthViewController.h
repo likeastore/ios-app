@@ -11,6 +11,7 @@
 @interface LSWebAuthViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *authServiceName;
+@property (strong, nonatomic) NSString *urlString;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)cancelAuth:(id)sender;

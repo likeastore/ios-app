@@ -33,10 +33,13 @@
     [super viewDidLoad];
     [self.webView setDelegate:self];
     
-    NSURL *authUrl = [NSURL URLWithString:[AUTH_URL stringByAppendingFormat:@"/%@", self.authServiceName]];
-    NSURLRequest *urlReq = [NSURLRequest requestWithURL:authUrl];
+    NSURL *authUrl = self.authServiceName ?
+        [NSURL URLWithString:[AUTH_URL stringByAppendingFormat:@"/%@", self.authServiceName]] :
+        [NSURL URLWithString:self.urlString];
     
-    [self.webView loadRequest:urlReq];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:authUrl];
+    
+    [self.webView loadRequest:urlRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,8 +47,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *responseURL = [request.URL absoluteString];
+    
+    if ([responseURL hasPrefix:BLANK_HTML]) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"network enabled"];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        return NO;
+    }
     
     if ([responseURL hasPrefix:[BLANK_HTML stringByAppendingString:@"?id="]]) {
         NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
@@ -60,7 +72,7 @@
                     [self setFirstTimeUserId:user._id];
                     [self performSegueWithIdentifier:@"fromAuthToSetup" sender:self];
                     
-                    // or continue auth
+                // or continue auth
                 } else {
                     NSDictionary *credentials = @{@"email":user.email, @"apiToken":user.apiToken};
                     

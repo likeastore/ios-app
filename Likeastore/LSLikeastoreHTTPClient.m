@@ -222,4 +222,30 @@
              failure:failure];
 }
 
+#pragma mark - Networks
+
+- (AFHTTPRequestOperation *)getNetworks:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self GET:[API_URL stringByAppendingString:@"/networks"]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
+- (AFHTTPRequestOperation *)connectNetwork:(NSString *)networkName success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self POST:[API_URL stringByAppendingFormat:@"/networks/%@", networkName]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
+- (AFHTTPRequestOperation *)deleteNetwork:(NSString *)networkName success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self DELETE:[API_URL stringByAppendingFormat:@"/networks/%@", networkName]
+           parameters:nil
+              success:success
+              failure:failure];
+}
+
 @end

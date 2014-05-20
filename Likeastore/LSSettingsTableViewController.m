@@ -10,7 +10,10 @@
 #import "LSDropdownViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import "LSSharedUser.h"
+#import "LSWebAuthViewController.h"
+#import "LSNetwork.h"
 
+#import <Underscore.m/Underscore.h>
 #import <SDWebImage/SDImageCache.h>
 
 @interface LSSettingsTableViewController ()
@@ -33,11 +36,16 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"settings opened"];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [api getNetworks:^(AFHTTPRequestOperation *operation, id networks) {
+        for (NSDictionary *networkData in networks) {
+            LSNetwork *network = [[LSNetwork alloc] initWithDictionary:networkData];
+            LSSwitch *targetSwitch = Underscore.array(self.switches).find(^BOOL(LSSwitch *networkSwitch) {
+                return [networkSwitch.service isEqualToString:network.service];
+            });
+            [targetSwitch setOn:YES animated:YES];
+        }
+    } failure:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -92,68 +100,85 @@
     }];
 }
 
+- (IBAction)toggleSwitch:(LSSwitch *)sender {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    
+    if (sender.isOn) {
+        if ([sender.service isEqualToString:@"dribbble"]) {
+            // show dribbble find user modal
+            
+        } else {
+            [api connectNetwork:sender.service success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
+                [webAuthCtrl setUrlString:[responseObject objectForKey:@"authUrl"]];
+                [self presentViewController:webAuthCtrl animated:YES completion:nil];
+            } failure:nil];
+        }
+    } else {
+        [api deleteNetwork:sender.service success:nil failure:nil];
+    }
+}
+
 #pragma mark - Table view data source
 
-
-
 /*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
  
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+ // Configure the cell...
+ 
+ return cell;
+ }
+ */
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
