@@ -59,7 +59,10 @@
 }
 
 - (IBAction)close:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __weak LSDribbbleModalViewController *weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf.settingsController callNetworkConnectDissmissal];
+    }];
 }
 
 - (void)showErrorAlert:(NSString *)message {

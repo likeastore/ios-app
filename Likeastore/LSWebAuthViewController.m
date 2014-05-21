@@ -131,7 +131,12 @@
 #pragma mark - Navigation
 
 - (IBAction)cancelAuth:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __weak LSWebAuthViewController *weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (weakSelf.settingsController) {
+            [weakSelf.settingsController callNetworkConnectDissmissal];
+        }
+    }];
 }
 
  // In a storyboard-based application, you will often want to do a little preparation before navigation

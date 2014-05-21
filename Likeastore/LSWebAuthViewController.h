@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSSettingsTableViewController.h"
 
 @interface LSWebAuthViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *authServiceName;
 @property (strong, nonatomic) NSString *urlString;
+@property (strong, nonatomic) LSSettingsTableViewController *settingsController;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;

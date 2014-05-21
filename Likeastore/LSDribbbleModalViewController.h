@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSSettingsTableViewController.h"
 
 @interface LSDribbbleModalViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UITextField *dribbbleUsername;
+@property (strong, nonatomic) LSSettingsTableViewController *settingsController;
 
 - (IBAction)connectDribbble:(id)sender;
 - (IBAction)close:(id)sender;

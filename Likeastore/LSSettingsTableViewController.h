@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *signOutCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *clearCacheCell;
 
+@property (strong, nonatomic) LSSwitch *targetOnSwitch;
+- (void)callNetworkConnectDissmissal;
+
 # pragma mark - Switches
 
 @property (strong, nonatomic) IBOutletCollection(LSSwitch) NSArray *switches;
