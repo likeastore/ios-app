@@ -113,7 +113,9 @@
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
     __weak LSAllFavoritesViewController *weakSelf = self;
     
-    [weakSelf clearImageCache];
+    if (page == 5) {
+        [self clearImageCache];
+    }
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
@@ -151,7 +153,6 @@
     [super didReceiveMemoryWarning];
     
     [self clearImageCache];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)clearImageCache {
