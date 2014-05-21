@@ -47,17 +47,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Web view delegates
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *responseURL = [request.URL absoluteString];
-    
-    if ([responseURL hasPrefix:BLANK_HTML]) {
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"network enabled"];
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
-        return NO;
-    }
     
     if ([responseURL hasPrefix:[BLANK_HTML stringByAppendingString:@"?id="]]) {
         NSString *userId = [[[NSURL URLWithString:responseURL] parseQuery] objectForKey:@"id"];
@@ -91,10 +84,38 @@
         return NO;
     }
     
+    if ([responseURL hasPrefix:[BLANK_HTML stringByAppendingString:@"?connected"]]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        return NO;
+    }
+    
     return YES;
 }
 
-#pragma mark - alert errors
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [self.activityIndicator startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+    self.activityIndicator = nil;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+    self.activityIndicator = nil;
+}
+
+#pragma mark - Alert errors
 
 - (void)showErrorAlert {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Something went wrong. Please check your connection or try again later!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -106,6 +127,8 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
+
+#pragma mark - Navigation
 
 - (IBAction)cancelAuth:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

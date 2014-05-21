@@ -104,10 +104,14 @@
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
     if (sender.isOn) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"network enabled"];
+        
         if ([sender.service isEqualToString:@"dribbble"]) {
             // show dribbble find user modal
             [self performSegueWithIdentifier:@"showDribbbleConnect" sender:self];
         } else {
+            // go to web auth flow
             [api connectNetwork:sender.service success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 LSWebAuthViewController *webAuthCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"webAuth"];
                 [webAuthCtrl setUrlString:[responseObject objectForKey:@"authUrl"]];

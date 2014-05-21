@@ -26,7 +26,7 @@
                                 </connections>
                             </containerView>
                             <view hidden="YES" alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
-                                <rect key="frame" x="0.0" y="-200" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="-200" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pL-az-eua">
@@ -2163,7 +2163,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="CLV-rv-u4v">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF5-Z0-7jm" customClass="TPKeyboardAvoidingScrollView">
@@ -2483,11 +2483,24 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="H2s-xx-LVn">
+                                <rect key="frame" x="150" y="302" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="6md-hy-FXV"/>
+                                    <constraint firstAttribute="height" constant="20" id="lIB-hY-t7T"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="H2s-xx-LVn" secondAttribute="centerY" constant="-28" id="07z-fL-1CI"/>
+                            <constraint firstAttribute="centerX" secondItem="H2s-xx-LVn" secondAttribute="centerX" id="MBt-xU-nXj"/>
+                        </constraints>
                     </view>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="H2s-xx-LVn" id="4p0-qH-5hv"/>
                         <outlet property="webView" destination="bOd-sD-4hw" id="G13-2m-Vky"/>
                         <segue destination="m39-Xk-X0f" kind="modal" identifier="fromAuthToFeed" modalTransitionStyle="crossDissolve" id="yKi-Z4-5if"/>
                         <segue destination="aax-AR-DO7" kind="modal" identifier="fromAuthToSetup" customClass="MFStoryboardPopSegue" id="p7I-WK-LHF"/>
@@ -2559,11 +2572,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hRX-R9-YOW"/>
-        <segue reference="5HF-o4-q3F"/>
-        <segue reference="VnE-qC-Xw0"/>
+        <segue reference="p7I-WK-LHF"/>
+        <segue reference="yKi-Z4-5if"/>
         <segue reference="Wpv-1J-bh0"/>
         <segue reference="xqr-Ua-D3p"/>
         <segue reference="zuo-hT-5GD"/>
+        <segue reference="5HF-o4-q3F"/>
     </inferredMetricsTieBreakers>
 </document>

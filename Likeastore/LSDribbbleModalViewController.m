@@ -35,7 +35,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (UIStatusBarStyle) preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 

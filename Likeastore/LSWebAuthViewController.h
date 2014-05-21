@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSString *urlString;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 - (IBAction)cancelAuth:(id)sender;
 
 @end
