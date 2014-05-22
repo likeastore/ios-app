@@ -10,6 +10,7 @@
 #import "LSDropdownViewController.h"
 #import "LSLikeastoreHTTPClient.h"
 #import "LSItem.h"
+#import "LSEmptyMessageView.h"
 #import "LSFavoritesTableViewCell.h"
 #import "UIImage+Color.h"
 
@@ -18,6 +19,7 @@
 #import <TOWebViewController/TOWebViewController.h>
 #import <AHKActionSheet/AHKActionSheet.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import <UITableView-NXEmptyView/UITableView+NXEmptyView.h>
 
 @interface LSAllFavoritesViewController ()
 
@@ -140,6 +142,12 @@
                 
                 [result removeAllObjects];
                 result = nil;
+            } else if ([items count] == 0 && [type isEqualToString:@"initial"]) {
+                NSString *message = [self.favoritesType isEqualToString:@"inbox"] ? @"Your inbox is empty, be more active!" : @"No favorites collected yet";
+                LSEmptyMessageView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyMessageView" owner:self options:nil] firstObject];
+                [emptyView.emptyMessageLabel setText:message];
+                [weakSelf.tableView setScrollEnabled:NO];
+                [weakSelf.tableView setNxEV_emptyView:emptyView];
             }
         }
         
@@ -279,8 +287,13 @@
 
 - (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath withID:(NSString *)_id {
     // remove from table
-    [self.items removeObjectAtIndex:indexPath.row];
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+    if (self.searchDisplayController.isActive) {
+        [self.searchResults removeObjectAtIndex:indexPath.row];
+        [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+    } else {
+        [self.items removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+    }
     
     // send api call
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];

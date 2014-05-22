@@ -10,23 +10,35 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="with Likeastore app!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R22-3O-3hs">
-                    <rect key="frame" x="20" y="58" width="280" height="25"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with Likeastore app!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R22-3O-3hs">
+                    <rect key="frame" x="20" y="109" width="280" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="6TN-jc-pRT"/>
+                        <constraint firstAttribute="height" constant="15" id="qwM-9s-pIk"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start to collect your favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-HR-u27">
-                    <rect key="frame" x="20" y="40" width="280" height="25"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start to collect your favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-HR-u27">
+                    <rect key="frame" x="20" y="92" width="280" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="bkp-y1-XpK"/>
+                        <constraint firstAttribute="width" constant="280" id="imL-Cx-SjS"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnh-HC-RaX">
-                    <rect key="frame" x="52" y="411" width="216" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnh-HC-RaX">
+                    <rect key="frame" x="52" y="440" width="216" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="BGz-MS-bcR"/>
+                        <constraint firstAttribute="width" constant="216" id="cBf-Ai-UQm"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title="Connect social networks">
                         <color key="titleColor" red="0.24313725489999999" green="0.71372549019999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,19 +48,33 @@
                         <action selector="connectNetworks:" destination="-1" eventType="touchUpInside" id="reh-Sz-evR"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyFeed" translatesAutoresizingMaskIntoConstraints="NO" id="AIo-Jp-OFj">
-                    <rect key="frame" x="19" y="100" width="280" height="300"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyFeed" translatesAutoresizingMaskIntoConstraints="NO" id="AIo-Jp-OFj">
+                    <rect key="frame" x="19" y="139" width="280" height="300"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="bU0-ZE-gOs"/>
+                        <constraint firstAttribute="height" constant="300" id="teB-i2-3Oj"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="dnh-HC-RaX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="52" id="48y-nf-lSc"/>
+                <constraint firstAttribute="trailing" secondItem="dnh-HC-RaX" secondAttribute="trailing" constant="52" id="DLK-xP-LsJ"/>
+                <constraint firstItem="AIo-Jp-OFj" firstAttribute="top" secondItem="R22-3O-3hs" secondAttribute="bottom" constant="15" id="YfJ-IX-dY6"/>
+                <constraint firstItem="R22-3O-3hs" firstAttribute="top" secondItem="VaN-HR-u27" secondAttribute="bottom" constant="2" id="ZbB-tC-XoC"/>
+                <constraint firstAttribute="trailing" secondItem="AIo-Jp-OFj" secondAttribute="trailing" constant="21" id="bYb-qO-4SY"/>
+                <constraint firstItem="dnh-HC-RaX" firstAttribute="top" secondItem="AIo-Jp-OFj" secondAttribute="bottom" constant="1" id="dW7-r8-OaG"/>
+                <constraint firstAttribute="trailing" secondItem="VaN-HR-u27" secondAttribute="trailing" constant="20" id="lfK-cQ-YU5"/>
+                <constraint firstItem="VaN-HR-u27" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qhS-oQ-mzV"/>
+                <constraint firstAttribute="centerY" secondItem="AIo-Jp-OFj" secondAttribute="centerY" constant="-5" id="vkj-xP-vwW"/>
+                <constraint firstItem="R22-3O-3hs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="wiE-iQ-EkS"/>
+                <constraint firstItem="AIo-Jp-OFj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="zN2-hf-ecq"/>
+                <constraint firstAttribute="trailing" secondItem="R22-3O-3hs" secondAttribute="trailing" constant="20" id="zbq-nO-1JL"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8P0-mT-NHA">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-        </imageView>
     </objects>
     <resources>
         <image name="emptyFeed" width="280" height="300"/>

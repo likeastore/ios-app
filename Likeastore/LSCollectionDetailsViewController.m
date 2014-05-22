@@ -14,12 +14,14 @@
 #import "LSCollection.h"
 #import "LSItem.h"
 #import "LSFavoritesTableViewCell.h"
+#import "LSEmptyMessageView.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <TOWebViewController/TOWebViewController.h>
 #import <AHKActionSheet/AHKActionSheet.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import <UITableView-NXEmptyView/UITableView+NXEmptyView.h>
 
 @interface LSCollectionDetailsViewController ()
 
@@ -50,7 +52,7 @@
     
     LSSharedUser *sharedUser = [LSSharedUser create];
     [sharedUser setDelegate:self];
-    [sharedUser needsAuthorizedUser];
+    [sharedUser needsAuthorizedUser:NO];
     
     [self.collectionTitleLabel setText:self.collection.title];
     [self.followersCountLabel setText:[self.collection.followersCount stringValue]];
@@ -123,6 +125,11 @@
                 [self.itemsTableView reloadData];
                 
                 [result removeAllObjects];
+            } else if ([items count] == 0) {
+                LSEmptyMessageView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyMessageView" owner:self options:nil] firstObject];
+                [emptyView.emptyMessageLabel setText:@"Collection is empty."];
+                [self.itemsTableView setScrollEnabled:NO];
+                [self.itemsTableView setNxEV_emptyView:emptyView];
             }
         }
         

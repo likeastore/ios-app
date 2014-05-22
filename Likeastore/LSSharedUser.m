@@ -43,8 +43,8 @@ static LSUser *_sharedLikeastoreUser = nil;
  * Return user in delegate if it was got and authorized
  * make request to server if user is nil
  */
-- (void)needsAuthorizedUser {
-    if (!_sharedLikeastoreUser) {
+- (void)needsAuthorizedUser:(BOOL)force {
+    if (!_sharedLikeastoreUser || (_sharedLikeastoreUser && force)) {
         LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
         [api getUser:^(AFHTTPRequestOperation *operation, id user) {
             _sharedLikeastoreUser = [[LSUser alloc] initWithDictionary:user];

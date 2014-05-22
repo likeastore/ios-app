@@ -101,7 +101,7 @@
     LSSharedUser *sharedUser = [LSSharedUser new];
     [sharedUser setDelegate:self];
     [sharedUser checkUserAuthorized];
-    [sharedUser needsAuthorizedUser];
+    [sharedUser needsAuthorizedUser:NO];
 }
 
 - (void)setupItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
@@ -136,8 +136,8 @@
                 result = nil;
             } else if ([items count] == 0 && [type isEqualToString:@"initial"]) {
                 UIView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyView" owner:self options:nil] firstObject];
-                weakSelf.tableView.scrollEnabled = NO;
-                weakSelf.tableView.nxEV_emptyView = emptyView;
+                [weakSelf.tableView setScrollEnabled:NO];
+                [weakSelf.tableView setNxEV_emptyView:emptyView];
             }
         }
         

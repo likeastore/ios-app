@@ -25,7 +25,7 @@
 + (LSUser *)sharedUser;
 + (void)unauthorizeSharedUser;
 - (void)checkUserAuthorized;
-- (void)needsAuthorizedUser;
+- (void)needsAuthorizedUser:(BOOL)force;
 + (void)deleteAuthCookie;
 
 @end

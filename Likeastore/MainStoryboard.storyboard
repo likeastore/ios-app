@@ -2889,11 +2889,12 @@
                         <outletCollection property="switches" destination="dWB-9a-BFI" id="cco-gg-zxe"/>
                         <outletCollection property="switches" destination="FM9-sI-fC9" id="67T-cC-ieu"/>
                         <outletCollection property="switches" destination="d6W-vK-IC7" id="vjf-bx-UjO"/>
+                        <segue destination="3g9-hG-gbO" kind="modal" identifier="showDribbbleConnect" id="Vt3-BW-LrY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIF-Tf-1ud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-714" y="-2159"/>
+            <point key="canvasLocation" x="1038" y="1185"/>
         </scene>
         <!--Web Auth View Controller-->
         <scene sceneID="qXe-Bg-g43">
@@ -3020,11 +3021,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="p7I-WK-LHF"/>
         <segue reference="yKi-Z4-5if"/>
+        <segue reference="p7I-WK-LHF"/>
         <segue reference="Wpv-1J-bh0"/>
         <segue reference="xqr-Ua-D3p"/>
+        <segue reference="yWv-eD-hiB"/>
         <segue reference="zuo-hT-5GD"/>
-        <segue reference="5HF-o4-q3F"/>
+        <segue reference="Vt3-BW-LrY"/>
     </inferredMetricsTieBreakers>
 </document>

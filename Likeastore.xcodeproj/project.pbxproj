@@ -31,6 +31,8 @@
 		2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */; };
 		2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */; };
 		2A5BBA60192E4F3D00FB6275 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */; };
+		2A5BBA62192E701F00FB6275 /* EmptyMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5BBA61192E701F00FB6275 /* EmptyMessageView.xib */; };
+		2A5BBA65192E71C500FB6275 /* LSEmptyMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BBA64192E71C500FB6275 /* LSEmptyMessageView.m */; };
 		2A6083901920D6AD0059D588 /* LSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A60838F1920D6AD0059D588 /* LSUser.m */; };
 		2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6083921920E55F0059D588 /* LSSetupViewController.m */; };
 		2A8E210A190FD21C007508CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E2109190FD21C007508CB /* Foundation.framework */; };
@@ -113,6 +115,9 @@
 		2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		2A5BBA61192E701F00FB6275 /* EmptyMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyMessageView.xib; sourceTree = "<group>"; };
+		2A5BBA63192E71C500FB6275 /* LSEmptyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSEmptyMessageView.h; sourceTree = "<group>"; };
+		2A5BBA64192E71C500FB6275 /* LSEmptyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSEmptyMessageView.m; sourceTree = "<group>"; };
 		2A60838E1920D6AD0059D588 /* LSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUser.h; sourceTree = "<group>"; };
 		2A60838F1920D6AD0059D588 /* LSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSUser.m; sourceTree = "<group>"; };
 		2A6083911920E55F0059D588 /* LSSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSetupViewController.h; sourceTree = "<group>"; };
@@ -240,6 +245,8 @@
 				2A13FA7C192CD256000A864D /* LSCircleView.m */,
 				2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */,
 				2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */,
+				2A5BBA63192E71C500FB6275 /* LSEmptyMessageView.h */,
+				2A5BBA64192E71C500FB6275 /* LSEmptyMessageView.m */,
 				2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */,
 				2A23327C1917E26300736954 /* LSFavoritesTableViewCell.m */,
 				2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */,
@@ -355,6 +362,7 @@
 				2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */,
 				2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */,
 				2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */,
+				2A5BBA61192E701F00FB6275 /* EmptyMessageView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -448,6 +456,7 @@
 				2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */,
 				2A8E211C190FD21C007508CB /* Images.xcassets in Resources */,
 				2AA58A201925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib in Resources */,
+				2A5BBA62192E701F00FB6275 /* EmptyMessageView.xib in Resources */,
 				2AA58A2419251219006C69EB /* FavoritesAvatarTextCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +528,7 @@
 				2A2BC046192672D7008D8BF5 /* LSSharedUser.m in Sources */,
 				2A47A9611912487C00EBA965 /* NSDictionary+LSItem.m in Sources */,
 				2A6083901920D6AD0059D588 /* LSUser.m in Sources */,
+				2A5BBA65192E71C500FB6275 /* LSEmptyMessageView.m in Sources */,
 				2A4A7273190FDC6E002F7C0E /* LSLikeastoreHTTPClient.m in Sources */,
 				2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */,
 				2A8E2116190FD21C007508CB /* main.m in Sources */,

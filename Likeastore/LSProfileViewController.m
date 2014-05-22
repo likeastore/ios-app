@@ -14,10 +14,12 @@
 #import "LSUser.h"
 #import "LSCollection.h"
 #import "LSCollectionsTableViewCell.h"
+#import "LSEmptyMessageView.h"
 #import "LSMenuBar.h"
 #import "UIImage+Color.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <UITableView-NXEmptyView/UITableView+NXEmptyView.h>
 
 @interface LSProfileViewController ()
 
@@ -49,7 +51,7 @@
     
     LSSharedUser *sharedUser = [LSSharedUser create];
     [sharedUser setDelegate:self];
-    [sharedUser needsAuthorizedUser];
+    [sharedUser needsAuthorizedUser:YES];
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
@@ -78,6 +80,11 @@
                 
                 [result removeAllObjects];
                 result = nil;
+            } else if ([collectionsList count] == 0) {
+                LSEmptyMessageView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyMessageView" owner:self options:nil] firstObject];
+                [emptyView.emptyMessageLabel setText:@"You have 0 collections. Use web application to create collections now."];
+                [self.tableView setScrollEnabled:NO];
+                [self.tableView setNxEV_emptyView:emptyView];
             }
         }
         
