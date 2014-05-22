@@ -12,6 +12,7 @@
 		2A00D01E191138FA000E3DBC /* LSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A00D01D191138FA000E3DBC /* LSCollection.m */; };
 		2A0557E4191282940078EBB9 /* LSNUITheme.nss in Resources */ = {isa = PBXBuildFile; fileRef = 2A0557E3191282940078EBB9 /* LSNUITheme.nss */; };
 		2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */; };
+		2A13FA7D192CD256000A864D /* LSCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A13FA7C192CD256000A864D /* LSCircleView.m */; };
 		2A142D75192B9CDF006045F8 /* LSNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A142D74192B9CDF006045F8 /* LSNetwork.m */; };
 		2A142D78192BA631006045F8 /* LSSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A142D77192BA631006045F8 /* LSSwitch.m */; };
 		2A142D7B192BB2FB006045F8 /* LSDribbbleModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A142D7A192BB2FB006045F8 /* LSDribbbleModalViewController.m */; };
@@ -29,6 +30,7 @@
 		2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A727F190FF48A002F7C0E /* LSMenuBar.m */; };
 		2A4A728319100788002F7C0E /* LSAllFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */; };
 		2A5452E2191043270039AA7C /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */; };
+		2A5BBA60192E4F3D00FB6275 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */; };
 		2A6083901920D6AD0059D588 /* LSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A60838F1920D6AD0059D588 /* LSUser.m */; };
 		2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6083921920E55F0059D588 /* LSSetupViewController.m */; };
 		2A8E210A190FD21C007508CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E2109190FD21C007508CB /* Foundation.framework */; };
@@ -75,6 +77,8 @@
 		2A0557E3191282940078EBB9 /* LSNUITheme.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LSNUITheme.nss; sourceTree = "<group>"; };
 		2A0DD87519119CC8000C1290 /* LSFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFeedTableViewCell.h; sourceTree = "<group>"; };
 		2A0DD87619119CC8000C1290 /* LSFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFeedTableViewCell.m; sourceTree = "<group>"; };
+		2A13FA7B192CD256000A864D /* LSCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCircleView.h; sourceTree = "<group>"; };
+		2A13FA7C192CD256000A864D /* LSCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCircleView.m; sourceTree = "<group>"; };
 		2A142D73192B9CDF006045F8 /* LSNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetwork.h; sourceTree = "<group>"; };
 		2A142D74192B9CDF006045F8 /* LSNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNetwork.m; sourceTree = "<group>"; };
 		2A142D76192BA631006045F8 /* LSSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSwitch.h; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		2A4A728219100788002F7C0E /* LSAllFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSAllFavoritesViewController.m; sourceTree = "<group>"; };
 		2A5452E0191043270039AA7C /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		2A5452E1191043270039AA7C /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
+		2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		2A60838E1920D6AD0059D588 /* LSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUser.h; sourceTree = "<group>"; };
 		2A60838F1920D6AD0059D588 /* LSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSUser.m; sourceTree = "<group>"; };
 		2A6083911920E55F0059D588 /* LSSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSetupViewController.h; sourceTree = "<group>"; };
@@ -231,7 +236,8 @@
 		2A4A727A190FEF23002F7C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2AA58A1C192510B9006C69EB /* Nibs */,
+				2A13FA7B192CD256000A864D /* LSCircleView.h */,
+				2A13FA7C192CD256000A864D /* LSCircleView.m */,
 				2AA58A171924BB27006C69EB /* LSCollectionsTableViewCell.h */,
 				2AA58A181924BB27006C69EB /* LSCollectionsTableViewCell.m */,
 				2A23327B1917E26300736954 /* LSFavoritesTableViewCell.h */,
@@ -242,6 +248,7 @@
 				2A4A727F190FF48A002F7C0E /* LSMenuBar.m */,
 				2A142D76192BA631006045F8 /* LSSwitch.h */,
 				2A142D77192BA631006045F8 /* LSSwitch.m */,
+				2AA58A1C192510B9006C69EB /* Nibs */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -347,6 +354,7 @@
 				2AA58A1A19250C84006C69EB /* FavoritesAvatarThumbCellView.xib */,
 				2AA58A251925123C006C69EB /* FavoritesNoAvatarTextCellView.xib */,
 				2AA58A1F1925110D006C69EB /* FavoritesNoAvatarThumbCellView.xib */,
+				2A5BBA5F192E4F3D00FB6275 /* EmptyView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4A7270190FDBAD002F7C0E /* MainStoryboard.storyboard in Resources */,
+				2A5BBA60192E4F3D00FB6275 /* EmptyView.xib in Resources */,
 				2A8E2114190FD21C007508CB /* InfoPlist.strings in Resources */,
 				2AA58A1B19250C84006C69EB /* FavoritesAvatarThumbCellView.xib in Resources */,
 				2AA58A261925123C006C69EB /* FavoritesNoAvatarTextCellView.xib in Resources */,
@@ -500,6 +509,7 @@
 				2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */,
 				2A2BC04319264879008D8BF5 /* LSCollectionDetailsViewController.m in Sources */,
 				2ADBF6B6192356CC00C10472 /* UIImage+Color.m in Sources */,
+				2A13FA7D192CD256000A864D /* LSCircleView.m in Sources */,
 				2A23327D1917E26300736954 /* LSFavoritesTableViewCell.m in Sources */,
 				2A6083931920E55F0059D588 /* LSSetupViewController.m in Sources */,
 				2A28D089191FE66E00CF3C15 /* LSSettingsTableViewController.m in Sources */,

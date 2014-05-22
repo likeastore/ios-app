@@ -22,8 +22,8 @@
 
 @implementation LSSettingsTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
         // Custom initialization
     }
@@ -35,6 +35,10 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"settings opened"];
+    
+    if (self.hideStatusBar) {
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
     
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     [api getNetworks:^(AFHTTPRequestOperation *operation, id networks) {
@@ -65,6 +69,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,7 +142,13 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [segue.destinationViewController setSettingsController:self];
+    if ([segue.identifier isEqualToString:@"showDribbbleConnect"]) {
+        [segue.destinationViewController setSettingsController:self];
+    }
+}
+
+- (IBAction)closeWhenAsModal:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

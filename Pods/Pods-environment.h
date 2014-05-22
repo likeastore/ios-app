@@ -108,6 +108,12 @@
 #define COCOAPODS_VERSION_MINOR_JDStatusBarNotification 4
 #define COCOAPODS_VERSION_PATCH_JDStatusBarNotification 8
 
+// M13BadgeView
+#define COCOAPODS_POD_AVAILABLE_M13BadgeView
+#define COCOAPODS_VERSION_MAJOR_M13BadgeView 1
+#define COCOAPODS_VERSION_MINOR_M13BadgeView 0
+#define COCOAPODS_VERSION_PATCH_M13BadgeView 2
+
 // MFStoryboardPushSegue
 #define COCOAPODS_POD_AVAILABLE_MFStoryboardPushSegue
 #define COCOAPODS_VERSION_MAJOR_MFStoryboardPushSegue 1
@@ -173,6 +179,12 @@
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 9
 #define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 5
+
+// UITableView-NXEmptyView
+#define COCOAPODS_POD_AVAILABLE_UITableView_NXEmptyView
+#define COCOAPODS_VERSION_MAJOR_UITableView_NXEmptyView 0
+#define COCOAPODS_VERSION_MINOR_UITableView_NXEmptyView 1
+#define COCOAPODS_VERSION_PATCH_UITableView_NXEmptyView 5
 
 // Underscore.m
 #define COCOAPODS_POD_AVAILABLE_Underscore_m

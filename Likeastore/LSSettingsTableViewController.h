@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *signOutCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *clearCacheCell;
 
+@property BOOL hideStatusBar;
+- (IBAction)closeWhenAsModal:(id)sender;
+
 @property (strong, nonatomic) LSSwitch *targetOnSwitch;
 - (void)callNetworkConnectDissmissal;
 

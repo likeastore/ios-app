@@ -12,6 +12,7 @@
 #import "LSCollection.h"
 #import "LSFeedTableViewCell.h"
 #import "LSDropdownViewController.h"
+#import "LSSettingsTableViewController.h"
 #import "LSSharedUser.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -19,6 +20,8 @@
 #import <TOWebViewController/TOWebViewController.h>
 #import <AHKActionSheet/AHKActionSheet.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import <M13BadgeView/M13BadgeView.h>
+#import <UITableView-NXEmptyView/UITableView+NXEmptyView.h>
 
 @interface LSFeedTableViewController ()
 
@@ -46,6 +49,7 @@
     [mixpanel track:@"feed opened"];
     
     [self clearImageCache];
+    [self getInboxCount];
 
     // show activity indicator on first load
     UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -130,6 +134,10 @@
                 
                 [result removeAllObjects];
                 result = nil;
+            } else if ([items count] == 0 && [type isEqualToString:@"initial"]) {
+                UIView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyView" owner:self options:nil] firstObject];
+                weakSelf.tableView.scrollEnabled = NO;
+                weakSelf.tableView.nxEV_emptyView = emptyView;
             }
         }
         
@@ -150,6 +158,22 @@
     [cache clearMemory];
     [cache clearDisk];
     [cache setValue:nil forKey:@"memCache"];
+}
+
+-(void)getInboxCount {
+    LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
+    [api getInboxCount:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *count = [[responseObject objectForKey:@"count"] stringValue];
+        if (![count isEqualToString:@"0"]) {
+            LSDropdownViewController *menu = (LSDropdownViewController *) [self parentViewController];
+            M13BadgeView *badgeView = [[M13BadgeView alloc] initWithFrame:CGRectMake(0, 0, 18.0, 18.0)];
+            [badgeView setText:count];
+            [badgeView setBadgeBackgroundColor:[UIColor colorWithHexString:@"#e74c3c"]];
+            [badgeView setFont:[UIFont fontWithName:@"HelveticaNeue" size:11.5f]];
+            [badgeView setAlignmentShift:CGSizeMake(6.0f, 6.0f)];
+            [menu.inboxButton addSubview:badgeView];
+        }
+    } failure:nil];
 }
 
 #pragma mark - auth delagates
@@ -282,6 +306,11 @@
             [self showActionSheetForIndexPath:indexPath];
         }
     }
+}
+
+- (IBAction)connectNetworks:(id)sender {
+    LSSettingsTableViewController *settingsCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsModal"];
+    [self presentViewController:settingsCtrl animated:YES completion:nil];
 }
 
 - (void) showActionSheetForIndexPath:(NSIndexPath *)indexPath {

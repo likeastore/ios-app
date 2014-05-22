@@ -172,6 +172,14 @@
                 failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getInboxCount:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self GET:[API_URL stringByAppendingString:@"/items/inbox/count"]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
 #pragma mark - Collections
 
 - (AFHTTPRequestOperation *)getCollections:(void (^)(AFHTTPRequestOperation *operation, id collections))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
