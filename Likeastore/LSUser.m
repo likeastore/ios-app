@@ -32,6 +32,11 @@
     return  self;
 }
 
+- (int)followCollectionsCount {
+    CGFloat c = [self.followCollections count];
+    return c;
+}
+
 - (BOOL)isFirstTimeUser {
     return _firstTimeUser ? YES : NO;
 }

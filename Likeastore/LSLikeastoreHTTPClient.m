@@ -191,6 +191,14 @@
              failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getCollectionsFollowedByUser:(NSString *)username success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self GET:[API_URL stringByAppendingFormat:@"/collections/user/%@/follows", username]
+          parameters:nil
+             success:success
+             failure:failure];
+}
+
 - (AFHTTPRequestOperation *)getPopularCollections:(void (^)(AFHTTPRequestOperation *operation, id collections))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     return [self GET:[API_URL stringByAppendingString:@"/collections/explore"]

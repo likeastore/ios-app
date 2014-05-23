@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSDate *registered;
 
 @property (strong, nonatomic) NSArray *followCollections;
+@property (nonatomic) int followCollectionsCount;
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 

@@ -349,6 +349,7 @@
         [api unfollowCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection removeFollower:user._id];
+             user.followCollectionsCount -= 1;
          } failure:nil];
     } else {
         [self setupFollowingButtonStyles];
@@ -356,6 +357,7 @@
         [api followCollectionByID:self.collection._id success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              [self.collection addFollower:user._id];
+             user.followCollectionsCount += 1;
          } failure:nil];
     }
 }

@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)switchList:(id)sender;
 - (IBAction)backFromCollectionDetailsUnwindSegueCallback:(UIStoryboardSegue *)segue;
 
 @end
