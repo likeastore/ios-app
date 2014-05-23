@@ -213,8 +213,12 @@ static NSString *currentListName;
     [(LSCollectionDetailsViewController *)segue.destinationViewController setCollection:collection];
 }
 
-- (IBAction)switchList:(id)sender {
-    currentListName = [currentListName isEqualToString:@"curating"] ? @"following" : @"curating";
+- (IBAction)switchList:(UIButton *)sender {
+    if (([currentListName isEqualToString:@"following"] && sender.tag == 2) ||
+        ([currentListName isEqualToString:@"curating"] && sender.tag == 1)) {
+        return;
+    }
+    currentListName = sender.tag == 2 ? @"following" : @"curating";
     [self getCollectionsForCurrentList:nil];
 }
 
