@@ -83,7 +83,6 @@
             } else if ([collectionsList count] == 0) {
                 LSEmptyMessageView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyMessageView" owner:self options:nil] firstObject];
                 [emptyView.emptyMessageLabel setText:@"You have 0 collections. Use web application to create collections now."];
-                [self.tableView setScrollEnabled:NO];
                 [self.tableView setNxEV_emptyView:emptyView];
             }
         }
