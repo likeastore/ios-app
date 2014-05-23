@@ -67,6 +67,7 @@
                 break;
                 
             default:
+                [JDStatusBarNotification dismissAnimated:YES];
                 [weakSelf.operationQueue setSuspended:NO];
                 break;
         }

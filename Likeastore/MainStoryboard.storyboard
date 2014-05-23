@@ -2163,7 +2163,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="CLV-rv-u4v">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF5-Z0-7jm" customClass="TPKeyboardAvoidingScrollView">
@@ -2894,7 +2894,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIF-Tf-1ud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="1185"/>
+            <point key="canvasLocation" x="1046" y="1178"/>
         </scene>
         <!--Web Auth View Controller-->
         <scene sceneID="qXe-Bg-g43">
@@ -3023,10 +3023,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="yKi-Z4-5if"/>
         <segue reference="p7I-WK-LHF"/>
-        <segue reference="Wpv-1J-bh0"/>
         <segue reference="xqr-Ua-D3p"/>
-        <segue reference="yWv-eD-hiB"/>
+        <segue reference="Wpv-1J-bh0"/>
         <segue reference="zuo-hT-5GD"/>
-        <segue reference="Vt3-BW-LrY"/>
+        <segue reference="5HF-o4-q3F"/>
+        <segue reference="n51-WH-jrP"/>
     </inferredMetricsTieBreakers>
 </document>

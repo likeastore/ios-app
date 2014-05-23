@@ -47,7 +47,9 @@
             LSSwitch *targetSwitch = Underscore.array(self.switches).find(^BOOL(LSSwitch *networkSwitch) {
                 return [networkSwitch.service isEqualToString:network.service];
             });
-            [targetSwitch setOn:YES animated:YES];
+            if (!network.disabled) {
+                [targetSwitch setOn:YES animated:YES];
+            }
         }
     } failure:nil];
 }

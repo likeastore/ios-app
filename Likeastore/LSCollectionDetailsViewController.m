@@ -68,7 +68,7 @@
     __block CGFloat page = 1;
     __weak LSCollectionDetailsViewController *weakSelf = self;
     
-    [self loadItemsFor:page success:^(BOOL nextPage){
+    [self loadItemsFor:page actionType:@"initial" success:^(BOOL nextPage){
         page += 1;
         
         [loader stopAnimating];
@@ -79,7 +79,7 @@
     [self.itemsTableView addInfiniteScrollingWithActionHandler:^{
         [loader stopAnimating];
         [loader removeFromSuperview];
-        [weakSelf loadItemsFor:page success:^(BOOL nextPage){
+        [weakSelf loadItemsFor:page actionType:@"infiniteScroll" success:^(BOOL nextPage){
             page += 1;
             [weakSelf.itemsTableView.infiniteScrollingView stopAnimating];
         }];
@@ -106,7 +106,7 @@
     [self clearImageCache];
 }
 
-- (void)loadItemsFor:(CGFloat)page success:(void (^)(BOOL nextPage))callback {
+- (void)loadItemsFor:(CGFloat)page actionType:(NSString *)type success:(void (^)(BOOL nextPage))callback {
     LSLikeastoreHTTPClient *api = [LSLikeastoreHTTPClient create];
     
     [api getFavoritesFromCollectionID:self.collection._id byPage:page success:^(AFHTTPRequestOperation *operation, id favorites) {
@@ -125,7 +125,7 @@
                 [self.itemsTableView reloadData];
                 
                 [result removeAllObjects];
-            } else if ([items count] == 0) {
+            } else if ([items count] == 0 && [type isEqualToString:@"initial"]) {
                 LSEmptyMessageView *emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyMessageView" owner:self options:nil] firstObject];
                 [emptyView.emptyMessageLabel setText:@"Collection is empty."];
                 [self.itemsTableView setScrollEnabled:NO];
