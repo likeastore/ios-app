@@ -42,6 +42,8 @@
 
 - (AFHTTPRequestOperation *) getInboxCount:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (AFHTTPRequestOperation *)flagItemWithID:(NSString *)itemId withReason:(NSString *)reason success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 #pragma mark - Collections
 
 - (AFHTTPRequestOperation *) getCollections:(void (^)(AFHTTPRequestOperation *operation, id collections))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

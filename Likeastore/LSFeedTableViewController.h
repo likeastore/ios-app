@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "LSSharedUser.h"
+#import "LSFlagModalViewController.h"
 
-@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate, LSSharedUserDelegate>
+@interface LSFeedTableViewController : UITableViewController <TTTAttributedLabelDelegate, LSSharedUserDelegate, LSFlagModalViewControllerDelegate>
 
 - (IBAction)longPressGestureHandle:(UILongPressGestureRecognizer *)sender;
 - (IBAction)connectNetworks:(id)sender;

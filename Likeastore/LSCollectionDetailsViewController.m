@@ -22,6 +22,7 @@
 #import <AHKActionSheet/AHKActionSheet.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <UITableView-NXEmptyView/UITableView+NXEmptyView.h>
+#import <BlurryModalSegue/BlurryModalSegue.h>
 
 @interface LSCollectionDetailsViewController ()
 
@@ -309,6 +310,8 @@
     actionSheet.destructiveButtonTextAttributes = @{NSFontAttributeName:defaultFont,
                                                     NSForegroundColorAttributeName:pinkColor};
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    
     // create menu items
     FAKIonIcons *sourceIcon = [FAKIonIcons ios7UploadOutlineIconWithSize:icon_size];
     [sourceIcon addAttribute:NSForegroundColorAttributeName value:mainColor];
@@ -316,10 +319,19 @@
                               image:[sourceIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *as) {
-                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                 [mixpanel track:@"source link opened"];
-                                
                                 [self openWebView:[NSURL URLWithString:item.source]];
+                            }];
+    
+    FAKIonIcons *flagIcon = [FAKIonIcons ios7FlagIconWithSize:icon_size];
+    [flagIcon addAttribute:NSForegroundColorAttributeName value:pinkColor];
+    
+    [actionSheet addButtonWithTitle:@"Flag"
+                              image:[flagIcon imageWithSize:CGSizeMake(icon_size, icon_size)]
+                               type:AHKActionSheetButtonTypeDestructive
+                            handler:^(AHKActionSheet *as) {
+                                [mixpanel track:@"flagged content"];
+                                [self performSegueWithIdentifier:@"showFlagModal" sender:self];
                             }];
     
     [actionSheet show];
@@ -333,6 +345,32 @@
         if (indexPath) {
             [self showActionSheetForIndexPath:indexPath];
         }
+    }
+}
+
+#pragma mark - Flag delagates
+
+- (void)didFlagItemWithID:(NSString *)itemId forIndexPath:(NSIndexPath *)indexPath {
+    [self.items removeObjectAtIndex:indexPath.row];
+    [self.itemsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue isKindOfClass:[BlurryModalSegue class]]) {
+        BlurryModalSegue* blurrySegue = (BlurryModalSegue*)segue;
+        blurrySegue.backingImageBlurRadius = @(20);
+        blurrySegue.backingImageTintColor = [UIColor colorWithHexString:@"#fff" alpha:.2];
+    }
+    
+    if ([segue.identifier isEqualToString:@"showFlagModal"]) {
+        NSIndexPath *indexPath = [self.itemsTableView indexPathForSelectedRow];
+        LSItem *item = [self.items objectAtIndex:indexPath.row];
+        LSFlagModalViewController *modalCtrl = (LSFlagModalViewController *)segue.destinationViewController;
+        [modalCtrl setDelegate:self];
+        [modalCtrl setItemID:item._id];
+        [modalCtrl setItemIndexPath:indexPath];
     }
 }
 

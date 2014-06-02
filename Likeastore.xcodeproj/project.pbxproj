@@ -56,6 +56,7 @@
 		2AF3E268191A564D00A1E135 /* LSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E267191A564D00A1E135 /* LSLoginViewController.m */; };
 		2AF3E26B191AA0B300A1E135 /* LSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */; };
 		2AFBF09E191BCAED00D31722 /* LSEmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */; };
+		2AFC5C29193CC0A00015CF80 /* LSFlagModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC5C28193CC0A00015CF80 /* LSFlagModalViewController.m */; };
 		B069897E3C574FE7B1D39211 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9405E0F1BA484B468754DAE5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,8 @@
 		2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWebAuthViewController.m; sourceTree = "<group>"; };
 		2AFBF09C191BCAED00D31722 /* LSEmailLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSEmailLoginViewController.h; sourceTree = "<group>"; };
 		2AFBF09D191BCAED00D31722 /* LSEmailLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSEmailLoginViewController.m; sourceTree = "<group>"; };
+		2AFC5C27193CC0A00015CF80 /* LSFlagModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSFlagModalViewController.h; sourceTree = "<group>"; };
+		2AFC5C28193CC0A00015CF80 /* LSFlagModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSFlagModalViewController.m; sourceTree = "<group>"; };
 		50114D2CAEA9494BBF506B54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9405E0F1BA484B468754DAE5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -223,6 +226,8 @@
 				2A6083921920E55F0059D588 /* LSSetupViewController.m */,
 				2AF3E269191AA0B300A1E135 /* LSWebAuthViewController.h */,
 				2AF3E26A191AA0B300A1E135 /* LSWebAuthViewController.m */,
+				2AFC5C27193CC0A00015CF80 /* LSFlagModalViewController.h */,
+				2AFC5C28193CC0A00015CF80 /* LSFlagModalViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				2A8E211A190FD21C007508CB /* LSAppDelegate.m in Sources */,
 				2A1AC45519227CEE0019954C /* LSExploreTableViewController.m in Sources */,
 				2A28D083191FDAB600CF3C15 /* LSProfileViewController.m in Sources */,
+				2AFC5C29193CC0A00015CF80 /* LSFlagModalViewController.m in Sources */,
 				2A00D018191122DD000E3DBC /* LSFeedTableViewController.m in Sources */,
 				2A4A7280190FF48A002F7C0E /* LSMenuBar.m in Sources */,
 				2A0DD87719119CC8000C1290 /* LSFeedTableViewCell.m in Sources */,
@@ -613,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -645,7 +651,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

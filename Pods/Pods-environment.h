@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_ALPValidator 0
 #define COCOAPODS_VERSION_PATCH_ALPValidator 3
 
+// BlurryModalSegue
+#define COCOAPODS_POD_AVAILABLE_BlurryModalSegue
+#define COCOAPODS_VERSION_MAJOR_BlurryModalSegue 1
+#define COCOAPODS_VERSION_MINOR_BlurryModalSegue 0
+#define COCOAPODS_VERSION_PATCH_BlurryModalSegue 0
+
 // DropdownMenu
 #define COCOAPODS_POD_AVAILABLE_DropdownMenu
 #define COCOAPODS_VERSION_MAJOR_DropdownMenu 1
@@ -90,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_IonIcons 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_IonIcons 5
 
+// HATransparentView
+#define COCOAPODS_POD_AVAILABLE_HATransparentView
+#define COCOAPODS_VERSION_MAJOR_HATransparentView 0
+#define COCOAPODS_VERSION_MINOR_HATransparentView 2
+#define COCOAPODS_VERSION_PATCH_HATransparentView 0
+
 // HexColors
 #define COCOAPODS_POD_AVAILABLE_HexColors
 #define COCOAPODS_VERSION_MAJOR_HexColors 2
@@ -119,6 +131,12 @@
 #define COCOAPODS_VERSION_MAJOR_MFStoryboardPushSegue 1
 #define COCOAPODS_VERSION_MINOR_MFStoryboardPushSegue 0
 #define COCOAPODS_VERSION_PATCH_MFStoryboardPushSegue 1
+
+// MZAppearance
+#define COCOAPODS_POD_AVAILABLE_MZAppearance
+#define COCOAPODS_VERSION_MAJOR_MZAppearance 1
+#define COCOAPODS_VERSION_MINOR_MZAppearance 1
+#define COCOAPODS_VERSION_PATCH_MZAppearance 3
 
 // Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
@@ -179,6 +197,12 @@
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 9
 #define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 5
+
+// UIImage+BlurredFrame
+#define COCOAPODS_POD_AVAILABLE_UIImage_BlurredFrame
+#define COCOAPODS_VERSION_MAJOR_UIImage_BlurredFrame 0
+#define COCOAPODS_VERSION_MINOR_UIImage_BlurredFrame 0
+#define COCOAPODS_VERSION_PATCH_UIImage_BlurredFrame 4
 
 // UITableView-NXEmptyView
 #define COCOAPODS_POD_AVAILABLE_UITableView_NXEmptyView

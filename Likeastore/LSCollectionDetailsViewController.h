@@ -10,8 +10,9 @@
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "LSCollection.h"
 #import "LSSharedUser.h"
+#import "LSFlagModalViewController.h"
 
-@interface LSCollectionDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, UIActionSheetDelegate, LSSharedUserDelegate>
+@interface LSCollectionDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, UIActionSheetDelegate, LSSharedUserDelegate, LSFlagModalViewControllerDelegate>
 
 @property (strong, nonatomic) LSCollection *collection;
 
