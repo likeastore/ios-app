@@ -34,6 +34,7 @@
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
+    [self.tableView setSeparatorColor:[UIColor colorWithHexString:@"#a3a5c0" alpha:0.6f]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +53,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.options count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 4) {
+        return 46;
+    }
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

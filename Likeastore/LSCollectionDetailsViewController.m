@@ -360,8 +360,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue isKindOfClass:[BlurryModalSegue class]]) {
         BlurryModalSegue* blurrySegue = (BlurryModalSegue*)segue;
-        blurrySegue.backingImageBlurRadius = @(20);
-        blurrySegue.backingImageTintColor = [UIColor colorWithHexString:@"#fff" alpha:.2];
+        [blurrySegue setBackingImageBlurRadius:@(10)];
+        [blurrySegue setBackingImageTintColor:[UIColor colorWithHexString:@"#1f212f" alpha:0.9]];
     }
     
     if ([segue.identifier isEqualToString:@"showFlagModal"]) {

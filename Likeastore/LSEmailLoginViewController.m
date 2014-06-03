@@ -12,6 +12,7 @@
 
 #import <ALPValidator/ALPValidator.h>
 #import <NSURL+ParseQuery/NSURL+QueryParser.h>
+#import <TOWebViewController/TOWebViewController.h>
 
 @interface LSEmailLoginViewController ()
 
@@ -111,6 +112,26 @@
         recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         [self performSegueWithIdentifier:@"backToSocialLogin" sender:self];
     }
+}
+
+#pragma mark - Terms and privacy
+
+- (IBAction)showTerms:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"https://likeastore.com/terms"];
+    TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
+    [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
+    
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (IBAction)showPolicy:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"https://likeastore.com/privacy"];
+    TOWebViewController *webViewCtrl = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewCtrl];
+    [nav.view setTintColor:[UIColor colorWithHexString:@"#3eb6b9"]];
+    
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - Navigation

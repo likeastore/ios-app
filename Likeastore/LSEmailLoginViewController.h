@@ -15,5 +15,7 @@
 
 - (IBAction)login:(id)sender;
 - (IBAction)swipeGestureHandle:(UISwipeGestureRecognizer *)sender;
+- (IBAction)showTerms:(id)sender;
+- (IBAction)showPolicy:(id)sender;
 
 @end
