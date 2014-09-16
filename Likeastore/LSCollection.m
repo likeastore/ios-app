@@ -20,13 +20,15 @@
 
 @implementation LSCollection
 
+@synthesize description;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
     if (self) {
         __id = [dictionary objectForKeyNotNull:@"_id"];
         _title = [dictionary objectForKeyNotNull:@"title"];
-        _description = [dictionary objectForKeyNotNull:@"description"];
+        description = [dictionary objectForKeyNotNull:@"description"];
         _owner = [dictionary objectForKeyNotNull:@"owner"];
         _userData = [dictionary objectForKeyNotNull:@"userData"];
         _color = [dictionary objectForKeyNotNull:@"color"];
@@ -40,10 +42,10 @@
 }
 
 - (NSString *)description {
-    if ([_description isEqualToString:@""]) {
+    if ([description isEqualToString:@""]) {
         return nil;
     }
-    return _description;
+    return description;
 }
 
 - (NSString *)ownerID {
@@ -77,10 +79,10 @@
 }
 
 - (BOOL)isDescription {
-    if ([_description isEqualToString:@""]) {
+    if ([description isEqualToString:@""]) {
         return NO;
     }
-    return _description ? YES : NO;
+    return description ? YES : NO;
 }
 
 - (BOOL)thumbnailIsGIF {

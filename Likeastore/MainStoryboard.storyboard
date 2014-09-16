@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m39-Xk-X0f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m39-Xk-X0f">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Dropdown View Controller-->
@@ -24,7 +25,7 @@
                                     <segue destination="SzC-Wr-2Zg" kind="embed" id="Wpv-1J-bh0"/>
                                 </connections>
                             </containerView>
-                            <view hidden="YES" alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
+                            <view hidden="YES" alpha="0.97999999999999998" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEF-06-QWM" userLabel="Menu">
                                 <rect key="frame" x="0.0" y="-200" width="320" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pL-az-eua">
@@ -157,7 +158,6 @@
                             <constraint firstItem="olZ-BV-j4k" firstAttribute="top" secondItem="wCT-Ma-5Cn" secondAttribute="top" constant="65" id="ykg-ES-RD6"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="container" destination="olZ-BV-j4k" id="NO1-a0-Xpn"/>
                         <outlet property="inboxButton" destination="2dg-hO-NgG" id="sgx-Lb-Eg8"/>
@@ -1182,7 +1182,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemViewTitle"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="238" translatesAutoresizingMaskIntoConstraints="NO" id="SXX-O2-lH8" customClass="TTTAttributedLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="238" translatesAutoresizingMaskIntoConstraints="NO" id="SXX-O2-lH8" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="52" y="179" width="238" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="PGn-2F-EoR"/>
@@ -1288,7 +1288,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemViewTitle"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-he-x6j" customClass="TTTAttributedLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="gSr-he-x6j" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="10" y="179" width="280" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="32L-ad-qr8"/>
@@ -1389,7 +1389,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemViewTitle"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="238" translatesAutoresizingMaskIntoConstraints="NO" id="0zJ-zN-xhc" customClass="TTTAttributedLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="238" translatesAutoresizingMaskIntoConstraints="NO" id="0zJ-zN-xhc" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="52" y="51" width="238" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="238" id="TKM-vk-iDs"/>
@@ -1483,7 +1483,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="ItemViewTitle"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="jPN-LS-y9u" customClass="TTTAttributedLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description and item content text..Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="jPN-LS-y9u" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="10" y="51" width="280" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="280" id="Cil-Kf-ksU"/>
@@ -1548,7 +1548,6 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="pas-s2-6JG" id="s7T-da-P5g"/>
                     </connections>
@@ -1904,7 +1903,7 @@
                                     <outlet property="itemThumb" destination="O77-GW-nFX" id="lHq-5W-utB"/>
                                     <outlet property="itemTitle" destination="vwA-X0-WcD" id="cAg-le-cdT"/>
                                     <outlet property="typeIconView" destination="gss-Jo-b9P" id="W31-mV-w6s"/>
-                                    <segue destination="NfT-vr-OOd" kind="custom" identifier="showFlagModal" customClass="BlurryModalSegue" trigger="accessoryAction" id="Hb4-77-VT0"/>
+                                    <segue destination="NfT-vr-OOd" kind="custom" identifier="showFlagModal" trigger="accessoryAction" customClass="BlurryModalSegue" id="Hb4-77-VT0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1913,7 +1912,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <size key="freeformSize" width="320" height="503"/>
                     <connections>
                         <segue destination="ydI-1p-Vb2" kind="modal" identifier="showLogin" modalTransitionStyle="crossDissolve" id="yWv-eD-hiB"/>
                     </connections>
@@ -2183,7 +2181,6 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="GeN-6i-sSU">
                                         <rect key="frame" x="50" y="427" width="220" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="220" id="Krg-fQ-gqR"/>
                                             <constraint firstAttribute="height" constant="33" id="dHd-uN-hl2"/>
@@ -2223,7 +2220,6 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="end-t8-1Jn">
                                         <rect key="frame" x="81" y="436" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="HzQ-1r-fsA"/>
                                             <constraint firstAttribute="width" constant="46" id="hbt-zo-Vrd"/>
@@ -2239,7 +2235,6 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-yx-qPX">
                                         <rect key="frame" x="151" y="436" width="87" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="K7F-Sa-3BQ"/>
                                             <constraint firstAttribute="width" constant="87" id="upv-OS-Mnk"/>
@@ -2928,7 +2923,6 @@
                             <constraint firstAttribute="centerX" secondItem="H2s-xx-LVn" secondAttribute="centerX" id="MBt-xU-nXj"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="activityIndicator" destination="H2s-xx-LVn" id="4p0-qH-5hv"/>
                         <outlet property="webView" destination="bOd-sD-4hw" id="G13-2m-Vky"/>

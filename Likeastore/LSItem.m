@@ -11,6 +11,8 @@
 
 @implementation LSItem
 
+@synthesize description;
+
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     
@@ -19,7 +21,7 @@
         _title = [dictionary objectForKeyNotNull:@"title"];
         _repo = [dictionary objectForKeyNotNull:@"repo"];
         _name = [dictionary objectForKeyNotNull:@"name"];
-        _description = [dictionary objectForKeyNotNull:@"description"];
+        description = [dictionary objectForKeyNotNull:@"description"];
         _thumbnail = [dictionary objectForKeyNotNull:@"thumbnail"];
         _source = [dictionary objectForKeyNotNull:@"source"];
         _type = [dictionary objectForKeyNotNull:@"type"];
@@ -47,13 +49,13 @@
 }
 
 - (NSString *) description {
-    if (_description == _name && [_type isEqualToString:@"facebook"]) {
+    if (description == _name && [_type isEqualToString:@"facebook"]) {
         return _source;
     }
-    if (!_description && self.isGist) {
+    if (!description && self.isGist) {
         return _source;
     }
-    return _description;
+    return description;
 }
 
 - (BOOL) isThumbnail {
